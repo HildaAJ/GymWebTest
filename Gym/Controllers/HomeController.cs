@@ -26,5 +26,7 @@ namespace Gym.Controllers
 
             return View();
         }
+
+
     }
 }
