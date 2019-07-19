@@ -32,12 +32,12 @@ namespace Gym.Controllers
         [AllowAnonymous]
         public ActionResult Create()
         { 
-            RegisterGroupViewModel registerGroupViewModel = new RegisterGroupViewModel();
+            RegisterGroupViewModel reg = new RegisterGroupViewModel();
             //匯入館別複選資料
-            StoreCheckListViewModel storeCheckListViewModel = new StoreCheckListViewModel();
-            storeCheckListViewModel.listStoreItems();
-            registerGroupViewModel.StoreCheckList = storeCheckListViewModel;
-            return View(registerGroupViewModel);
+            StoreCheckListViewModel SCLV = new StoreCheckListViewModel();
+            SCLV.listStoreItems();
+            reg.StoreCheckList = SCLV;
+            return View(reg);
         }
 
         [AllowAnonymous]
