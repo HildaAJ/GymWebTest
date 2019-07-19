@@ -43,13 +43,13 @@ namespace Gym.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(RegisterGroupViewModel registerGroupViewModel)
+        public ActionResult Create(RegisterGroupViewModel reg)
         {
             if (ModelState.IsValid)
             {
                 string msg = "";
                 MemberDataOperation memberDataOperation = new MemberDataOperation();
-                var result = memberDataOperation.CheckAddMember(registerGroupViewModel);
+                var result = memberDataOperation.CheckAddMember(reg);
 
                 switch (result)
                 {
@@ -60,15 +60,15 @@ namespace Gym.Controllers
                     case -1:
                         msg = "會員資料已存在 註冊失敗";
                         ViewBag.RegisterMsg = msg;
-                        return View(registerGroupViewModel);
+                        return View(reg);
 
                     case -99:
                         msg = "會員資料新增失敗";
                         ViewBag.RegisterMsg = msg;
-                        return View(registerGroupViewModel);
+                        return View(reg);
                 }
             }
-            return View(registerGroupViewModel);
+            return View(reg);
         }
     }
 }
