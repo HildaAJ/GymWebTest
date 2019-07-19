@@ -50,6 +50,10 @@ namespace Gym.Models.ViewModels
         [Required(ErrorMessage = "請選擇出入方式")]
         public string PassWay { get; set; }
 
+        [DisplayName("出入場館")]
+        [Required(ErrorMessage = "請選擇出入場館")]
+        public List<int> Store_No { get; set; }
+
         public int RoleNo { get { return 1; } }
 
         public DateTime CreateTime { get; set; }

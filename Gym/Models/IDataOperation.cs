@@ -8,10 +8,10 @@ namespace Gym.Models
 {
     public interface IDataOperation<T> where T:class,new()
     {
-        void Add(T obj);
-        IEnumerable<T> Get();
-        void Update(T obj);
-        void Delete(T obj);
+         void Add(T obj);
+         IEnumerable<T> Get();
+         void Update(T obj);
+         void Delete(T obj);
 
     }
 }
