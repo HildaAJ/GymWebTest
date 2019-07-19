@@ -1,0 +1,11 @@
+﻿@model Gym.Models.ViewModels.StoreCheckboxListItem
+
+<!DOCTYPE html>
+
+<div class="checkbox-inline">
+    @Html.HiddenFor(x=>x.No)
+    @Html.HiddenFor(x=>x.DisplayText)
+    @Html.CheckBoxFor(x=>x.IsChecked)
+    @Html.LabelFor(x=>x.IsChecked,Model.DisplayText)
+</div>
+<br />

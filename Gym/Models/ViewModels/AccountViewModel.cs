@@ -23,7 +23,7 @@ namespace Gym.Models.ViewModels
 
         [DisplayName("出生年月日")]
         [Required(ErrorMessage = "出生日期不可空白")]
-        public string BirYear { get; set; }
+        public DateTime Birthday { get; set; }
 
         [DisplayName("電話")]
         [Required(ErrorMessage = "電話不可空白")]
@@ -48,21 +48,19 @@ namespace Gym.Models.ViewModels
 
         [DisplayName("進出方式")]
         [Required(ErrorMessage = "請選擇出入方式")]
-        public string PassWay { get; set; }
+        public string PassWay { get; set; } 
 
-        [DisplayName("出入場館")]
-        [Required(ErrorMessage = "請選擇出入場館")]
         public List<int> Store_No { get; set; }
 
         public int RoleNo { get { return 1; } }
 
-        public DateTime CreateTime { get; set; }
+        public DateTime CreateTime { get { return DateTime.Now; } }
 
-        public DateTime LastLoginTime { get; set; }
+        public DateTime LastLoginTime { get { return DateTime.Now; } }
 
-        public int IsLogin { get; set; }
+        public bool IsLogin { get { return false; } }
 
-        public int Status { get; set; }
+        public bool Status { get { return true; } }
     }
 
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Gym.Models.ViewModels;
+using Gym.Models;
 
 namespace Gym.Controllers
 {
@@ -27,6 +29,46 @@ namespace Gym.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult Create()
+        { 
+            RegisterGroupViewModel registerGroupViewModel = new RegisterGroupViewModel();
+            //匯入館別複選資料
+            StoreCheckListViewModel storeCheckListViewModel = new StoreCheckListViewModel();
+            storeCheckListViewModel.listStoreItems();
+            registerGroupViewModel.StoreCheckList = storeCheckListViewModel;
+            return View(registerGroupViewModel);
+        }
 
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(RegisterGroupViewModel registerGroupViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                string msg = "";
+                MemberDataOperation memberDataOperation = new MemberDataOperation();
+                var result = memberDataOperation.CheckAddMember(registerGroupViewModel);
+
+                switch (result)
+                {
+                    case 0:
+                        msg = "註冊成功";
+                        ViewBag.RegisterMsg = msg;
+                        return RedirectToAction("Index", "Home");
+                    case -1:
+                        msg = "會員資料已存在 註冊失敗";
+                        ViewBag.RegisterMsg = msg;
+                        return View(registerGroupViewModel);
+
+                    case -99:
+                        msg = "會員資料新增失敗";
+                        ViewBag.RegisterMsg = msg;
+                        return View(registerGroupViewModel);
+                }
+            }
+            return View(registerGroupViewModel);
+        }
     }
 }

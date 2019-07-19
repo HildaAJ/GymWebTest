@@ -159,6 +159,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classroom.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseItem.cs" />
@@ -168,11 +169,14 @@
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberAccess.cs" />
     <Compile Include="Models\MemberCourse.cs" />
-    <Compile Include="Models\MemberDataOperation.cs" />
+    <Compile Include="Models\Operation\MemberDataOperation.cs" />
+    <Compile Include="Models\Operation\StoreDataOperation.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Store.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\ViewModels\AccountViewModel.cs" />
+    <Compile Include="Models\ViewModels\GroupViewModel.cs" />
+    <Compile Include="Models\ViewModels\CheckboxListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +222,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Create.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\StoreCheckboxListItem.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
