@@ -8,8 +8,11 @@ using Gym.Models;
 
 namespace Gym.Controllers
 {
+    
     public class HomeController : Controller
     {
+        //public GymDBModel db = new GymDBModel();
+
         public ActionResult Index()
         {
             return View();
@@ -48,7 +51,9 @@ namespace Gym.Controllers
             if (ModelState.IsValid)
             {
                 string msg = "";
-                MemberDataOperation memberDataOperation = new MemberDataOperation();
+
+                //新增會員至資料表
+                MemberDataOperation memberDataOperation = new MemberDataOperation();                
                 var result = memberDataOperation.CheckAddMember(reg);
 
                 switch (result)
@@ -61,7 +66,10 @@ namespace Gym.Controllers
                         msg = "會員資料已存在 註冊失敗";
                         ViewBag.RegisterMsg = msg;
                         return View(reg);
-
+                    case -2:
+                        msg = "至少選擇一個館別";
+                        ViewBag.RegisterMsg = msg;
+                        return View(reg);
                     case -99:
                         msg = "會員資料新增失敗";
                         ViewBag.RegisterMsg = msg;

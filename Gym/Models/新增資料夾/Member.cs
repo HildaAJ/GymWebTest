@@ -24,6 +24,10 @@ namespace Gym.Models
         [StringLength(50)]
         public string Email { get; set; }
 
+        [Required]
+        [StringLength(50)]
+        public string Name { get; set; }
+
         [Column(TypeName = "date")]
         public DateTime Birthday { get; set; }
 
@@ -36,7 +40,7 @@ namespace Gym.Models
         public string Password { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(10)]
         public string Sex { get; set; }
 
         [Required]
@@ -52,10 +56,6 @@ namespace Gym.Models
         public bool IsLogin { get; set; }
 
         public bool Status { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Name { get; set; }
 
         public virtual Role Role { get; set; }
 

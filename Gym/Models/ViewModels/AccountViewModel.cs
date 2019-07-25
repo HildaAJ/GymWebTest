@@ -50,7 +50,7 @@ namespace Gym.Models.ViewModels
         [Required(ErrorMessage = "請選擇出入方式")]
         public string PassWay { get; set; } 
 
-        public List<int> Store_No { get; set; }
+        public IEnumerable<Store> AccessStore { get; set; }
 
         public int RoleNo { get { return 1; } }
 

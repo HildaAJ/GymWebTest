@@ -11,8 +11,8 @@ namespace Gym.Models.ViewModels
     /// </summary>
     public class StoreCheckListViewModel
     {
-        public List<StoreCheckboxListItem> stores { get; set; }
-        public string[] StoreValue { get; set; }
+        public List<StoreCheckboxListItem> stores { get; set; } //所有館別
+        public string[] StoreValue { get; set; } //選擇館別
 
         public void listStoreItems()
         {

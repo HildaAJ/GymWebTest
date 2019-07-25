@@ -12,6 +12,6 @@ namespace Gym.Models
          IEnumerable<T> Get();
          void Update(T obj);
          void Delete(T obj);
-
+       
     }
 }

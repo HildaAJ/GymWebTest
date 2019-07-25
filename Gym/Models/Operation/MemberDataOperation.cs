@@ -4,87 +4,126 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using Gym.Models.ViewModels;
+using Gym.Models.Operation;
 
 namespace Gym.Models
 {
-    public class MemberDataOperation : IDataOperation<Member>
+    public class MemberDataOperation : DataOperation<Member>, IDataOperation<Member>
     {
-        GymDBModel db = new GymDBModel();
-
-        public void Add(Member obj)
+        public override void Add(Member obj)
         {
-            db.Member.Add(obj);
-            db.SaveChanges();
-
+            using (GymEntity db = new GymEntity()) {
+                db.Member.Add(obj);
+                db.SaveChanges();
+            }
+           
         }
 
-        public void Delete(Member obj)
+        public override void Delete(Member obj)
         {
-            db.Member.Remove(obj);
-            db.SaveChanges();
+            using(GymEntity db = new GymEntity())
+            {
+                db.Member.Remove(obj);
+                db.SaveChanges();
+            }
+            
         }
 
-        public IEnumerable<Member> Get()
+        public override IEnumerable<Member> Get()
         {
-            var Members = from c in db.Member select c;
-            var allMembers = Members.ToList();
-            return allMembers;
+            using (GymEntity db = new GymEntity())
+            {
+                var Members = from c in db.Member select c;
+                var allMembers = Members.ToList();
+                return allMembers;
+            }
+               
         }
 
-        public void Update(Member obj)
+        public override void Update(Member obj)
         {
             
         }
 
-        public int CheckAddMember(RegisterGroupViewModel member)
+        public int CheckAddMember(RegisterGroupViewModel reg)
         {
             int flg = 0;
            
-                var allMember = Get();
+            var allMember = Get();
                 //電話,Email相同 視為同一個會員
-                var check = allMember.Where(s => s.Tel == member.Register.Tel ||
-                                                     s.Email == member.Register.Email).ToList();
-                //會員資料重複
-                if (check.Count() >= 1)
+            var check = allMember.Where(s => s.Tel == reg.Register.Tel ||
+                                                     s.Email == reg.Register.Email).ToList();
+            //會員資料重複
+            if (check.Count() >= 1)
+            {
+                flg = -1;
+            }
+            //新增會員
+            else
+            {
+                using (GymEntity db = new GymEntity())
                 {
-                    flg = -1;
-                }
-                //新增會員
-                else
-                {
-                    Member addMember = new Member
-                    {
-                        Email = member.Register.Email,
-                        Birthday=member.Register.Birthday,
-                        Tel=member.Register.Tel,
-                        Password=member.Register.Password,
-                        Sex=member.Register.Sex,
-                        PassWay=member.Register.PassWay,
-                        Role_No=member.Register.RoleNo,
-                        CreateTime=member.Register.CreateTime,
-                        LastLoginTime=member.Register.LastLoginTime,
-                        IsLogin=member.Register.IsLogin,
-                        Status=member.Register.Status
-                    };
-
-                    db.Member.Add(addMember);
-                    bool saveFailed;
-
-                    do
-                    {
-                        saveFailed = false;
-                        try
-                        {   
-                            db.SaveChanges();
-                            flg = 0;
-                        }
-                        catch (DbUpdateConcurrencyException ex)
+                    StoreDataOperation store = new StoreDataOperation();
+                    var allStore = store.Get();
+                    //會員選擇的館別編號
+                    var chkStoreNo = from c in reg.StoreCheckList.stores
+                                   where c.IsChecked == true
+                                   select c.No;
+                          
+                    if (chkStoreNo.Count() > 0)
+                    {   
+                        Member addMember = new Member
                         {
-                            saveFailed = true;
-                            ex.Entries.Single().Reload();
+                            Email = reg.Register.Email,
+                            Birthday = reg.Register.Birthday,
+                            Tel = reg.Register.Tel,
+                            Password = reg.Register.Password,
+                            Sex = reg.Register.Sex,
+                            PassWay = reg.Register.PassWay,
+                            Role_No = reg.Register.RoleNo,
+                            CreateTime = reg.Register.CreateTime,
+                            LastLoginTime = reg.Register.LastLoginTime,
+                            IsLogin = reg.Register.IsLogin,
+                            Status = reg.Register.Status, 
+                            Name=reg.Register.Name,
+                            
+                    };
+                        //新增會員可出入館別資料
+                        foreach (var No in chkStoreNo)
+                        {
+                            addMember.Store.Add(db.Store.Where(m => m.StoreNo == No).FirstOrDefault());
                         }
-                    } while (saveFailed);   
+
+                         db.Member.Add(addMember);
+
+                         bool saveFailed;
+                         do
+                         {
+                           saveFailed = false;
+                           try
+                           {
+                              db.SaveChanges();
+                              flg = 0;
+                            }
+                            catch (DbUpdateConcurrencyException ex)
+                            {
+                                 saveFailed = true;
+                                 ex.Entries.Single().Reload();
+                            }
+                            catch(Exception)
+                            {
+                                flg = -99;
+                            }
+                          } while (saveFailed);   
+                    }
+                    else
+                    {
+                        //沒有選擇館別
+                        flg = -2;
+                    }
+                    
                 }
+            }
             return flg;
         }
         

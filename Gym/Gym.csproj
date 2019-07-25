@@ -159,17 +159,28 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907231022491_Member.cs" />
+    <Compile Include="Migrations\201907231022491_Member.Designer.cs">
+      <DependentUpon>201907231022491_Member.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907251208499_ChangeMemberGender.cs" />
+    <Compile Include="Migrations\201907251208499_ChangeMemberGender.Designer.cs">
+      <DependentUpon>201907251208499_ChangeMemberGender.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classroom.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseItem.cs" />
     <Compile Include="Models\CourseSeries.cs" />
-    <Compile Include="Models\GymDBModel.cs" />
-    <Compile Include="Models\IDataOperation.cs" />
+    <Compile Include="Models\C__MigrationHistory.cs" />
+    <Compile Include="Models\GymEntity.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberAccess.cs" />
     <Compile Include="Models\MemberCourse.cs" />
+    <Compile Include="Models\Operation\DataOperation.cs" />
+    <Compile Include="Models\Operation\IDataOperation.cs" />
     <Compile Include="Models\Operation\MemberDataOperation.cs" />
+    <Compile Include="Models\Operation\RoleDataOperation.cs" />
     <Compile Include="Models\Operation\StoreDataOperation.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Store.cs" />
@@ -225,7 +236,14 @@
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\StoreCheckboxListItem.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201907231022491_Member.resx">
+      <DependentUpon>201907231022491_Member.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907251208499_ChangeMemberGender.resx">
+      <DependentUpon>201907251208499_ChangeMemberGender.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
