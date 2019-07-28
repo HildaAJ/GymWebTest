@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using Gym.Models.ViewModels;
 using Gym.Models.Operation;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Gym.Models
 {
@@ -69,7 +71,10 @@ namespace Gym.Models
                     var chkStoreNo = from c in reg.StoreCheckList.stores
                                    where c.IsChecked == true
                                    select c.No;
-                          
+
+                    //會員密碼加密
+                    var CryptographyPwd = PasswordCryptography(reg.Register.Password);
+
                     if (chkStoreNo.Count() > 0)
                     {   
                         Member addMember = new Member
@@ -77,7 +82,7 @@ namespace Gym.Models
                             Email = reg.Register.Email,
                             Birthday = reg.Register.Birthday,
                             Tel = reg.Register.Tel,
-                            Password = reg.Register.Password,
+                            Password = CryptographyPwd,
                             Sex = reg.Register.Sex,
                             PassWay = reg.Register.PassWay,
                             Role_No = reg.Register.RoleNo,
@@ -96,6 +101,7 @@ namespace Gym.Models
 
                          db.Member.Add(addMember);
 
+                        //處理資料庫儲存
                          bool saveFailed;
                          do
                          {
@@ -120,14 +126,27 @@ namespace Gym.Models
                     {
                         //沒有選擇館別
                         flg = -2;
-                    }
-                    
+                    } 
                 }
             }
             return flg;
         }
         
-           
+        /// <summary>
+        /// 密碼加密
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        private string PasswordCryptography(string password)
+        {
+            SHA256 sha256 = new SHA256CryptoServiceProvider();//建立一個SHA256
+            byte[] source = Encoding.Default.GetBytes(password);//將字串轉為Byte[]
+            byte[] crypto = sha256.ComputeHash(source);//進行SHA256加密
+            string result = Convert.ToBase64String(crypto);//把加密後的字串從Byte[]轉為字串
+            return result;
+        }
+
+
         }
     }
 
