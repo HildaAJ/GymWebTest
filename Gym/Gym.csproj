@@ -159,13 +159,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907231022491_Member.cs" />
-    <Compile Include="Migrations\201907231022491_Member.Designer.cs">
-      <DependentUpon>201907231022491_Member.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907251208499_ChangeMemberGender.cs" />
-    <Compile Include="Migrations\201907251208499_ChangeMemberGender.Designer.cs">
-      <DependentUpon>201907251208499_ChangeMemberGender.cs</DependentUpon>
+    <Compile Include="Migrations\201907281000173_v1.cs" />
+    <Compile Include="Migrations\201907281000173_v1.Designer.cs">
+      <DependentUpon>201907281000173_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classroom.cs" />
@@ -237,14 +233,6 @@
     <Content Include="Views\Shared\EditorTemplates\StoreCheckboxListItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907231022491_Member.resx">
-      <DependentUpon>201907231022491_Member.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907251208499_ChangeMemberGender.resx">
-      <DependentUpon>201907251208499_ChangeMemberGender.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -259,6 +247,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201907281000173_v1.resx">
+      <DependentUpon>201907281000173_v1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

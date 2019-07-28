@@ -6,6 +6,18 @@ using Gym.Models.Operation;
 
 namespace Gym.Models.ViewModels
 {
+    
+    /// <summary>
+    /// 會員註冊頁面用Model
+    /// </summary>
+    public class RegisterGroupViewModel
+    {
+        //館別的複選按鈕
+        public StoreCheckListViewModel StoreCheckList { get; set; }
+        //其他登入欄位
+        public RegisterViewModel Register { get; set; } 
+    }
+
     /// <summary>
     /// 館別的複選按鈕
     /// </summary>
@@ -30,18 +42,8 @@ namespace Gym.Models.ViewModels
             });
             }
 
-            stores= checkList;
-            
+            stores = checkList;
+
         }
-    }
-    /// <summary>
-    /// 會員註冊用Model
-    /// </summary>
-    public class RegisterGroupViewModel
-    {
-        //館別的複選按鈕
-        public StoreCheckListViewModel StoreCheckList { get; set; }
-        //其他登入欄位
-        public RegisterViewModel Register { get; set; } 
     }
 }
