@@ -87,11 +87,12 @@ namespace Gym.Models.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "使用者名稱")]
-        public string UserName { get; set; }
+        [EmailAddress(ErrorMessage = "請輸入正確的E-Mail")]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
+        [DataType(DataType.Password,ErrorMessage="密碼錯誤")]
         [Display(Name = "密碼")]
         public string Password { get; set; }
 

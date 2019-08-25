@@ -173,6 +173,7 @@
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberAccess.cs" />
     <Compile Include="Models\MemberCourse.cs" />
+    <Compile Include="Models\Operation\LoginAuthorizeAttribute.cs" />
     <Compile Include="Models\Operation\DataOperation.cs" />
     <Compile Include="Models\Operation\IDataOperation.cs" />
     <Compile Include="Models\Operation\MemberDataOperation.cs" />
@@ -231,6 +232,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\StoreCheckboxListItem.cshtml" />
+    <Content Include="Views\Home\_UserAsidePartial.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -253,6 +256,7 @@
       <DependentUpon>201907281000173_v1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

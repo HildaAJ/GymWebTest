@@ -19,17 +19,55 @@
                 </button>
                 @Html.ActionLink("應用程式名稱", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("首頁", "Index", "Home")</li>
-                    <li>@Html.ActionLink("關於", "About", "Home")</li>
-                    <li>@Html.ActionLink("連絡人", "Contact", "Home")</li>
+                @{
+                    if (HttpContext.Current.User.Identity.IsAuthenticated)
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("首頁", "Index", "Home")</li>
+                            <li>@Html.ActionLink("會員登出", "Logout", "Home")</li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("首頁", "Index", "Home")</li>
+                            <li>@Html.ActionLink("會員註冊", "Create", "Home")</li>
+                            <li>@Html.ActionLink("會員登入", "Login", "Home")</li>
+                        </ul>
+
+                    }
+                }
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="systemTime"> &nbsp @DateTime.Now</li>
+                    <li id="systemTime">Hello! @ViewBag.Name</li>
                 </ul>
             </div>
+            
         </div>
     </div>
+
     <div class="container body-content">
-        @RenderBody()
+        @{ if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                <div class="aside">
+                    <div class="col-sm-2 sidenav">
+                        <p>@Html.ActionLink("首頁", "Index", "Home")</p>
+                        <p><a href="~/User/Create">我的帳戶</a></p>
+                        <p><a href="#">我的方案</a></p>
+                    </div>
+                    @RenderBody()
+                </div>
+                
+            }
+            else
+            {
+                @RenderBody()
+            }
+        }
+
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
