@@ -22,7 +22,8 @@
 
             <div class="navbar-collapse collapse">
                 @{
-                    if (HttpContext.Current.User.Identity.IsAuthenticated)
+                    var Role = ViewBag.RoleName;
+                    if (HttpContext.Current.User.Identity.IsAuthenticated && Role == "一般會員")
                     {
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("首頁", "Index", "Home")</li>
@@ -41,7 +42,7 @@
                 }
                 <ul class="nav navbar-nav navbar-right">
                     <li id="systemTime"> &nbsp @DateTime.Now</li>
-                    <li id="systemTime">Hello! @ViewBag.Name</li>
+                    <li id="systemTime">Hello! @ViewBag.UserName</li>
                 </ul>
             </div>
             
@@ -49,7 +50,7 @@
     </div>
 
     <div class="container body-content">
-        @{ if (HttpContext.Current.User.Identity.IsAuthenticated)
+        @{ if (HttpContext.Current.User.Identity.IsAuthenticated && Role == "一般會員")
             {
                 <div class="aside">
                     <div class="col-sm-2 sidenav">

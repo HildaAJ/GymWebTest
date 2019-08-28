@@ -173,7 +173,7 @@
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberAccess.cs" />
     <Compile Include="Models\MemberCourse.cs" />
-    <Compile Include="Models\Operation\LoginAuthorizeAttribute.cs" />
+    <Compile Include="Filter\LoginAuthorizeAttribute.cs" />
     <Compile Include="Models\Operation\DataOperation.cs" />
     <Compile Include="Models\Operation\IDataOperation.cs" />
     <Compile Include="Models\Operation\MemberDataOperation.cs" />
@@ -232,7 +232,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\StoreCheckboxListItem.cshtml" />
-    <Content Include="Views\Home\_UserAsidePartial.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
