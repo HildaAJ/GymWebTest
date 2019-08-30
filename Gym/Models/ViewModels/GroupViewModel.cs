@@ -31,7 +31,7 @@ namespace Gym.Models.ViewModels
             List<StoreCheckboxListItem> checkList = new List<StoreCheckboxListItem>();
 
             //從館別資料表取得目前所有館別資料
-            StoreDataOperation store = new StoreDataOperation();
+            StoreOperation store = new StoreOperation();
             var allStore = store.Get().ToList();
 
             //根據館別新增對應的Checkbox

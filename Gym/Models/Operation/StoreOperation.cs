@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Gym.Models.Operation
 { 
-    public class StoreDataOperation : DataOperation<Store>,IDataOperation<Store>
+    public class StoreOperation : DataOperation<Store>,IDataOperation<Store>
     {
        
         public override void Add(Store obj)

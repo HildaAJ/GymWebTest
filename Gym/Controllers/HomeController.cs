@@ -10,6 +10,7 @@ using System.Web.Security;
 using Gym.Filters;
 using Gym.Models.Operation;
 
+
 namespace Gym.Controllers
 {
     
@@ -18,6 +19,9 @@ namespace Gym.Controllers
         [LoginAuthorize]
         public ActionResult Index()
         {
+            StoreOperation storeOperation = new StoreOperation();
+            var AllStore=storeOperation.Get();
+            
             return View();
         }
         
@@ -42,7 +46,7 @@ namespace Gym.Controllers
                 string msg = "";
 
                 //新增會員至資料表
-                MemberDataOperation memberDataOperation = new MemberDataOperation();
+                MemberOperation memberDataOperation = new MemberOperation();
                 var result = memberDataOperation.CheckAddMember(reg);
 
                 switch (result)
@@ -85,8 +89,8 @@ namespace Gym.Controllers
                 {
                     return View(model);
                 }
-                MemberDataOperation memberDataOperation = new MemberDataOperation();
-                RoleDataOperation roleDataOperation = new RoleDataOperation();
+                MemberOperation memberDataOperation = new MemberOperation();
+                RoleOperation roleDataOperation = new RoleOperation();
 
                 if (memberDataOperation.CheckUserData(model))
                 {

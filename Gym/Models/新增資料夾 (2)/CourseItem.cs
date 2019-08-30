@@ -26,18 +26,6 @@ namespace Gym.Models
 
         public DateTime EndTime { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Classroom_No { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Teacher_No { get; set; }
-
-        public virtual Classroom Classroom { get; set; }
-
         public virtual Course Course { get; set; }
-
-        public virtual Teacher Teacher { get; set; }
     }
 }

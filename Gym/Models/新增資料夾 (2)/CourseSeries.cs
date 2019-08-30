@@ -6,28 +6,41 @@ namespace Gym.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Course")]
-    public partial class Course
+    public partial class CourseSeries
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Course()
+        public CourseSeries()
         {
-            CourseItem = new HashSet<CourseItem>();
-            CourseSeries = new HashSet<CourseSeries>();
+            MemberCourse = new HashSet<MemberCourse>();
+            Course = new HashSet<Course>();
         }
 
         [Key]
         [StringLength(50)]
-        public string CourseNo { get; set; }
+        public string CourseSeriesNo { get; set; }
 
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseItem> CourseItem { get; set; }
+        [Required]
+        [StringLength(150)]
+        public string Description { get; set; }
+
+        public decimal Price { get; set; }
+
+        public bool SaleEnable { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string CourseInfo { get; set; }
+
+        public DateTime DeadLine { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseSeries> CourseSeries { get; set; }
+        public virtual ICollection<MemberCourse> MemberCourse { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Course> Course { get; set; }
     }
 }

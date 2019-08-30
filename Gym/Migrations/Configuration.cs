@@ -7,14 +7,14 @@ namespace Gym.Migrations
     using Gym.Models;
         
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Gym.Models.GymEntity>
+    internal sealed class Configuration : DbMigrationsConfiguration<GymEntity>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Gym.Models.GymEntity context)
+        protected override void Seed(GymEntity context)
         {
             //  This method will be called after migrating to the latest version.
 

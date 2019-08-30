@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Gym.Models.Operation
 {
-    public class RoleDataOperation : DataOperation<Role>, IDataOperation<Role>
+    public class RoleOperation : DataOperation<Role>, IDataOperation<Role>
     {
         public override void Add(Role item)
         {

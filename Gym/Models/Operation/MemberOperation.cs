@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Gym.Models
 {
-    public class MemberDataOperation : DataOperation<Member>, IDataOperation<Member>
+    public class MemberOperation : DataOperation<Member>, IDataOperation<Member>
     {
       
         public Member user { get; private set; }
@@ -75,7 +75,7 @@ namespace Gym.Models
                 {
                     using (GymEntity db = new GymEntity())
                     {
-                        StoreDataOperation store = new StoreDataOperation();
+                        StoreOperation store = new StoreOperation();
                         //var allStore = store.Get();
                         //會員選擇的館別編號
                         var chkStoreNo = from c in reg.StoreCheckList.stores

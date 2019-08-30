@@ -163,22 +163,51 @@
     <Compile Include="Migrations\201907281000173_v1.Designer.cs">
       <DependentUpon>201907281000173_v1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908300822160_AddStoreMemberInCnt.cs" />
+    <Compile Include="Migrations\201908300822160_AddStoreMemberInCnt.Designer.cs">
+      <DependentUpon>201908300822160_AddStoreMemberInCnt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908301016370_Add_CourseItem_FK_ClassroomNo.cs" />
+    <Compile Include="Migrations\201908301016370_Add_CourseItem_FK_ClassroomNo.Designer.cs">
+      <DependentUpon>201908301016370_Add_CourseItem_FK_ClassroomNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908301026300_Add_CourseItem_FK_TeacherNo.cs" />
+    <Compile Include="Migrations\201908301026300_Add_CourseItem_FK_TeacherNo.Designer.cs">
+      <DependentUpon>201908301026300_Add_CourseItem_FK_TeacherNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908301043499_AlterCourseItem_ClassroomNo.cs" />
+    <Compile Include="Migrations\201908301043499_AlterCourseItem_ClassroomNo.Designer.cs">
+      <DependentUpon>201908301043499_AlterCourseItem_ClassroomNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908301107090_AlterCourseItem_ClassroomNo_2.cs" />
+    <Compile Include="Migrations\201908301107090_AlterCourseItem_ClassroomNo_2.Designer.cs">
+      <DependentUpon>201908301107090_AlterCourseItem_ClassroomNo_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908301118010_AlterCourseItem_TeacherNo.cs" />
+    <Compile Include="Migrations\201908301118010_AlterCourseItem_TeacherNo.Designer.cs">
+      <DependentUpon>201908301118010_AlterCourseItem_TeacherNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908301148192_UpdateDB.cs" />
+    <Compile Include="Migrations\201908301148192_UpdateDB.Designer.cs">
+      <DependentUpon>201908301148192_UpdateDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classroom.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseItem.cs" />
     <Compile Include="Models\CourseSeries.cs" />
     <Compile Include="Models\C__MigrationHistory.cs" />
-    <Compile Include="Models\GymEntity.cs" />
+    <Compile Include="Filter\LoginAuthorizeAttribute.cs" />
+    <Compile Include="Models\Gym.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberAccess.cs" />
     <Compile Include="Models\MemberCourse.cs" />
-    <Compile Include="Filter\LoginAuthorizeAttribute.cs" />
+    <Compile Include="Models\Operation\ClassroomOperation.cs" />
     <Compile Include="Models\Operation\DataOperation.cs" />
     <Compile Include="Models\Operation\IDataOperation.cs" />
-    <Compile Include="Models\Operation\MemberDataOperation.cs" />
-    <Compile Include="Models\Operation\RoleDataOperation.cs" />
-    <Compile Include="Models\Operation\StoreDataOperation.cs" />
+    <Compile Include="Models\Operation\MemberOperation.cs" />
+    <Compile Include="Models\Operation\RoleOperation.cs" />
+    <Compile Include="Models\Operation\StoreOperation.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Store.cs" />
     <Compile Include="Models\Teacher.cs" />
@@ -200,6 +229,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Gym.mdf" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -253,6 +283,27 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201907281000173_v1.resx">
       <DependentUpon>201907281000173_v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908300822160_AddStoreMemberInCnt.resx">
+      <DependentUpon>201908300822160_AddStoreMemberInCnt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908301016370_Add_CourseItem_FK_ClassroomNo.resx">
+      <DependentUpon>201908301016370_Add_CourseItem_FK_ClassroomNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908301026300_Add_CourseItem_FK_TeacherNo.resx">
+      <DependentUpon>201908301026300_Add_CourseItem_FK_TeacherNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908301043499_AlterCourseItem_ClassroomNo.resx">
+      <DependentUpon>201908301043499_AlterCourseItem_ClassroomNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908301107090_AlterCourseItem_ClassroomNo_2.resx">
+      <DependentUpon>201908301107090_AlterCourseItem_ClassroomNo_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908301118010_AlterCourseItem_TeacherNo.resx">
+      <DependentUpon>201908301118010_AlterCourseItem_TeacherNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908301148192_UpdateDB.resx">
+      <DependentUpon>201908301148192_UpdateDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

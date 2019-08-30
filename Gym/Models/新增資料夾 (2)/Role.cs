@@ -6,28 +6,24 @@ namespace Gym.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Course")]
-    public partial class Course
+    [Table("Role")]
+    public partial class Role
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Course()
+        public Role()
         {
-            CourseItem = new HashSet<CourseItem>();
-            CourseSeries = new HashSet<CourseSeries>();
+            Member = new HashSet<Member>();
         }
 
         [Key]
-        [StringLength(50)]
-        public string CourseNo { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int RoleNo { get; set; }
 
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseItem> CourseItem { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseSeries> CourseSeries { get; set; }
+        public virtual ICollection<Member> Member { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gym.Models
 {
-    public interface IDataOperation<T> where T:class,new()
+    public interface IDataOperation<T> where T:class
     {
          void Add(T obj);
          IEnumerable<T> Get();
