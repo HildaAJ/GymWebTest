@@ -10,8 +10,9 @@ namespace Gym.Models
     public partial class CourseItem
     {
         [Key]
-        [StringLength(50)]
-        public string CourseItemNo { get; set; }
+        //[StringLength(50)]
+        //public string CourseItemNo { get; set; }
+        public int CourseItemNo { get; set; }
 
         [Required]
         [StringLength(50)]

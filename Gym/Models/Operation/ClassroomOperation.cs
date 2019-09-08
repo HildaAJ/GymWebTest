@@ -32,9 +32,9 @@ namespace Gym.Models.Operation
         }
 
         /// <summary>
-        /// 根據館別取得教室資料
+        /// 根據指定館別取得教室資料
         /// </summary>
-        /// <param name="store"></param>
+        /// <param name="store">館別</param>
         /// <returns></returns>
         public IEnumerable<Classroom> Get(Store store)
         {
@@ -51,9 +51,9 @@ namespace Gym.Models.Operation
         /// <summary>
         /// 根據館別 取得所有教室資料
         /// </summary>
-        /// <param name="StoreLst"></param>
+        /// <param name="StoreLst">所有館別</param>
         /// <returns></returns>
-        public List<List<Classroom>> Get(List<Store> StoreLst)
+        public List<List<Classroom>> Get(IEnumerable<Store> StoreLst)
         {
             using (GymEntity db = new GymEntity())
             {
@@ -61,6 +61,7 @@ namespace Gym.Models.Operation
                 List<List<Classroom>> LstClassroom = new List<List<Classroom>>();
                 foreach (Store item in StoreLst)
                 {
+                    //找出同館別的所有教室
                    var tmpRoom = from x in db.Classroom
                                    where x.Store_No.Equals(item.StoreNo)
                                    select x;

@@ -191,6 +191,18 @@
     <Compile Include="Migrations\201908301148192_UpdateDB.Designer.cs">
       <DependentUpon>201908301148192_UpdateDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909020233597_DBinit.cs" />
+    <Compile Include="Migrations\201909020233597_DBinit.Designer.cs">
+      <DependentUpon>201909020233597_DBinit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909020617244_AlterCourseItem.cs" />
+    <Compile Include="Migrations\201909020617244_AlterCourseItem.Designer.cs">
+      <DependentUpon>201909020617244_AlterCourseItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909040710414_CourseItemNo.cs" />
+    <Compile Include="Migrations\201909040710414_CourseItemNo.Designer.cs">
+      <DependentUpon>201909040710414_CourseItemNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classroom.cs" />
     <Compile Include="Models\Course.cs" />
@@ -203,6 +215,8 @@
     <Compile Include="Models\MemberAccess.cs" />
     <Compile Include="Models\MemberCourse.cs" />
     <Compile Include="Models\Operation\ClassroomOperation.cs" />
+    <Compile Include="Models\Operation\CourseItemOperation.cs" />
+    <Compile Include="Models\Operation\CourseOperation.cs" />
     <Compile Include="Models\Operation\DataOperation.cs" />
     <Compile Include="Models\Operation\IDataOperation.cs" />
     <Compile Include="Models\Operation\MemberOperation.cs" />
@@ -214,6 +228,7 @@
     <Compile Include="Models\ViewModels\AccountViewModel.cs" />
     <Compile Include="Models\ViewModels\GroupViewModel.cs" />
     <Compile Include="Models\ViewModels\CheckboxListItem.cs" />
+    <Compile Include="Models\ViewModels\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -229,7 +244,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Gym.mdf" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -259,10 +273,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\StoreCheckboxListItem.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -304,6 +318,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908301148192_UpdateDB.resx">
       <DependentUpon>201908301148192_UpdateDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909020233597_DBinit.resx">
+      <DependentUpon>201909020233597_DBinit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909020617244_AlterCourseItem.resx">
+      <DependentUpon>201909020617244_AlterCourseItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909040710414_CourseItemNo.resx">
+      <DependentUpon>201909040710414_CourseItemNo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

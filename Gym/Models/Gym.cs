@@ -56,8 +56,8 @@ namespace Gym.Models
                 .Map(m => m.ToTable("CourseSeries to Course").MapLeftKey("Course_No").MapRightKey("CourseSeries_No"));
 
             modelBuilder.Entity<CourseItem>()
-                .Property(e => e.CourseItemNo)
-                .IsUnicode(false);
+                .Property(e => e.CourseItemNo);
+                //.IsUnicode(false);
 
             modelBuilder.Entity<CourseItem>()
                 .Property(e => e.Course_No)

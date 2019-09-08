@@ -19,10 +19,77 @@ namespace Gym.Controllers
         [LoginAuthorize]
         public ActionResult Index()
         {
-            StoreOperation storeOperation = new StoreOperation();
-            var AllStore=storeOperation.Get();
+            try
+            {     
+                StoreOperation storeOp = new StoreOperation();
+                var AllStore = storeOp.Get();//取得所有館別
+                ClassroomOperation clsroomOp = new ClassroomOperation();
+                var AllStoreClassRoom = clsroomOp.Get(AllStore);//取得所有館別的教室
+                CourseItemOperation crsItemOp = new CourseItemOperation();
+                CourseOperation crsOp = new CourseOperation();
+                List<IndexViewModel> Lstmodel = new List<IndexViewModel>();
+                
+                //取得每個館別的資料
+                foreach (var store in AllStore)
+                {
+                    IndexViewModel model = new IndexViewModel();
+                    model.CourseInfo = new List<string>();
+
+                    model.Store = store.Name;
+                    model.AccessLimit = 100.ToString();
+                    model.AccessNow = store.MemberInCnt.ToString();
+                    
+                    //取得該館的所有教室
+                    var StoreClassRoom = clsroomOp.Get(store);
+
+                    //若教室為一對一教練課用 跳過
+                    foreach (var Room in StoreClassRoom)
+                    {
+                        if (Room.Name.Equals("一對一場地"))
+                        {
+                            continue;
+                        }
+
+                        var RoomName = Room.Name;
+                        var LstCourse = crsItemOp.Get(Room);//取得教室的所有課程
+                       
+                        //取得教室目前課程 
+                        var NowCourse = from c in LstCourse
+                                         where c.Course_No != "Ch05" && c.ClassDate.Equals(DateTime.Now.Date)
+                                         && c.StartTime <= DateTime.Now && DateTime.Now <= c.EndTime
+                                         select c.Course_No;
+                        
+                        
+                        //教室目前有課程
+                        if (NowCourse.Count() > 0)
+                        {
+                            //取得教室名稱與目前課程名稱
+                            var tmpNowCourse = NowCourse.ToList();
+                            var courseName = crsOp.Get(tmpNowCourse[0]).Name;
+                            model.CourseInfo.Add(RoomName + "：" + courseName);                                                      
+                        }
+
+                        //教室目前沒有課程
+                        else
+                        {
+                            //取得教室名稱 紀錄目前無課程
+                            model.CourseInfo.Add(RoomName + "：目前無課程");
+                        }
+
+                    }
+                    Lstmodel.Add(model);
+                }
+                
+                return View(Lstmodel);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Msg = ex.ToString();
+                return View();
+            }
+           
+
             
-            return View();
         }
         
         [AllowAnonymous]
@@ -131,7 +198,7 @@ namespace Gym.Controllers
                     };
 
                     Response.Cookies.Add(cookie);
-                    //ViewBag.UserName = memberDataOperation.user.Name;
+                    
                     return RedirectToAction("Index", "Home");
                 }
                 else
