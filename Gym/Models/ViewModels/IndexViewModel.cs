@@ -5,6 +5,9 @@ using System.Web;
 
 namespace Gym.Models.ViewModels
 {
+    /// <summary>
+    /// 首頁~顯示目前各館課程與人數
+    /// </summary>
     public class IndexViewModel
     {
         public string Store { get; set; }//館別名稱 

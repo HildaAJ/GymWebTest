@@ -156,6 +156,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -229,6 +230,8 @@
     <Compile Include="Models\ViewModels\GroupViewModel.cs" />
     <Compile Include="Models\ViewModels\CheckboxListItem.cs" />
     <Compile Include="Models\ViewModels\IndexViewModel.cs" />
+    <Compile Include="Models\ViewModels\MemberInfoViewModel.cs" />
+    <Compile Include="Models\ViewModels\StoreInfoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +280,8 @@
     <Content Include="Views\Shared\EditorTemplates\StoreCheckboxListItem.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Member\StoreInfo.cshtml" />
+    <Content Include="Views\Member\AccountInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

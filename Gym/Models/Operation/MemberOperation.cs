@@ -46,6 +46,19 @@ namespace Gym.Models
                
         }
 
+        //根據eamil找出會員資料
+        public List<Member> Get(string email)
+        {
+            using (GymEntity db = new GymEntity())
+            {
+                var tmpMember = from c in db.Member
+                              where c.Email.Equals(email)
+                              select c;
+                var member = tmpMember.ToList();
+                return member;
+            }
+        }
+
         public override void Update(Member obj)
         {
             

@@ -178,18 +178,20 @@ namespace Gym.Controllers
                     {
                         Role = item;
                     }
-
+                    // 1. 建立 ticket
                     var ticket = new FormsAuthenticationTicket(
                      version: 1,
-                     name: memberDataOperation.user.Email.ToString(), 
+                     name: memberDataOperation.user.Email.ToString(), //之後使用User.Identity.Name的值就是name的值
                      issueDate: DateTime.UtcNow,//現在UTC時間
                      expiration: DateTime.UtcNow.AddMinutes(30),//Cookie有效時間=現在時間往後+30分鐘
                      isPersistent: false,// 是否要記住我 true or false
                      userData: Role+","+ memberDataOperation.user.Name, 
                      cookiePath: FormsAuthentication.FormsCookiePath);
 
+                    // 2. 加密 ticket
                     var encryptedTicket = FormsAuthentication.Encrypt(ticket); //把驗證的表單加密
 
+                    // 3. 建立 HttpCookie
                     //使用 FormsAuthentication 技術的話，HttpCookie 的 CookieName 要為
                     //FormsAuthentication.FormsCookieName，否則 FormsAuthentication 的驗證機制會失效。
                     var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
@@ -197,6 +199,7 @@ namespace Gym.Controllers
                         HttpOnly = true
                     };
 
+                    // 4. 使用者瀏覽器加入完成驗證的 Cookie
                     Response.Cookies.Add(cookie);
                     
                     return RedirectToAction("Index", "Home");
@@ -216,6 +219,7 @@ namespace Gym.Controllers
                   
         }
 
+        [AllowAnonymous]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
@@ -225,37 +229,6 @@ namespace Gym.Controllers
             ViewBag.Name = "Guest";
             return RedirectToAction("Index");
         }
-
-
-        //[ValidateAntiForgeryToken]
-        //[AllowAnonymous]
-        //[HttpPost]
-        //public ActionResult Login(FormCollection post, string returnUrl)
-        //{
-        //    string email = post["email"];
-        //    string password = post["password"];
-
-        //    MemberDataOperation memberDataOperation = new MemberDataOperation();
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        //驗證密碼
-        //        if (memberDataOperation.CheckUserData(email, password))
-        //        {
-        //            Session["account"] = email;
-        //            Response.Redirect("~/Home/_UserAsidePartial");
-        //            return new EmptyResult();
-        //        }
-        //        else
-        //        {
-        //            ViewBag.Msg = "登入失敗...";
-        //            return View();
-        //        }
-        //    }
-
-        //    return RedirectToAction("Login", "Home");
-
-        //}
 
     }
 }

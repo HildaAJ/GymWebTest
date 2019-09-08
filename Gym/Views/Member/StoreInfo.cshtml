@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Gym.Models.ViewModels.StoreInfoViewModel>
+
+@{
+    ViewBag.Title = "各館資訊";
+}
+
+<h2>各館資訊</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            館別
+        </th>
+        <th>
+            地址
+        </th>
+        <th>
+            聯絡電話
+        </th>
+        <th>
+            營業時間
+        </th>
+        <th>
+            停車場
+        </th>
+        <th>
+            目前館內人數
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Service)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parking)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberInCount)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        </td>
+    </tr>
+}
+
+</table>

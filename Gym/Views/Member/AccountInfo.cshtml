@@ -1,0 +1,107 @@
+﻿@model Gym.Models.ViewModels.MemberInfoViewModel
+
+@{
+    ViewBag.Title = "我的帳戶";
+}
+
+<h2>我的帳戶</h2>
+
+
+<table class="table">
+    <tr>
+        我的帳戶資訊
+    </tr>
+
+    
+        <tr>
+            <td>
+                會員帳號
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Email)
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                姓名
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Name)
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                生日
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Birthday)
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                電話
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Tel)
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                性別
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Sex)
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                進出方式
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Passway)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                加入時間
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.CreateTime)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                最後一次登入
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.LastLogin)
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Status)
+            </td>
+        </tr>
+        @*<tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+
+                </td>
+            </tr>*@
+    
+
+</table>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <button type="submit" class="btn btn-primary">修改</button>
+        <button type="button" class="btn btn-warning">離開</button>
+    </div>
+</div>

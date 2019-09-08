@@ -80,7 +80,7 @@ namespace Gym.Filters
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            filterContext.Controller.ViewBag.Name = "Guest";
+            filterContext.Controller.ViewBag.UserName = "Guest";
         }
     }
     
