@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 using System.Web.Security;
 using Gym.Filters;
 using Gym.Models.Operation;
-
+using Newtonsoft.Json;
+using Gym.Filter;
 
 namespace Gym.Controllers
 {
     
     public class HomeController : Controller
     {
-        [LoginAuthorize]
+        [CommonAuthorize]
         public ActionResult Index()
         {
             try
@@ -86,10 +87,7 @@ namespace Gym.Controllers
             {
                 ViewBag.Msg = ex.ToString();
                 return View();
-            }
-           
-
-            
+            }                     
         }
         
         [AllowAnonymous]
@@ -156,52 +154,37 @@ namespace Gym.Controllers
                 {
                     return View(model);
                 }
+
                 MemberOperation memberDataOperation = new MemberOperation();
                 RoleOperation roleDataOperation = new RoleOperation();
 
                 if (memberDataOperation.CheckUserData(model))
                 {
-                    //取得登入會員的角色編號
+                    LoginUser user = new LoginUser();
+                    //登入會員的角色編號
                     var tmpRole = from c in memberDataOperation.Get()
                                   where model.Email == c.Email
                                   select c.Role_No;
-                    int RoleNo = 0;
+                    
                     foreach (var item in tmpRole)
                     {
-                        RoleNo = item;
+                        if (item.Equals(1))
+                        {
+                            user.Identity = Identity.User;
+                        }
+                        else if (item.Equals(0))
+                        {
+                            user.Identity = Identity.Admin;
+                        }
                     }
-
-                    //取得會員的角色名稱
-                    var RoleCollection = roleDataOperation.Get().Where(a => a.RoleNo == RoleNo).Select(a => a.Name);
-                    string Role = "";
-                    foreach (string item in RoleCollection)
-                    {
-                        Role = item;
-                    }
-                    // 1. 建立 ticket
-                    var ticket = new FormsAuthenticationTicket(
-                     version: 1,
-                     name: memberDataOperation.user.Email.ToString(), //之後使用User.Identity.Name的值就是name的值
-                     issueDate: DateTime.UtcNow,//現在UTC時間
-                     expiration: DateTime.UtcNow.AddMinutes(30),//Cookie有效時間=現在時間往後+30分鐘
-                     isPersistent: false,// 是否要記住我 true or false
-                     userData: Role+","+ memberDataOperation.user.Name, 
-                     cookiePath: FormsAuthentication.FormsCookiePath);
-
-                    // 2. 加密 ticket
-                    var encryptedTicket = FormsAuthentication.Encrypt(ticket); //把驗證的表單加密
-
-                    // 3. 建立 HttpCookie
-                    //使用 FormsAuthentication 技術的話，HttpCookie 的 CookieName 要為
-                    //FormsAuthentication.FormsCookieName，否則 FormsAuthentication 的驗證機制會失效。
-                    var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
-                    {
-                        HttpOnly = true
-                    };
-
-                    // 4. 使用者瀏覽器加入完成驗證的 Cookie
-                    Response.Cookies.Add(cookie);
-                    
+                    //登入會員的名稱
+                    user.UserName = memberDataOperation.user.Name;
+                    //登入會員的帳號
+                    user.UserEmail = memberDataOperation.user.Email.ToString();
+ 
+                    AuthManager authManager = new AuthManager();
+                    authManager.SignIn(user);
+  
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -222,10 +205,10 @@ namespace Gym.Controllers
         [AllowAnonymous]
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
+            AuthManager authManager = new AuthManager();
+            authManager.SignOut();
             //清除所有的 session
             Session.RemoveAll();
-
             ViewBag.Name = "Guest";
             return RedirectToAction("Index");
         }

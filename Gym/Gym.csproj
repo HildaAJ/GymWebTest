@@ -157,6 +157,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Filter\CommonAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,11 +211,12 @@
     <Compile Include="Models\CourseItem.cs" />
     <Compile Include="Models\CourseSeries.cs" />
     <Compile Include="Models\C__MigrationHistory.cs" />
-    <Compile Include="Filter\LoginAuthorizeAttribute.cs" />
+    <Compile Include="Filter\UserAuthorizeAttribute.cs" />
     <Compile Include="Models\Gym.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberAccess.cs" />
     <Compile Include="Models\MemberCourse.cs" />
+    <Compile Include="Models\Operation\AuthManager.cs" />
     <Compile Include="Models\Operation\ClassroomOperation.cs" />
     <Compile Include="Models\Operation\CourseItemOperation.cs" />
     <Compile Include="Models\Operation\CourseOperation.cs" />
@@ -223,6 +225,7 @@
     <Compile Include="Models\Operation\MemberOperation.cs" />
     <Compile Include="Models\Operation\RoleOperation.cs" />
     <Compile Include="Models\Operation\StoreOperation.cs" />
+    <Compile Include="Models\Operation\LoginUser.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Store.cs" />
     <Compile Include="Models\Teacher.cs" />

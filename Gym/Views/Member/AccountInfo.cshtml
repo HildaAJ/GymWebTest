@@ -4,15 +4,10 @@
     ViewBag.Title = "我的帳戶";
 }
 
-<h2>我的帳戶</h2>
+<h2>我的帳戶資訊</h2>
 
 
 <table class="table">
-    <tr>
-        我的帳戶資訊
-    </tr>
-
-    
         <tr>
             <td>
                 會員帳號
@@ -77,14 +72,8 @@
         </tr>
         <tr>
             <td>
-                最後一次登入
+                會員狀態
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.LastLogin)
-            </td>
-        </tr>
-
-        <tr>
             <td>
                 @Html.DisplayFor(modelItem => Model.Status)
             </td>

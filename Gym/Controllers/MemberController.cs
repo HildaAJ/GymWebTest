@@ -8,6 +8,7 @@ using Gym.Models.Operation;
 using Gym.Models.ViewModels;
 using System.Web.Security;
 using Gym.Models;
+using Gym.Filter;
 
 namespace Gym.Controllers
 {
@@ -17,7 +18,7 @@ namespace Gym.Controllers
         /// 各館資訊
         /// </summary>
         /// <returns></returns>
-        [LoginAuthorize]
+        [CommonAuthorize]
         public ActionResult StoreInfo()
         {
             try
@@ -55,7 +56,7 @@ namespace Gym.Controllers
         /// 我的帳戶:顯示會員基本資料
         /// </summary>
         /// <returns></returns>
-        [LoginAuthorize]
+        [UserAuthorize("User")]
         public ActionResult AccountInfo()
         {
             try
@@ -72,7 +73,6 @@ namespace Gym.Controllers
                     memInVM.Email = member.Email;
                     memInVM.Birthday = member.Birthday.ToString();
                     memInVM.CreateTime = member.CreateTime.ToString();
-                    memInVM.LastLogin = member.LastLoginTime.ToString();
                     memInVM.Name = member.Name;
                     memInVM.Passway = member.PassWay; 
                     memInVM.Sex = member.Sex;
@@ -98,7 +98,7 @@ namespace Gym.Controllers
         }
 
         [HttpPost]
-        [LoginAuthorize]
+        [UserAuthorize("User")]
         public ActionResult AccountInfo(MemberInfoViewModel EditMember)
         {
             return View();

@@ -23,7 +23,7 @@
             <div class="navbar-collapse collapse">
                 @{
                     var Role = ViewBag.RoleName;
-                    if (HttpContext.Current.User.Identity.IsAuthenticated && Role == "一般會員")
+                    if (HttpContext.Current.User.Identity.IsAuthenticated && Role == "User")
                     {
                         <ul class="nav navbar-nav">
 
@@ -51,7 +51,7 @@
 
     <div class="container body-content">
         <section>
-         @{ if (HttpContext.Current.User.Identity.IsAuthenticated && Role == "一般會員")
+         @{ if (HttpContext.Current.User.Identity.IsAuthenticated && Role == "User")
             {
 
             <div class="col-sm-2 sidenav">
