@@ -56,7 +56,7 @@ namespace Gym.Controllers
         /// 我的帳戶:顯示會員基本資料
         /// </summary>
         /// <returns></returns>
-        [UserAuthorize("User")]
+        [UserAuthorize(Roles = "User")]
         public ActionResult AccountInfo()
         {
             try
@@ -98,7 +98,7 @@ namespace Gym.Controllers
         }
 
         [HttpPost]
-        [UserAuthorize("User")]
+        [UserAuthorize(Roles = "User")]
         public ActionResult AccountInfo(MemberInfoViewModel EditMember)
         {
             return View();

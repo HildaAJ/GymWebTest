@@ -16,56 +16,54 @@ namespace Gym.Filters
     /// </summary>
     public class UserAuthorize : AuthorizeAttribute
     {
-        //角色授權
-        public UserAuthorize(string role) : base()
-        {
-            Roles = role;
-        }
-
+        AuthManager authManager = new AuthManager();
+        LoginUser userInfo = new LoginUser();
+        string identity = "";
+        string Name = "";
         
+
         //驗證
         public override void OnAuthorization(AuthorizationContext filterContext)
-        {  
-            //登入驗證
-            if (filterContext.HttpContext.User == null)
+        {
+            base.OnAuthorization(filterContext);
+
+            //支援 MVC5 新增的 AllowAnonymous
+            var skipAuthorization =
+                filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true) ||
+                filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute),
+                    inherit: true);
+
+            //有設定 AllowAnonymous 就跳過
+            if (skipAuthorization)
             {
+                return;
+            }
+
+            //登入驗證
+            var user = filterContext.HttpContext.User;
+            
+            if ((user == null) || !user.Identity.IsAuthenticated || !user.IsInRole("User"))
+            {
+                filterContext.Result = new HttpUnauthorizedResult();
                 HandleUnauthorizedRequest(filterContext);
                 return;
             }
 
-            if (filterContext.HttpContext.User.Identity.IsAuthenticated)
+            if (user.Identity.IsAuthenticated)
             {
-                ////獲取該用戶的FormsIdentity
-                //FormsIdentity id = filterContext.HttpContext.User.Identity as FormsIdentity;
-                ////再獲取用戶的FormsAuthenticationTicket
-                //FormsAuthenticationTicket ticket = id.Ticket;
-
-                //取得獲取用戶的FormsAuthenticationTicket的UserData
-                AuthManager authManager = new AuthManager();
-                var userInfo = authManager.GetUser();
-                var identity = userInfo.Identity.ToString();
-                var Name = userInfo.UserName;
+                userInfo = authManager.GetUser();//使用者資料
+                Name = userInfo.UserName;//使用者名字
+                identity = userInfo.Identity.ToString();//使用者角色
                 filterContext.Controller.ViewBag.RoleName = identity;
                 filterContext.Controller.ViewBag.UserName = Name;
             }
             else
             {
+                filterContext.Result = new HttpUnauthorizedResult();
                 HandleUnauthorizedRequest(filterContext);
             }
         }
-        /// <summary>
-        /// 授權失敗處理
-        /// </summary>
-        /// <param name="filterContext"></param>
-        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
-        {
-            if (filterContext.Result != null)
-            {
-                return;
-            }
-            base.HandleUnauthorizedRequest(filterContext); 
-        }
-
+       
         /// <summary>
         /// 授權角色
         /// </summary>
@@ -73,17 +71,19 @@ namespace Gym.Filters
         /// <returns></returns>
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
+            IPrincipal user = httpContext.User;
             if (httpContext == null)
                 throw new ArgumentNullException("httpContext");
  
-            if (!httpContext.User.Identity.IsAuthenticated)
-                return false;
+            if (!httpContext.User.Identity.IsAuthenticated) 
+                return false;                 
 
-            //取得使用者的角色
-            AuthManager authManager = new AuthManager();
-            var userInfo = authManager.GetUser();
-            var identity = userInfo.Identity.ToString();
-            if (identity.Equals(Roles))
+            //取得獲取用戶的FormsAuthenticationTicket的UserData(登入中使用者的資訊)
+            userInfo = authManager.GetUser();
+            //取得角色
+            identity = userInfo.Identity.ToString();
+           
+            if (user.IsInRole(identity))
             {
                 return true;
             }
@@ -93,8 +93,23 @@ namespace Gym.Filters
             }
         }
 
+        /// <summary>
+        /// 授權失敗處理
+        /// </summary>
+        /// <param name="filterContext"></param>
+        //protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        //{
+        //    if(filterContext.Result is HttpUnauthorizedResult)
+        //    {
+        //        //ContentResult cr = new ContentResult();
+        //        //cr.Content = "<p style=\"color:Red;font-weight:bold;\">您尚未登入無法觀看!! 請先登入後再嘗試。</p>";
+        //        //filterContext.Result = cr;
+        //    }
+        //}
+
+
     }
-    
+
 
 
 }
