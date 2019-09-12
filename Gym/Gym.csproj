@@ -216,16 +216,17 @@
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberAccess.cs" />
     <Compile Include="Models\MemberCourse.cs" />
-    <Compile Include="Models\Operation\AuthManager.cs" />
+    <Compile Include="Models\Auth\FormsAuthManager.cs" />
     <Compile Include="Models\Operation\ClassroomOperation.cs" />
     <Compile Include="Models\Operation\CourseItemOperation.cs" />
     <Compile Include="Models\Operation\CourseOperation.cs" />
     <Compile Include="Models\Operation\DataOperation.cs" />
     <Compile Include="Models\Operation\IDataOperation.cs" />
     <Compile Include="Models\Operation\MemberOperation.cs" />
+    <Compile Include="Models\Auth\RoleAuthManager.cs" />
     <Compile Include="Models\Operation\RoleOperation.cs" />
     <Compile Include="Models\Operation\StoreOperation.cs" />
-    <Compile Include="Models\Operation\LoginUser.cs" />
+    <Compile Include="Models\Auth\LoginUser.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Store.cs" />
     <Compile Include="Models\Teacher.cs" />
@@ -285,6 +286,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Member\StoreInfo.cshtml" />
     <Content Include="Views\Member\AccountInfo.cshtml" />
+    <Content Include="Views\Member\Account.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -18,11 +18,11 @@ namespace Gym.Models.Operation
 
     public enum Identity
     {
-        [Description("管理者")]
-        Admin = 0,
-
-        [Description("一般使用者")]
+        [Description("一般會員")]
         User = 1,
+
+        [Description("管理者")]
+        Admin = 2,
     }
 
 }

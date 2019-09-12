@@ -20,17 +20,17 @@ namespace Gym
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-
+        /// <summary>
+        /// 登入時將登入中角色加入 HttpContext 的 User 物件去 以便驗證授權用
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
             if (Request.IsAuthenticated)
             {
-                // 先取得該使用者的 FormsIdentity
-                //FormsIdentity id = (FormsIdentity)User.Identity;
-                //// 再取出使用者的 FormsAuthenticationTicket
-                //FormsAuthenticationTicket ticket = id.Ticket;
-
-                AuthManager auth = new AuthManager();
+                //取得登入者的資料
+                FormsAuthManager auth = new FormsAuthManager();
                 var userData = auth.GetUser();
                 // 將儲存在 FormsAuthenticationTicket 中的角色定義取出，並轉成字串陣列
                 string[] roles = userData.Identity.ToString().Split(new char[] { ',' });

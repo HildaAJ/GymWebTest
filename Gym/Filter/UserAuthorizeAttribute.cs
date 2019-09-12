@@ -16,7 +16,7 @@ namespace Gym.Filters
     /// </summary>
     public class UserAuthorize : AuthorizeAttribute
     {
-        AuthManager authManager = new AuthManager();
+        FormsAuthManager authManager = new FormsAuthManager();
         LoginUser userInfo = new LoginUser();
         string identity = "";
         string Name = "";

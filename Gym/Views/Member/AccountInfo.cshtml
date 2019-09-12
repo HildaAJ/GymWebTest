@@ -1,96 +1,87 @@
 ﻿@model Gym.Models.ViewModels.MemberInfoViewModel
 
 @{
-    ViewBag.Title = "我的帳戶";
+    ViewBag.Title = "個人資料修改";
 }
 
-<h2>我的帳戶資訊</h2>
+<!DOCTYPE html>
+
+<html>
+<body>
 
 
-<table class="table">
-        <tr>
-            <td>
-                會員帳號
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Email)
-            </td>
-        </tr>
+    <h2>個人資料修改</h2>
 
-        <tr>
-            <td>
-                姓名
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Name)
-            </td>
-        </tr>
 
-        <tr>
-            <td>
-                生日
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Birthday)
-            </td>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-        </tr>
+        <div class="form-horizontal">
+            <h4>MemberInfoViewModel</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <tr>
-            <td>
-                電話
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Tel)
-            </td>
-        </tr>
+            @Html.HiddenFor(model => Model.Email)
+            @Html.HiddenFor(model => Model.CreateTime)
+            @Html.HiddenFor(model => Model.Status)
+            @Html.HiddenFor(model => Model.Passway)
 
-        <tr>
-            <td>
-                性別
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Sex)
-            </td>
-        </tr>
+           
 
-        <tr>
-            <td>
-                進出方式
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Passway)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                加入時間
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.CreateTime)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                會員狀態
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Status)
-            </td>
-        </tr>
-        @*<tr>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            <div class="form-group">
+                @Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control", placeholder = "yyyy-mm-dd", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-                </td>
-            </tr>*@
-    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tel, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Tel, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "0912345678" } })
+                    @Html.ValidationMessageFor(model => model.Tel, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-</table>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Sex, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "請填Female或Male" } })
+                    @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-<div class="form-group">
-    <div class="col-md-offset-2 col-md-10">
-        <button type="submit" class="btn btn-primary">修改</button>
-        <button type="button" class="btn btn-warning">離開</button>
-    </div>
-</div>
+           
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-primary">確認修改</button>
+                    <button type="button" class="btn btn-warning" onclick="cancel()">取消</button>
+                </div>
+            </div>
+        </div>
+    }
+
+        <script>
+            function cancel() {
+                location.href = "/Member/Account";
+            }
+        </script>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+</body>
+</html>

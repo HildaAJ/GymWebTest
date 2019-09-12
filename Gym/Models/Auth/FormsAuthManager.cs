@@ -7,7 +7,7 @@ using System.Web.Security;
 
 namespace Gym.Models.Operation
 {
-    public class AuthManager
+    public class FormsAuthManager
     {
         public void SignIn(LoginUser user)
         {
@@ -22,8 +22,8 @@ namespace Gym.Models.Operation
              userData: JsonConvert.SerializeObject(user), //將要記錄的使用者資訊轉換為 JSON 字串
              cookiePath: FormsAuthentication.FormsCookiePath);
 
-            // 2. 加密 ticket
-            var encryptedTicket = FormsAuthentication.Encrypt(ticket); //把驗證的表單加密
+            // 2. 加密 ticket 把驗證的表單加密
+            var encryptedTicket = FormsAuthentication.Encrypt(ticket); 
 
             // 3. 建立 HttpCookie
             //使用 FormsAuthentication 技術的話，HttpCookie 的 CookieName 要為

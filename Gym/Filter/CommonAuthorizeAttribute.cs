@@ -12,7 +12,7 @@ namespace Gym.Filter
     /// </summary>
     public class CommonAuthorizeAttribute : AuthorizeAttribute
     {
-        AuthManager authManager = new AuthManager();
+        FormsAuthManager authManager = new FormsAuthManager();
         LoginUser userInfo = new LoginUser();
         string identity = "";
         string Name = "";

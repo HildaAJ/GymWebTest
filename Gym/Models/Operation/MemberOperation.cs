@@ -64,6 +64,51 @@ namespace Gym.Models
             
         }
 
+        public void Update(MemberInfoViewModel afterEdit)
+        {
+            using (GymEntity db = new GymEntity())
+            {
+                var editMember = db.Member.Where(m => m.Email.Equals(afterEdit.Email)).FirstOrDefault();
+                editMember.Email = afterEdit.Email;
+                if (afterEdit.Status.Equals("有效會員"))
+                {
+                    editMember.Status = true;
+                }
+                else
+                {
+                    editMember.Status = false;
+                }
+                editMember.Birthday = DateTime.ParseExact(afterEdit.Birthday, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.AllowWhiteSpaces);
+                editMember.Tel = afterEdit.Tel;
+                editMember.Name = afterEdit.Name;
+                editMember.Sex = afterEdit.Sex;
+                editMember.PassWay = afterEdit.Passway;
+                editMember.CreateTime = afterEdit.CreateTime;               
+
+                bool saveFailed;
+                do
+                {
+                    saveFailed = false;
+                    try
+                    {
+                        db.SaveChanges();
+                        
+                    }
+                    catch (DbUpdateConcurrencyException ex)
+                    {
+                        saveFailed = true;
+                        ex.Entries.Single().Reload();
+                    }
+                    catch (Exception)
+                    {
+                       
+                    }
+                } while (saveFailed);
+
+                
+            }
+        }
+
         /// <summary>
         /// 註冊確認及存取
         /// </summary>
@@ -186,7 +231,7 @@ namespace Gym.Models
                 }
                 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

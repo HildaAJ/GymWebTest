@@ -17,11 +17,30 @@ namespace Gym.Controllers
     
     public class HomeController : Controller
     {
-        [CommonAuthorize]
+        //[CommonAuthorize]
         public ActionResult Index()
         {
             try
-            {     
+            {
+                RoleAuthManager roleAuth = new RoleAuthManager();
+                var pass = roleAuth.UserGuestAuth();
+                if (pass == 0)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                }
+                else if(pass == 1)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "User";
+                }
+                else if (pass == 2)
+                {
+                    ViewBag.RoleName = "Admin";
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員或以訪客身分瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+
                 StoreOperation storeOp = new StoreOperation();
                 var AllStore = storeOp.Get();//取得所有館別
                 ClassroomOperation clsroomOp = new ClassroomOperation();
@@ -93,12 +112,21 @@ namespace Gym.Controllers
         [AllowAnonymous]
         public ActionResult Create()
         {
-            RegisterGroupViewModel reg = new RegisterGroupViewModel();
-            //匯入館別複選資料
-            StoreCheckListViewModel SCLV = new StoreCheckListViewModel();
-            SCLV.listStoreItems();
-            reg.StoreCheckList = SCLV;
-            return View(reg);
+            try
+            {
+                RegisterGroupViewModel reg = new RegisterGroupViewModel();
+                //匯入館別複選資料
+                StoreCheckListViewModel SCLV = new StoreCheckListViewModel();
+                SCLV.listStoreItems();
+                reg.StoreCheckList = SCLV;
+                return View(reg);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.RegisterMsg = ex.ToString();
+                return View();
+            }
+            
         }
 
         [AllowAnonymous]
@@ -106,35 +134,44 @@ namespace Gym.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(RegisterGroupViewModel reg)
         {
-            if (ModelState.IsValid)
+            try
             {
-                string msg = "";
-
-                //新增會員至資料表
-                MemberOperation memberDataOperation = new MemberOperation();
-                var result = memberDataOperation.CheckAddMember(reg);
-
-                switch (result)
+                if (ModelState.IsValid)
                 {
-                    case 0:
-                        msg = "註冊成功";
-                        ViewBag.RegisterMsg = msg;
-                        return RedirectToAction("Login", "Home");
-                    case -1:
-                        msg = "會員資料已存在 註冊失敗";
-                        ViewBag.RegisterMsg = msg;
-                        return View(reg);
-                    case -2:
-                        msg = "至少選擇一個館別";
-                        ViewBag.RegisterMsg = msg;
-                        return View(reg);
-                    case -99:
-                        msg = "會員資料新增失敗";
-                        ViewBag.RegisterMsg = msg;
-                        return View(reg);
+                    string msg = "";
+
+                    //新增會員至資料表
+                    MemberOperation memberDataOperation = new MemberOperation();
+                    var result = memberDataOperation.CheckAddMember(reg);
+
+                    switch (result)
+                    {
+                        case 0:
+                            msg = "註冊成功";
+                            ViewBag.RegisterMsg = msg;
+                            return RedirectToAction("Login", "Home");
+                        case -1:
+                            msg = "會員資料已存在 註冊失敗";
+                            ViewBag.RegisterMsg = msg;
+                            return View(reg);
+                        case -2:
+                            msg = "至少選擇一個館別";
+                            ViewBag.RegisterMsg = msg;
+                            return View(reg);
+                        case -99:
+                            msg = "會員資料新增失敗";
+                            ViewBag.RegisterMsg = msg;
+                            return View(reg);
+                    }
                 }
+                return View(reg);
             }
-            return View(reg);
+            catch (Exception ex)
+            {
+                ViewBag.RegisterMsg = ex.ToString();
+                return View(reg);
+            }
+            
         }
 
         [AllowAnonymous]
@@ -172,7 +209,7 @@ namespace Gym.Controllers
                         {
                             user.Identity = Identity.User;
                         }
-                        else if (item.Equals(0))
+                        else if (item.Equals(2))
                         {
                             user.Identity = Identity.Admin;
                         }
@@ -182,7 +219,7 @@ namespace Gym.Controllers
                     //登入會員的帳號
                     user.UserEmail = memberDataOperation.user.Email.ToString();
  
-                    AuthManager authManager = new AuthManager();
+                    FormsAuthManager authManager = new FormsAuthManager();
                     authManager.SignIn(user);
   
                     return RedirectToAction("Index", "Home");
@@ -205,7 +242,7 @@ namespace Gym.Controllers
         [AllowAnonymous]
         public ActionResult Logout()
         {
-            AuthManager authManager = new AuthManager();
+            FormsAuthManager authManager = new FormsAuthManager();
             authManager.SignOut();
             //清除所有的 session
             Session.RemoveAll();
