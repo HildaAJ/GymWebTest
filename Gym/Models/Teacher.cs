@@ -12,7 +12,7 @@ namespace Gym.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Teacher()
         {
-            CourseItem = new HashSet<CourseItem>();
+            CourseItem = new HashSet<Course>();
         }
 
         [Key]
@@ -35,6 +35,6 @@ namespace Gym.Models
         public bool Status { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseItem> CourseItem { get; set; }
+        public virtual ICollection<Course> CourseItem { get; set; }
     }
 }

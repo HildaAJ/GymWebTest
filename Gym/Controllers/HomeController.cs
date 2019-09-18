@@ -45,8 +45,8 @@ namespace Gym.Controllers
                 var AllStore = storeOp.Get();//取得所有館別
                 ClassroomOperation clsroomOp = new ClassroomOperation();
                 var AllStoreClassRoom = clsroomOp.Get(AllStore);//取得所有館別的教室
-                CourseItemOperation crsItemOp = new CourseItemOperation();
-                CourseOperation crsOp = new CourseOperation();
+                CourseOperation crsItemOp = new CourseOperation();
+                CourseTypeOperation crsOp = new CourseTypeOperation();
                 List<IndexViewModel> Lstmodel = new List<IndexViewModel>();
                 
                 //取得每個館別的資料

@@ -6,8 +6,8 @@ namespace Gym.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("CourseItem")]
-    public partial class CourseItem
+    [Table("Course")]
+    public partial class Course
     {
         [Key]
         //[StringLength(50)]
@@ -37,7 +37,7 @@ namespace Gym.Models
 
         public virtual Classroom Classroom { get; set; }
 
-        public virtual Course Course { get; set; }
+        public virtual CourseType CourseType { get; set; }
 
         public virtual Teacher Teacher { get; set; }
     }

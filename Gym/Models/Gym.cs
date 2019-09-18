@@ -14,8 +14,8 @@ namespace Gym.Models
 
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Classroom> Classroom { get; set; }
-        public virtual DbSet<Course> Course { get; set; }
-        public virtual DbSet<CourseItem> CourseItem { get; set; }
+        public virtual DbSet<CourseType> Course { get; set; }
+        public virtual DbSet<Course> CourseItem { get; set; }
         public virtual DbSet<CourseSeries> CourseSeries { get; set; }
         public virtual DbSet<Member> Member { get; set; }
         public virtual DbSet<MemberAccess> MemberAccess { get; set; }
@@ -40,34 +40,34 @@ namespace Gym.Models
                 .HasForeignKey(e => e.Classroom_No)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Course>()
+            modelBuilder.Entity<CourseType>()
                 .Property(e => e.CourseNo)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Course>()
+            modelBuilder.Entity<CourseType>()
                 .HasMany(e => e.CourseItem)
-                .WithRequired(e => e.Course)
+                .WithRequired(e => e.CourseType)
                 .HasForeignKey(e => e.Course_No)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Course>()
+            modelBuilder.Entity<CourseType>()
                 .HasMany(e => e.CourseSeries)
                 .WithMany(e => e.Course)
                 .Map(m => m.ToTable("CourseSeries to Course").MapLeftKey("Course_No").MapRightKey("CourseSeries_No"));
 
-            modelBuilder.Entity<CourseItem>()
+            modelBuilder.Entity<Course>()
                 .Property(e => e.CourseItemNo);
                 //.IsUnicode(false);
 
-            modelBuilder.Entity<CourseItem>()
+            modelBuilder.Entity<Course>()
                 .Property(e => e.Course_No)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<CourseItem>()
+            modelBuilder.Entity<Course>()
                 .Property(e => e.Classroom_No)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<CourseItem>()
+            modelBuilder.Entity<Course>()
                 .Property(e => e.Teacher_No)
                 .IsUnicode(false);
 
