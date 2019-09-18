@@ -75,9 +75,9 @@ namespace Gym.Controllers
                        
                         //取得教室目前課程 
                         var NowCourse = from c in LstCourse
-                                         where c.Course_No != "Ch05" && c.ClassDate.Equals(DateTime.Now.Date)
+                                         where c.CourseType_No != "Ch05" && c.ClassDate.Equals(DateTime.Now.Date)
                                          && c.StartTime <= DateTime.Now && DateTime.Now <= c.EndTime
-                                         select c.Course_No;
+                                         select c.CourseType_No;
                         
                         
                         //教室目前有課程

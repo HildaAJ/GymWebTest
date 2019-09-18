@@ -213,6 +213,22 @@
     <Compile Include="Migrations\201909180944420_v2.Designer.cs">
       <DependentUpon>201909180944420_v2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909181000195_alterCourseColumn.cs" />
+    <Compile Include="Migrations\201909181000195_alterCourseColumn.Designer.cs">
+      <DependentUpon>201909181000195_alterCourseColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909181033418_CourseColumn_v2.cs" />
+    <Compile Include="Migrations\201909181033418_CourseColumn_v2.Designer.cs">
+      <DependentUpon>201909181033418_CourseColumn_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909181037277_CourseColumn_v3.cs" />
+    <Compile Include="Migrations\201909181037277_CourseColumn_v3.Designer.cs">
+      <DependentUpon>201909181037277_CourseColumn_v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909181051048_v3.cs" />
+    <Compile Include="Migrations\201909181051048_v3.Designer.cs">
+      <DependentUpon>201909181051048_v3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classroom.cs" />
     <Compile Include="Models\Course.cs" />
@@ -352,6 +368,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909180944420_v2.resx">
       <DependentUpon>201909180944420_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909181000195_alterCourseColumn.resx">
+      <DependentUpon>201909181000195_alterCourseColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909181033418_CourseColumn_v2.resx">
+      <DependentUpon>201909181033418_CourseColumn_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909181037277_CourseColumn_v3.resx">
+      <DependentUpon>201909181037277_CourseColumn_v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909181051048_v3.resx">
+      <DependentUpon>201909181051048_v3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

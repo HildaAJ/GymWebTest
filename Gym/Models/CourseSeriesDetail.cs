@@ -17,7 +17,7 @@ namespace Gym.Models
         [Key]
         [Column(Order = 1)]
         [StringLength(50)]
-        public string Course_No { get; set; }
+        public string CourseType_No { get; set; }
 
         public int Num { get; set; }
 

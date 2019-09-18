@@ -11,11 +11,11 @@ namespace Gym.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int CourseItemNo { get; set; }
+        public int CourseNo { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string Course_No { get; set; }
+        public string CourseType_No { get; set; }
 
         public int MemberAvailable { get; set; }
 
