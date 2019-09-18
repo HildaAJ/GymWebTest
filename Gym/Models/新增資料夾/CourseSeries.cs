@@ -12,7 +12,7 @@ namespace Gym.Models
         public CourseSeries()
         {
             MemberCourse = new HashSet<MemberCourse>();
-            Course = new HashSet<Course>();
+            Course = new HashSet<CourseType>();
         }
 
         [Key]
@@ -41,6 +41,6 @@ namespace Gym.Models
         public virtual ICollection<MemberCourse> MemberCourse { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course> Course { get; set; }
+        public virtual ICollection<CourseType> Course { get; set; }
     }
 }

@@ -209,18 +209,23 @@
     <Compile Include="Migrations\201909180859073_RenameAndUpdateTable.Designer.cs">
       <DependentUpon>201909180859073_RenameAndUpdateTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909180944420_v2.cs" />
+    <Compile Include="Migrations\201909180944420_v2.Designer.cs">
+      <DependentUpon>201909180944420_v2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classroom.cs" />
     <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\CourseItem.cs" />
     <Compile Include="Models\CourseSeries.cs" />
+    <Compile Include="Models\CourseSeriesDetail.cs" />
+    <Compile Include="Models\CourseType.cs" />
     <Compile Include="Models\C__MigrationHistory.cs" />
     <Compile Include="Filter\UserAuthorizeAttribute.cs" />
-    <Compile Include="Models\Gym.cs" />
+    <Compile Include="Models\Auth\FormsAuthManager.cs" />
+    <Compile Include="Models\GymEntity.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberAccess.cs" />
     <Compile Include="Models\MemberCourse.cs" />
-    <Compile Include="Models\Auth\FormsAuthManager.cs" />
     <Compile Include="Models\Operation\ClassroomOperation.cs" />
     <Compile Include="Models\Operation\CourseOperation.cs" />
     <Compile Include="Models\Operation\CourseTypeOperation.cs" />
@@ -344,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909180859073_RenameAndUpdateTable.resx">
       <DependentUpon>201909180859073_RenameAndUpdateTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909180944420_v2.resx">
+      <DependentUpon>201909180944420_v2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -11,8 +11,8 @@ namespace Gym.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CourseSeries()
         {
+            CourseSeriesDetail = new HashSet<CourseSeriesDetail>();
             MemberCourse = new HashSet<MemberCourse>();
-            Course = new HashSet<CourseType>();
         }
 
         [Key]
@@ -38,9 +38,9 @@ namespace Gym.Models
         public DateTime DeadLine { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MemberCourse> MemberCourse { get; set; }
+        public virtual ICollection<CourseSeriesDetail> CourseSeriesDetail { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseType> Course { get; set; }
+        public virtual ICollection<MemberCourse> MemberCourse { get; set; }
     }
 }

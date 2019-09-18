@@ -21,7 +21,7 @@ namespace Gym.Models.Operation
         {
             using (GymEntity db = new GymEntity())
             {
-                var AllCourse = from c in db.Course
+                var AllCourse = from c in db.CourseType
                                 select c;
                 var LstCourse = AllCourse.ToList();
                 return LstCourse;
@@ -32,7 +32,7 @@ namespace Gym.Models.Operation
         {
             using (GymEntity db = new GymEntity())
             {
-                var tmpCourse = from c in db.Course
+                var tmpCourse = from c in db.CourseType
                               where c.CourseNo.Equals(courseNo)
                               select c;
                 var course = tmpCourse.ToList();

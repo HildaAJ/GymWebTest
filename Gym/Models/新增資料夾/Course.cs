@@ -6,15 +6,13 @@ namespace Gym.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Course")]
-    public partial class Course
+    [Table("CourseType")]
+    public partial class CourseType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Course()
+        public CourseType()
         {
-            CourseItem = new HashSet<CourseItem>();
-            Classroom = new HashSet<Classroom>();
-            Teacher = new HashSet<Teacher>();
+            CourseItem = new HashSet<Course>();
             CourseSeries = new HashSet<CourseSeries>();
         }
 
@@ -27,13 +25,7 @@ namespace Gym.Models
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseItem> CourseItem { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Classroom> Classroom { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Teacher> Teacher { get; set; }
+        public virtual ICollection<Course> CourseItem { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseSeries> CourseSeries { get; set; }

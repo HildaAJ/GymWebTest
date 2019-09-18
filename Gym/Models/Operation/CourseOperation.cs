@@ -25,7 +25,7 @@ namespace Gym.Models.Operation
         {
             using (GymEntity db = new GymEntity())
             {
-                var allCourseItem = from x in db.CourseItem select x;
+                var allCourseItem = from x in db.Course select x;
                 var CourseItemList = allCourseItem.ToList();
                 return CourseItemList;
             }
@@ -39,7 +39,7 @@ namespace Gym.Models.Operation
         {
             using (GymEntity db = new GymEntity())
             {
-                var allCourseItem = from x in db.CourseItem
+                var allCourseItem = from x in db.Course
                                    where x.Classroom_No.Equals(room.ClassroomNo)
                                    select x;
                 var CourseItemList = allCourseItem.ToList();
@@ -60,7 +60,7 @@ namespace Gym.Models.Operation
                 List<List<Course>> LstCourseItem = new List<List<Course>>();
                 foreach (Classroom item in RoomLst)
                 {
-                    var tmpCourse = from x in db.CourseItem
+                    var tmpCourse = from x in db.Course
                                   where x.Classroom_No.Equals(item.ClassroomNo)
                                   select x;
                     tmpCourseItem = tmpCourse.ToList();

@@ -6,12 +6,13 @@ namespace Gym.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("CourseItem")]
-    public partial class CourseItem
+    [Table("Course")]
+    public partial class Course
     {
         [Key]
-        [StringLength(50)]
-        public string CourseItemNo { get; set; }
+        //[StringLength(50)]
+        //public string CourseItemNo { get; set; }
+        public int CourseItemNo { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -26,6 +27,18 @@ namespace Gym.Models
 
         public DateTime EndTime { get; set; }
 
-        public virtual Course Course { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Classroom_No { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Teacher_No { get; set; }
+
+        public virtual Classroom Classroom { get; set; }
+
+        public virtual CourseType CourseType { get; set; }
+
+        public virtual Teacher Teacher { get; set; }
     }
 }

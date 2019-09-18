@@ -6,28 +6,38 @@ namespace Gym.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("CourseType")]
-    public partial class CourseType
+    [Table("Course")]
+    public partial class Course
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CourseType()
-        {
-            CourseItem = new HashSet<Course>();
-            CourseSeries = new HashSet<CourseSeries>();
-        }
-
         [Key]
-        [StringLength(50)]
-        public string CourseNo { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int CourseItemNo { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string Name { get; set; }
+        public string Course_No { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course> CourseItem { get; set; }
+        public int MemberAvailable { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseSeries> CourseSeries { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime ClassDate { get; set; }
+
+        public DateTime StartTime { get; set; }
+
+        public DateTime EndTime { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Classroom_No { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Teacher_No { get; set; }
+
+        public virtual Classroom Classroom { get; set; }
+
+        public virtual CourseType CourseType { get; set; }
+
+        public virtual Teacher Teacher { get; set; }
     }
 }

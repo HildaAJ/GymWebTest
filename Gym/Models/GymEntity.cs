@@ -15,8 +15,9 @@ namespace Gym.Models
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Classroom> Classroom { get; set; }
         public virtual DbSet<Course> Course { get; set; }
-        public virtual DbSet<CourseItem> CourseItem { get; set; }
         public virtual DbSet<CourseSeries> CourseSeries { get; set; }
+        public virtual DbSet<CourseSeriesDetail> CourseSeriesDetail { get; set; }
+        public virtual DbSet<CourseType> CourseType { get; set; }
         public virtual DbSet<Member> Member { get; set; }
         public virtual DbSet<MemberAccess> MemberAccess { get; set; }
         public virtual DbSet<MemberCourse> MemberCourse { get; set; }
@@ -36,35 +37,20 @@ namespace Gym.Models
 
             modelBuilder.Entity<Classroom>()
                 .HasMany(e => e.Course)
-                .WithMany(e => e.Classroom)
-                .Map(m => m.ToTable("Course to Classroom").MapLeftKey("Classroom_No").MapRightKey("Course_No"));
-
-            modelBuilder.Entity<Course>()
-                .Property(e => e.CourseNo)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Course>()
-                .HasMany(e => e.CourseItem)
-                .WithRequired(e => e.Course)
-                .HasForeignKey(e => e.Course_No)
+                .WithRequired(e => e.Classroom)
+                .HasForeignKey(e => e.Classroom_No)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Course>()
-                .HasMany(e => e.Teacher)
-                .WithMany(e => e.Course)
-                .Map(m => m.ToTable("Course to Teacher").MapLeftKey("Course_No").MapRightKey("Teacher_No"));
-
-            modelBuilder.Entity<Course>()
-                .HasMany(e => e.CourseSeries)
-                .WithMany(e => e.Course)
-                .Map(m => m.ToTable("CourseSeries to Course").MapLeftKey("Course_No").MapRightKey("CourseSeries_No"));
-
-            modelBuilder.Entity<CourseItem>()
-                .Property(e => e.CourseItemNo)
+                .Property(e => e.Course_No)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<CourseItem>()
-                .Property(e => e.Course_No)
+            modelBuilder.Entity<Course>()
+                .Property(e => e.Classroom_No)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Course>()
+                .Property(e => e.Teacher_No)
                 .IsUnicode(false);
 
             modelBuilder.Entity<CourseSeries>()
@@ -76,9 +62,39 @@ namespace Gym.Models
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<CourseSeries>()
+                .HasMany(e => e.CourseSeriesDetail)
+                .WithRequired(e => e.CourseSeries)
+                .HasForeignKey(e => e.CourseSeries_No)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CourseSeries>()
                 .HasMany(e => e.MemberCourse)
                 .WithRequired(e => e.CourseSeries)
                 .HasForeignKey(e => e.CourseSeries_No)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CourseSeriesDetail>()
+                .Property(e => e.CourseSeries_No)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CourseSeriesDetail>()
+                .Property(e => e.Course_No)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CourseType>()
+                .Property(e => e.CourseNo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CourseType>()
+                .HasMany(e => e.Course)
+                .WithRequired(e => e.CourseType)
+                .HasForeignKey(e => e.Course_No)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CourseType>()
+                .HasMany(e => e.CourseSeriesDetail)
+                .WithRequired(e => e.CourseType)
+                .HasForeignKey(e => e.Course_No)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Member>()
@@ -155,6 +171,12 @@ namespace Gym.Models
             modelBuilder.Entity<Teacher>()
                 .Property(e => e.Email)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Teacher>()
+                .HasMany(e => e.Course)
+                .WithRequired(e => e.Teacher)
+                .HasForeignKey(e => e.Teacher_No)
+                .WillCascadeOnDelete(false);
         }
     }
 }
