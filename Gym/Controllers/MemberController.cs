@@ -24,7 +24,6 @@ namespace Gym.Controllers
         {
             try
             {
-                //驗證授權：一般會員及訪客
                 RoleAuthManager roleAuth = new RoleAuthManager();
                 var pass = roleAuth.UserGuestAuth();
                 if (pass == 0)
@@ -80,7 +79,6 @@ namespace Gym.Controllers
         {
             try
             {
-                //驗證授權：一般會員
                 RoleAuthManager roleAuth = new RoleAuthManager();
                 var pass = roleAuth.UserAuth();
                 if (pass == true)
@@ -94,7 +92,6 @@ namespace Gym.Controllers
                     return RedirectToAction("Login", "Home");
                 }
 
-                //取得我的帳戶會員資料
                 var Account = GetAccount();
 
                 if (Account != null)
@@ -125,7 +122,6 @@ namespace Gym.Controllers
         {
             try
             {
-                //驗證授權：一般會員
                 RoleAuthManager roleAuth = new RoleAuthManager();
                 var pass = roleAuth.UserAuth();
                 if (pass == true)
@@ -138,9 +134,7 @@ namespace Gym.Controllers
                     ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
                     return RedirectToAction("Login", "Home");
                 }
-                //取得我的帳戶會員資料
                 var Account = GetAccount();
-
                 if (Account != null)
                 {
                     return View(Account);
@@ -168,7 +162,6 @@ namespace Gym.Controllers
         {
             try
             {
-                //驗證授權：一般會員
                 RoleAuthManager roleAuth = new RoleAuthManager();
                 var pass = roleAuth.UserAuth();
                 if (pass == true)
@@ -212,8 +205,7 @@ namespace Gym.Controllers
             if (User.Identity.IsAuthenticated == true)//若會員為登入狀態
             {
                 string Account = User.Identity.Name;//取得會員Email
-
-                //找出該會員資料
+                                                    //找出該會員資料
                 MemberOperation mo = new MemberOperation();
                 var LstMember = mo.Get(Account);
                 var member = LstMember[0];
@@ -241,6 +233,5 @@ namespace Gym.Controllers
                 return null;
             }
         }
-
     }
 }

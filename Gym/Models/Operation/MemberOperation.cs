@@ -82,8 +82,8 @@ namespace Gym.Models
                 editMember.Tel = afterEdit.Tel;
                 editMember.Name = afterEdit.Name;
                 editMember.Sex = afterEdit.Sex;
-                //editMember.PassWay = afterEdit.Passway;
-                //editMember.CreateTime = afterEdit.CreateTime;               
+                editMember.PassWay = afterEdit.Passway;
+                editMember.CreateTime = afterEdit.CreateTime;               
 
                 bool saveFailed;
                 do
