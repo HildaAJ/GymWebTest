@@ -67,11 +67,11 @@ namespace Gym.Models
                 .HasForeignKey(e => e.CourseSeries_No)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<CourseSeries>()
-                .HasMany(e => e.MemberCourse)
-                .WithRequired(e => e.CourseSeries)
-                .HasForeignKey(e => e.CourseSeries_No)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<CourseSeries>()
+            //    .HasMany(e => e.MemberCourse)
+            //    .WithRequired(e => e.CourseSeries)
+            //    .HasForeignKey(e => e.CourseSeries_No)
+            //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<CourseSeriesDetail>()
                 .Property(e => e.CourseSeries_No)
@@ -135,7 +135,7 @@ namespace Gym.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<MemberCourse>()
-                .Property(e => e.CourseSeries_No)
+                .Property(e => e.CourseType_No)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Role>()

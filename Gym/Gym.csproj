@@ -229,6 +229,14 @@
     <Compile Include="Migrations\201909181051048_v3.Designer.cs">
       <DependentUpon>201909181051048_v3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909190336183_AlterMemberCourse.cs" />
+    <Compile Include="Migrations\201909190336183_AlterMemberCourse.Designer.cs">
+      <DependentUpon>201909190336183_AlterMemberCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190620509_v4.cs" />
+    <Compile Include="Migrations\201909190620509_v4.Designer.cs">
+      <DependentUpon>201909190620509_v4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classroom.cs" />
     <Compile Include="Models\Course.cs" />
@@ -380,6 +388,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909181051048_v3.resx">
       <DependentUpon>201909181051048_v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190336183_AlterMemberCourse.resx">
+      <DependentUpon>201909190336183_AlterMemberCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190620509_v4.resx">
+      <DependentUpon>201909190620509_v4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
