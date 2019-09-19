@@ -12,6 +12,8 @@ namespace Gym.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Member()
         {
+            BookingCourse = new HashSet<BookingCourse>();
+            PurchaseRecord = new HashSet<PurchaseRecord>();
             MemberAccess = new HashSet<MemberAccess>();
             MemberCourse = new HashSet<MemberCourse>();
             Store = new HashSet<Store>();
@@ -56,6 +58,12 @@ namespace Gym.Models
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BookingCourse> BookingCourse { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PurchaseRecord> PurchaseRecord { get; set; }
 
         public virtual Role Role { get; set; }
 

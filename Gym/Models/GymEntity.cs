@@ -13,6 +13,7 @@ namespace Gym.Models
         }
 
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<BookingCourse> BookingCourse { get; set; }
         public virtual DbSet<Classroom> Classroom { get; set; }
         public virtual DbSet<Course> Course { get; set; }
         public virtual DbSet<CourseSeries> CourseSeries { get; set; }
@@ -21,6 +22,7 @@ namespace Gym.Models
         public virtual DbSet<Member> Member { get; set; }
         public virtual DbSet<MemberAccess> MemberAccess { get; set; }
         public virtual DbSet<MemberCourse> MemberCourse { get; set; }
+        public virtual DbSet<PurchaseRecord> PurchaseRecord { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Store> Store { get; set; }
         public virtual DbSet<Teacher> Teacher { get; set; }
@@ -53,6 +55,12 @@ namespace Gym.Models
                 .Property(e => e.Teacher_No)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Course>()
+                .HasMany(e => e.BookingCourse)
+                .WithRequired(e => e.Course)
+                .HasForeignKey(e => e.Course_No)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<CourseSeries>()
                 .Property(e => e.CourseSeriesNo)
                 .IsUnicode(false);
@@ -67,11 +75,11 @@ namespace Gym.Models
                 .HasForeignKey(e => e.CourseSeries_No)
                 .WillCascadeOnDelete(false);
 
-            //modelBuilder.Entity<CourseSeries>()
-            //    .HasMany(e => e.MemberCourse)
-            //    .WithRequired(e => e.CourseSeries)
-            //    .HasForeignKey(e => e.CourseSeries_No)
-            //    .WillCascadeOnDelete(false);
+            modelBuilder.Entity<CourseSeries>()
+                .HasMany(e => e.PurchaseRecord)
+                .WithRequired(e => e.CourseSeries)
+                .HasForeignKey(e => e.CourseSeries_No)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<CourseSeriesDetail>()
                 .Property(e => e.CourseSeries_No)
@@ -82,7 +90,7 @@ namespace Gym.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<CourseType>()
-                .Property(e => e.CourseNo)
+                .Property(e => e.CourseTypeNo)
                 .IsUnicode(false);
 
             modelBuilder.Entity<CourseType>()
@@ -97,6 +105,12 @@ namespace Gym.Models
                 .HasForeignKey(e => e.CourseType_No)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<CourseType>()
+                .HasMany(e => e.MemberCourse)
+                .WithRequired(e => e.CourseType)
+                .HasForeignKey(e => e.CourseType_no)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Member>()
                 .Property(e => e.Email)
                 .IsUnicode(false);
@@ -108,6 +122,17 @@ namespace Gym.Models
             modelBuilder.Entity<Member>()
                 .Property(e => e.Password)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Member>()
+                .HasMany(e => e.BookingCourse)
+                .WithRequired(e => e.Member)
+                .HasForeignKey(e => e.Member_No)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Member>()
+                .HasMany(e => e.PurchaseRecord)
+                .WithOptional(e => e.Member)
+                .HasForeignKey(e => e.Member_No);
 
             modelBuilder.Entity<Member>()
                 .HasMany(e => e.MemberAccess)
@@ -135,7 +160,11 @@ namespace Gym.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<MemberCourse>()
-                .Property(e => e.CourseType_No)
+                .Property(e => e.CourseType_no)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PurchaseRecord>()
+                .Property(e => e.CourseSeries_No)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Role>()

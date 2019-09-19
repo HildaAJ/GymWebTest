@@ -9,6 +9,12 @@ namespace Gym.Models
     [Table("Course")]
     public partial class Course
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Course()
+        {
+            BookingCourse = new HashSet<BookingCourse>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CourseNo { get; set; }
@@ -33,6 +39,9 @@ namespace Gym.Models
         [Required]
         [StringLength(50)]
         public string Teacher_No { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BookingCourse> BookingCourse { get; set; }
 
         public virtual Classroom Classroom { get; set; }
 

@@ -237,7 +237,36 @@
     <Compile Include="Migrations\201909190620509_v4.Designer.cs">
       <DependentUpon>201909190620509_v4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909190633581_DelMemberCourse.cs" />
+    <Compile Include="Migrations\201909190633581_DelMemberCourse.Designer.cs">
+      <DependentUpon>201909190633581_DelMemberCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190822459_DelMemberCourse_v2.cs" />
+    <Compile Include="Migrations\201909190822459_DelMemberCourse_v2.Designer.cs">
+      <DependentUpon>201909190822459_DelMemberCourse_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190824365_AddColumnMemberCourse.cs" />
+    <Compile Include="Migrations\201909190824365_AddColumnMemberCourse.Designer.cs">
+      <DependentUpon>201909190824365_AddColumnMemberCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190848409_v5.cs" />
+    <Compile Include="Migrations\201909190848409_v5.Designer.cs">
+      <DependentUpon>201909190848409_v5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190909045_AddFKBooking.cs" />
+    <Compile Include="Migrations\201909190909045_AddFKBooking.Designer.cs">
+      <DependentUpon>201909190909045_AddFKBooking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190915427_AddFKPurchaseRec.cs" />
+    <Compile Include="Migrations\201909190915427_AddFKPurchaseRec.Designer.cs">
+      <DependentUpon>201909190915427_AddFKPurchaseRec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190925071_v6.cs" />
+    <Compile Include="Migrations\201909190925071_v6.Designer.cs">
+      <DependentUpon>201909190925071_v6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BookingCourse.cs" />
     <Compile Include="Models\Classroom.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseSeries.cs" />
@@ -260,6 +289,7 @@
     <Compile Include="Models\Operation\RoleOperation.cs" />
     <Compile Include="Models\Operation\StoreOperation.cs" />
     <Compile Include="Models\Auth\LoginUser.cs" />
+    <Compile Include="Models\PurchaseRecord.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Store.cs" />
     <Compile Include="Models\Teacher.cs" />
@@ -394,6 +424,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909190620509_v4.resx">
       <DependentUpon>201909190620509_v4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190633581_DelMemberCourse.resx">
+      <DependentUpon>201909190633581_DelMemberCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190822459_DelMemberCourse_v2.resx">
+      <DependentUpon>201909190822459_DelMemberCourse_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190824365_AddColumnMemberCourse.resx">
+      <DependentUpon>201909190824365_AddColumnMemberCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190848409_v5.resx">
+      <DependentUpon>201909190848409_v5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190909045_AddFKBooking.resx">
+      <DependentUpon>201909190909045_AddFKBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190915427_AddFKPurchaseRec.resx">
+      <DependentUpon>201909190915427_AddFKPurchaseRec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190925071_v6.resx">
+      <DependentUpon>201909190925071_v6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
