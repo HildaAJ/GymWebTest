@@ -10,11 +10,14 @@ using System.Web.Security;
 using Gym.Models;
 using Gym.Filter;
 using System.Globalization;
+using System.Net;
 
 namespace Gym.Controllers
 {
     public class MemberController : Controller
     {
+        RoleAuthManager roleAuth = new RoleAuthManager();
+
         /// <summary>
         /// 各館資訊
         /// </summary>
@@ -25,7 +28,7 @@ namespace Gym.Controllers
             try
             {
                 //驗證授權：一般會員及訪客
-                RoleAuthManager roleAuth = new RoleAuthManager();
+                //RoleAuthManager roleAuth = new RoleAuthManager();
                 var pass = roleAuth.UserGuestAuth();
                 if (pass == 0)
                 {
@@ -81,7 +84,7 @@ namespace Gym.Controllers
             try
             {
                 //驗證授權：一般會員
-                RoleAuthManager roleAuth = new RoleAuthManager();
+                //RoleAuthManager roleAuth = new RoleAuthManager();
                 var pass = roleAuth.UserAuth();
                 if (pass == true)
                 {
@@ -126,7 +129,7 @@ namespace Gym.Controllers
             try
             {
                 //驗證授權：一般會員
-                RoleAuthManager roleAuth = new RoleAuthManager();
+                //RoleAuthManager roleAuth = new RoleAuthManager();
                 var pass = roleAuth.UserAuth();
                 if (pass == true)
                 {
@@ -169,7 +172,7 @@ namespace Gym.Controllers
             try
             {
                 //驗證授權：一般會員
-                RoleAuthManager roleAuth = new RoleAuthManager();
+                //RoleAuthManager roleAuth = new RoleAuthManager();
                 var pass = roleAuth.UserAuth();
                 if (pass == true)
                 {
@@ -215,8 +218,7 @@ namespace Gym.Controllers
 
                 //找出該會員資料
                 MemberOperation mo = new MemberOperation();
-                var LstMember = mo.Get(Account);
-                var member = LstMember[0];
+                var member = mo.Get(Account);
 
                 MemberInfoViewModel memInVM = new MemberInfoViewModel();
                 string date = member.Birthday.ToString("yyyy-MM-dd").Substring(0, 10);
@@ -240,6 +242,156 @@ namespace Gym.Controllers
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// 顯示消費方案
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult CourseSeries()
+        {
+            try
+            {
+                //驗證授權：一般會員
+                //RoleAuthManager roleAuth = new RoleAuthManager();
+                var pass = roleAuth.UserAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "User";
+                }
+                else
+                {
+                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+
+                //取得消費方案資料
+                CourseSeriesOperation cs = new CourseSeriesOperation();
+                var allSeries = cs.Get();
+
+                //取得欲顯示消費方案資料 放入ViewModel中
+                List<CourseSeriesViewModel> LstSeriesVM = new List<CourseSeriesViewModel>();
+                foreach (var item in allSeries)
+                {
+                    CourseSeriesViewModel SeriesVM = new CourseSeriesViewModel();
+                    SeriesVM.Id = item.CourseSeriesNo;
+                    SeriesVM.CourseInfo = item.CourseInfo;
+
+                    if (item.DeadLine.Year == 9999)
+                    {
+                        SeriesVM.DeadLine = "永久";
+                    }
+                    else
+                    {
+                        SeriesVM.DeadLine = item.DeadLine.ToShortDateString();
+                    }
+                    
+                    SeriesVM.Description = item.Description;
+                    SeriesVM.Name = item.Name;
+                    SeriesVM.Price =Convert.ToInt16(item.Price);
+
+                    LstSeriesVM.Add(SeriesVM);
+                }
+
+                return View(LstSeriesVM);
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Msg = ex.ToString();
+                return RedirectToAction("Login", "Home");
+            }
+            
+        }
+
+        /// <summary>
+        /// 點選的購買方案資訊 確認購買的方案
+        /// </summary>
+        /// <param id="id">方案Id</param>
+        /// <returns></returns>
+        public ActionResult SeriesDetail(string id)
+        {
+            try
+            {
+                //驗證授權：一般會員
+               //RoleAuthManager roleAuth = new RoleAuthManager();
+                var pass = roleAuth.UserAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "User";
+                }
+                else
+                {
+                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                CourseSeriesOperation cs = new CourseSeriesOperation();
+                var series = cs.Get(id);
+
+                if (series == null)
+                {
+                    return HttpNotFound();
+                }
+
+                var price = Convert.ToInt16(series.Price);
+                //int initCnt = 1;
+                SeriesDetailViewModel seriesDetail = new SeriesDetailViewModel();
+                seriesDetail.Id = series.CourseSeriesNo;
+                seriesDetail.Name = series.Name;
+                seriesDetail.Price = price;
+                seriesDetail.Count = 1;
+                seriesDetail.CourseInfo = series.CourseInfo;
+
+                return View(seriesDetail);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Msg = ex.ToString();
+                return RedirectToAction("Login", "Home");
+            }
+            
+        }
+
+        /// <summary>
+        /// 點選確認 購買方案
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult SeriesDetail(SeriesDetailViewModel model)
+        {
+            try
+            {
+                //驗證授權：一般會員
+                //RoleAuthManager roleAuth = new RoleAuthManager();
+                var pass = roleAuth.UserAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "User";
+                }
+                else
+                {
+                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return View();
         }
 
     }

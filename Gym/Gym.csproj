@@ -281,6 +281,7 @@
     <Compile Include="Models\MemberCourse.cs" />
     <Compile Include="Models\Operation\ClassroomOperation.cs" />
     <Compile Include="Models\Operation\CourseOperation.cs" />
+    <Compile Include="Models\Operation\CourseSeriesOperation.cs" />
     <Compile Include="Models\Operation\CourseTypeOperation.cs" />
     <Compile Include="Models\Operation\DataOperation.cs" />
     <Compile Include="Models\Operation\IDataOperation.cs" />
@@ -294,10 +295,12 @@
     <Compile Include="Models\Store.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\ViewModels\AccountViewModel.cs" />
+    <Compile Include="Models\ViewModels\CourseSeriesViewModel.cs" />
     <Compile Include="Models\ViewModels\GroupViewModel.cs" />
     <Compile Include="Models\ViewModels\CheckboxListItem.cs" />
     <Compile Include="Models\ViewModels\IndexViewModel.cs" />
     <Compile Include="Models\ViewModels\MemberInfoViewModel.cs" />
+    <Compile Include="Models\ViewModels\SeriesDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\StoreInfoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -350,6 +353,8 @@
     <Content Include="Views\Member\StoreInfo.cshtml" />
     <Content Include="Views\Member\AccountInfo.cshtml" />
     <Content Include="Views\Member\Account.cshtml" />
+    <Content Include="Views\Member\CourseSeries.cshtml" />
+    <Content Include="Views\Member\SeriesDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

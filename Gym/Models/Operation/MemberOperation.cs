@@ -46,16 +46,13 @@ namespace Gym.Models
                
         }
 
-        //根據eamil找出會員資料
-        public List<Member> Get(string email)
+        //根據email找出會員資料
+        public Member Get(string email)
         {
             using (GymEntity db = new GymEntity())
             {
-                var tmpMember = from c in db.Member
-                              where c.Email.Equals(email)
-                              select c;
-                var member = tmpMember.ToList();
-                return member;
+                var member = db.Member.Where(a => a.Email == email).Select(a => a).ToList();
+                return member[0];
             }
         }
 

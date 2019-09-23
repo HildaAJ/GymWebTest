@@ -32,11 +32,8 @@ namespace Gym.Models.Operation
         {
             using (GymEntity db = new GymEntity())
             {
-                var tmpCourse = from c in db.CourseType
-                              where c.CourseTypeNo.Equals(courseNo)
-                              select c;
-                var course = tmpCourse.ToList();
-                return course[0];
+                var course = db.CourseType.Find(courseNo);
+                return course;
             }
         }
 
