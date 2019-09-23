@@ -287,6 +287,7 @@
     <Compile Include="Models\Operation\IDataOperation.cs" />
     <Compile Include="Models\Operation\MemberOperation.cs" />
     <Compile Include="Models\Auth\RoleAuthManager.cs" />
+    <Compile Include="Models\Operation\PurchaseRecordOperation.cs" />
     <Compile Include="Models\Operation\RoleOperation.cs" />
     <Compile Include="Models\Operation\StoreOperation.cs" />
     <Compile Include="Models\Auth\LoginUser.cs" />
@@ -300,6 +301,7 @@
     <Compile Include="Models\ViewModels\CheckboxListItem.cs" />
     <Compile Include="Models\ViewModels\IndexViewModel.cs" />
     <Compile Include="Models\ViewModels\MemberInfoViewModel.cs" />
+    <Compile Include="Models\ViewModels\MyPurchaseSeriesViewModel.cs" />
     <Compile Include="Models\ViewModels\SeriesDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\StoreInfoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -355,6 +357,7 @@
     <Content Include="Views\Member\Account.cshtml" />
     <Content Include="Views\Member\CourseSeries.cshtml" />
     <Content Include="Views\Member\SeriesDetail.cshtml" />
+    <Content Include="Views\Member\MyPurchaseSeries.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -18,10 +18,10 @@ namespace Gym.Models
 
         public override void Add(Member obj)
         {
-            using (GymEntity db = new GymEntity()) {
-                db.Member.Add(obj);
-                db.SaveChanges();
-            }
+            //using (GymEntity db = new GymEntity()) {
+            //    db.Member.Add(obj);
+            //    db.SaveChanges();
+            //}
            
         }
 

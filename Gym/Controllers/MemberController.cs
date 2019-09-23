@@ -306,7 +306,7 @@ namespace Gym.Controllers
         }
 
         /// <summary>
-        /// 點選的購買方案資訊 確認購買的方案
+        /// 點選的購買方案資訊 
         /// </summary>
         /// <param id="id">方案Id</param>
         /// <returns></returns>
@@ -342,12 +342,11 @@ namespace Gym.Controllers
                 }
 
                 var price = Convert.ToInt16(series.Price);
-                //int initCnt = 1;
                 SeriesDetailViewModel seriesDetail = new SeriesDetailViewModel();
-                seriesDetail.Id = series.CourseSeriesNo;
+                seriesDetail.SeriesId = series.CourseSeriesNo;
                 seriesDetail.Name = series.Name;
                 seriesDetail.Price = price;
-                seriesDetail.Count = 1;
+                seriesDetail.Count = "1";
                 seriesDetail.CourseInfo = series.CourseInfo;
 
                 return View(seriesDetail);
@@ -370,8 +369,53 @@ namespace Gym.Controllers
         {
             try
             {
-                //驗證授權：一般會員
-                //RoleAuthManager roleAuth = new RoleAuthManager();
+                //驗證授權：一般會員 
+                var pass = roleAuth.UserAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "User";
+                }
+                else
+                {
+                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+                //取得會員Id
+                var UserEmail = User.Identity.Name;
+                MemberOperation member = new MemberOperation();
+                var MemberId=member.Get(UserEmail).MemberNo;
+                //新增方案購買紀錄
+                PurchaseRecord purchaseRecord = new PurchaseRecord();
+                purchaseRecord.Date = DateTime.Now;
+                purchaseRecord.Count =Convert.ToInt16(model.Count);
+                purchaseRecord.PayStatus = true;
+                purchaseRecord.CourseSeries_No = model.SeriesId;
+                purchaseRecord.Member_No = MemberId;
+
+                PurchaseRecordOperation pr = new PurchaseRecordOperation();
+                pr.Add(purchaseRecord);
+
+                return RedirectToAction("MyPurchaseSeries", new { MemberId });
+            }
+            catch (Exception ex)
+            {
+
+                ViewBag.Msg = ex.ToString();
+                return RedirectToAction("Login", "Home");
+            }
+            
+        }
+
+        /// <summary>
+        /// 從首頁直接點進我的購買紀錄
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Index_MyPurchaseSeries()
+        {
+            try
+            {
+                //驗證授權：一般會員 
                 var pass = roleAuth.UserAuth();
                 if (pass == true)
                 {
@@ -384,14 +428,90 @@ namespace Gym.Controllers
                     return RedirectToAction("Login", "Home");
                 }
 
+                //取得會員Id 導到MyPurchaseSeries
+                var UserEmail = User.Identity.Name;
+                MemberOperation member = new MemberOperation();
+                var MemberId = member.Get(UserEmail).MemberNo;
+                return RedirectToAction("MyPurchaseSeries", new { MemberId });
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ViewBag.Msg = ex.ToString();
+                return RedirectToAction("Login", "Home");
             }
-            return View();
+            
+        }
+
+        /// <summary>
+        /// 購買方案後 顯示會員的方案購買紀錄
+        /// </summary>
+        /// <param name="MemberNo">會員Id</param>
+        /// <returns></returns>
+        public ActionResult MyPurchaseSeries(int MemberId)
+        {
+            try
+            {
+                //驗證授權：一般會員 
+                var pass = roleAuth.UserAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "User";
+                }
+                else
+                {
+                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+
+                //取得會員購買方案資料
+                PurchaseRecordOperation pr = new PurchaseRecordOperation();
+                var LstRec = pr.Get(MemberId);
+                List<MyPurchaseSeriesViewModel> LstVm = new List<MyPurchaseSeriesViewModel>();
+
+                foreach (var item in LstRec)
+                {
+                    //取得購買方案相關資訊
+                    CourseSeriesOperation cs = new CourseSeriesOperation();
+                    var csRec = cs.Get(item.CourseSeries_No);
+                    var name = csRec.Name;
+                    var info = csRec.CourseInfo;
+                    var price =Convert.ToInt16(csRec.Price);
+                    var payStatus = "";
+                    if (item.PayStatus==true)
+                    {
+                        payStatus = "已付款";
+                    }
+                    else
+                    {
+                        payStatus = "未付款";
+                    }
+
+                    //顯示會員購買方案
+                    MyPurchaseSeriesViewModel vm = new MyPurchaseSeriesViewModel()
+                    {
+                        Id = item.CourseSeries_No,
+                        Name = name,
+                        CourseInfo = info,
+                        Price = price,
+                        Count = item.Count,
+                        Date = item.Date.ToString(),
+                        PayStatus = payStatus,
+                    };
+
+                    LstVm.Add(vm);
+                }
+
+                return View(LstVm);
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Msg = ex.ToString();
+                return RedirectToAction("Login", "Home");
+            }
+
         }
 
     }

@@ -24,7 +24,7 @@
                 @{
                     var Role = ViewBag.RoleName;
                     if (HttpContext.Current.User.Identity.IsAuthenticated && Role == "User")
-                    {
+                            {
                         <ul class="nav navbar-nav">
 
                             <li>@Html.ActionLink("會員登出", "Logout", "Home")</li>
@@ -57,7 +57,7 @@
             <div class="col-sm-2 sidenav">
                 <p>@Html.ActionLink("首頁", "Index", "Home")</p>
                 <p>@Html.ActionLink("我的帳戶", "Account", "Member")</p>
-                <p><a href="#">我的課程</a></p>
+                <p>@Html.ActionLink("我的購買紀錄", "Index_MyPurchaseSeries", "Member")</p>
                 <p>@Html.ActionLink("消費方案", "CourseSeries", "Member")</p>
                 <p><a href="#">預約課程</a></p>
                 <p><a href="#">課程表</a></p>
