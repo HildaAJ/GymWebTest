@@ -551,16 +551,59 @@ namespace Gym.Controllers
         /// <returns></returns>
         public ActionResult MyCourse()
         {
-            //取得會員Id
-            var UserEmail = User.Identity.Name;
-            MemberOperation member = new MemberOperation();
-            var MemberId = member.Get(UserEmail).MemberNo;
-            //取得會員課程
-            MemberCourseOperation mco = new MemberCourseOperation();
-            var LstCourse = mco.Get(MemberId);
-            var courses = LstCourse.ToLookup(o => o.CourseType_no, o => o.Num);
+            try
+            {
+                //驗證授權：一般會員 
+                var pass = roleAuth.UserAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "User";
+                }
+                else
+                {
+                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
 
-            return View();
+                //取得會員Id
+                var UserEmail = User.Identity.Name;
+                MemberOperation member = new MemberOperation();
+                var MemberId = member.Get(UserEmail).MemberNo;
+                //取得會員課程
+                MemberCourseOperation mco = new MemberCourseOperation();
+                var LstCourse = mco.Get(MemberId);
+                var courses = LstCourse.ToLookup(o => o.CourseType_no, o => o.Num);
+
+                //將會員課程寫入我的課程ViewModel
+                List<MyCourseViewModel> LstMcv = new List<MyCourseViewModel>();
+                foreach (var type in courses)
+                {
+                    MyCourseViewModel mcv = new MyCourseViewModel();
+                    CourseTypeOperation cto = new CourseTypeOperation(); 
+                    var ClassName = cto.Get(type.Key).Name; //取得課程類型名稱
+                    int addCnt = 0;//加總用變數
+
+                    mcv.Name = ClassName;
+                    //將同課程類型的課堂數加總
+                    foreach (int cnt in type)
+                    {  
+                        addCnt += cnt;
+                    }
+                    mcv.count = addCnt;
+                    
+                    LstMcv.Add(mcv);
+                }
+
+                return View(LstMcv);
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Msg = ex.ToString();
+                return RedirectToAction("Login", "Home");
+            }
+
         }
 
     }

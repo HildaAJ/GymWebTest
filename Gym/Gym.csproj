@@ -327,6 +327,7 @@
     <Compile Include="Models\ViewModels\CheckboxListItem.cs" />
     <Compile Include="Models\ViewModels\IndexViewModel.cs" />
     <Compile Include="Models\ViewModels\MemberInfoViewModel.cs" />
+    <Compile Include="Models\ViewModels\MyCourseViewModel.cs" />
     <Compile Include="Models\ViewModels\MyPurchaseSeriesViewModel.cs" />
     <Compile Include="Models\ViewModels\SeriesDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\StoreInfoViewModel.cs" />
@@ -384,6 +385,7 @@
     <Content Include="Views\Member\CourseSeries.cshtml" />
     <Content Include="Views\Member\SeriesDetail.cshtml" />
     <Content Include="Views\Member\MyPurchaseSeries.cshtml" />
+    <Content Include="Views\Member\MyCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
