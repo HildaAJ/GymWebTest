@@ -381,20 +381,51 @@ namespace Gym.Controllers
                     ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
                     return RedirectToAction("Login", "Home");
                 }
-                //取得會員Id
+                
                 var UserEmail = User.Identity.Name;
                 MemberOperation member = new MemberOperation();
-                var MemberId=member.Get(UserEmail).MemberNo;
+                //取得會員Id
+                var MemberId =member.GetNo(UserEmail);
+                //取得會員資料
+                var memberData = member.Get(UserEmail);
+                //購買方案數量
+                var BuyCnt = Convert.ToInt16(model.Count);
+                
+
                 //新增方案購買紀錄
                 PurchaseRecord purchaseRecord = new PurchaseRecord();
-                purchaseRecord.Date = DateTime.Now;
-                purchaseRecord.Count =Convert.ToInt16(model.Count);
-                purchaseRecord.PayStatus = true;
-                purchaseRecord.CourseSeries_No = model.SeriesId;
-                purchaseRecord.Member_No = MemberId;
+                purchaseRecord.Date = DateTime.Now;  //購買日期
+                purchaseRecord.Count = BuyCnt;  //購買數量
+                purchaseRecord.PayStatus = true;  //付款狀態
+                purchaseRecord.CourseSeries_No = model.SeriesId;  //方案代號
+                purchaseRecord.Member_No = MemberId;  //會員id
 
                 PurchaseRecordOperation pr = new PurchaseRecordOperation();
                 pr.Add(purchaseRecord);
+
+                //找出課程方案內容
+                CourseSeriesDetailOperation csd = new CourseSeriesDetailOperation();
+                var seriesDetails=csd.Get(model.SeriesId);
+                //找出會員課程table筆數
+                MemberCourseOperation mco = new MemberCourseOperation();
+                int dataCnt=mco.GetCount();
+
+                //將課程方案內容新增至會員課程
+                List<MemberCourse> LstCourses = new List<MemberCourse>();
+                foreach (var item in seriesDetails)
+                {
+                    MemberCourse memberCourse = new MemberCourse();
+                    CourseTypeOperation cto = new CourseTypeOperation();
+                    memberCourse.MemberCourseNo = dataCnt + 1;
+                    memberCourse.CourseType_no = item.CourseType_No;  //課程類型代號
+                    memberCourse.Member_No = MemberId;  //會員id
+                    memberCourse.Num = item.Num*BuyCnt;  //課程堂數=原方案內容課程數*購買數量
+
+                    LstCourses.Add(memberCourse);
+                }
+                
+                
+                mco.Add(LstCourses);
 
                 return RedirectToAction("MyPurchaseSeries", new { MemberId });
             }
@@ -431,7 +462,7 @@ namespace Gym.Controllers
                 //取得會員Id 導到MyPurchaseSeries
                 var UserEmail = User.Identity.Name;
                 MemberOperation member = new MemberOperation();
-                var MemberId = member.Get(UserEmail).MemberNo;
+                var MemberId = member.GetNo(UserEmail);
                 return RedirectToAction("MyPurchaseSeries", new { MemberId });
 
             }
@@ -444,7 +475,7 @@ namespace Gym.Controllers
         }
 
         /// <summary>
-        /// 購買方案後 顯示會員的方案購買紀錄
+        /// 顯示會員的方案購買紀錄
         /// </summary>
         /// <param name="MemberNo">會員Id</param>
         /// <returns></returns>
@@ -512,6 +543,24 @@ namespace Gym.Controllers
                 return RedirectToAction("Login", "Home");
             }
 
+        }
+
+        /// <summary>
+        /// 顯示我的課程
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MyCourse()
+        {
+            //取得會員Id
+            var UserEmail = User.Identity.Name;
+            MemberOperation member = new MemberOperation();
+            var MemberId = member.Get(UserEmail).MemberNo;
+            //取得會員課程
+            MemberCourseOperation mco = new MemberCourseOperation();
+            var LstCourse = mco.Get(MemberId);
+            var courses = LstCourse.ToLookup(o => o.CourseType_no, o => o.Num);
+
+            return View();
         }
 
     }

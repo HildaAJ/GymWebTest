@@ -9,9 +9,12 @@ namespace Gym.Models
     [Table("MemberCourse")]
     public partial class MemberCourse
     {
-        [Key]
-        [StringLength(50)]
-        public string MemberCourseNo { get; set; }
+        //[Key]
+        //[StringLength(50)]
+        //public string MemberCourseNo { get; set; }
+
+        [Key] 
+        public int MemberCourseNo { get; set; }
 
         public int Member_No { get; set; }
 

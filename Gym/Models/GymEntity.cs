@@ -155,9 +155,9 @@ namespace Gym.Models
                 .Property(e => e.Store_No)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<MemberCourse>()
-                .Property(e => e.MemberCourseNo)
-                .IsUnicode(false);
+            //modelBuilder.Entity<MemberCourse>()
+            //    .Property(e => e.MemberCourseNo)
+            //    .IsUnicode(false);
 
             modelBuilder.Entity<MemberCourse>()
                 .Property(e => e.CourseType_no)

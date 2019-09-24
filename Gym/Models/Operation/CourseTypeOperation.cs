@@ -28,11 +28,11 @@ namespace Gym.Models.Operation
             }
         }
 
-        public CourseType Get(string courseNo)
+        public CourseType Get(string courseTypeNo)
         {
             using (GymEntity db = new GymEntity())
             {
-                var course = db.CourseType.Find(courseNo);
+                var course = db.CourseType.Find(courseTypeNo);
                 return course;
             }
         }

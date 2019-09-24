@@ -265,6 +265,30 @@
     <Compile Include="Migrations\201909190925071_v6.Designer.cs">
       <DependentUpon>201909190925071_v6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909240608358_alterMemberCourse.cs" />
+    <Compile Include="Migrations\201909240608358_alterMemberCourse.Designer.cs">
+      <DependentUpon>201909240608358_alterMemberCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909240631300_v7.cs" />
+    <Compile Include="Migrations\201909240631300_v7.Designer.cs">
+      <DependentUpon>201909240631300_v7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909240704459_alterMemberCourseNo.cs" />
+    <Compile Include="Migrations\201909240704459_alterMemberCourseNo.Designer.cs">
+      <DependentUpon>201909240704459_alterMemberCourseNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909240709315_v8.cs" />
+    <Compile Include="Migrations\201909240709315_v8.Designer.cs">
+      <DependentUpon>201909240709315_v8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909240720525_MemberCourseNoPK.cs" />
+    <Compile Include="Migrations\201909240720525_MemberCourseNoPK.Designer.cs">
+      <DependentUpon>201909240720525_MemberCourseNoPK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909240725364_v9.cs" />
+    <Compile Include="Migrations\201909240725364_v9.Designer.cs">
+      <DependentUpon>201909240725364_v9.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BookingCourse.cs" />
     <Compile Include="Models\Classroom.cs" />
@@ -281,10 +305,12 @@
     <Compile Include="Models\MemberCourse.cs" />
     <Compile Include="Models\Operation\ClassroomOperation.cs" />
     <Compile Include="Models\Operation\CourseOperation.cs" />
+    <Compile Include="Models\Operation\CourseSeriesDetailOperation.cs" />
     <Compile Include="Models\Operation\CourseSeriesOperation.cs" />
     <Compile Include="Models\Operation\CourseTypeOperation.cs" />
     <Compile Include="Models\Operation\DataOperation.cs" />
     <Compile Include="Models\Operation\IDataOperation.cs" />
+    <Compile Include="Models\Operation\MemberCourseOperation.cs" />
     <Compile Include="Models\Operation\MemberOperation.cs" />
     <Compile Include="Models\Auth\RoleAuthManager.cs" />
     <Compile Include="Models\Operation\PurchaseRecordOperation.cs" />
@@ -453,6 +479,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909190925071_v6.resx">
       <DependentUpon>201909190925071_v6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909240631300_v7.resx">
+      <DependentUpon>201909240631300_v7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909240704459_alterMemberCourseNo.resx">
+      <DependentUpon>201909240704459_alterMemberCourseNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909240709315_v8.resx">
+      <DependentUpon>201909240709315_v8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909240720525_MemberCourseNoPK.resx">
+      <DependentUpon>201909240720525_MemberCourseNoPK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909240725364_v9.resx">
+      <DependentUpon>201909240725364_v9.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -56,6 +56,16 @@ namespace Gym.Models
             }
         }
 
+        //根據email找出會員No
+        public int GetNo(string email)
+        {
+            using (GymEntity db = new GymEntity())
+            {
+                var member = db.Member.Where(a => a.Email == email).Select(a => a.MemberNo).ToList();
+                return member[0];
+            }
+        }
+
         public override void Update(Member obj)
         {
             
