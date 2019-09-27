@@ -46,4 +46,13 @@ namespace Gym.Models.ViewModels
 
         }
     }
+
+    /// <summary>
+    /// 顯示我的預約
+    /// </summary>
+    public class BookingGroupViewModel
+    {
+        public List<FutureBookingViewModel> FutureBooking { get; set; }
+        public List<PastBookingViewModel> PastBooking { get; set; }
+    }
 }

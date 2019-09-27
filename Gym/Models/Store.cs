@@ -43,6 +43,8 @@ namespace Gym.Models
 
         public int? MemberInCnt { get; set; }
 
+        public int AccessLimit { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Classroom> Classroom { get; set; }
 

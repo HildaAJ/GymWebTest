@@ -73,6 +73,20 @@ namespace Gym.Models.Operation
             }
         }
 
+        /// <summary>
+        /// 根據教室編號回傳教室資料
+        /// </summary>
+        /// <param name="classroomNo"></param>
+        /// <returns></returns>
+        public Classroom Get(string classroomNo)
+        {
+            using (GymEntity db = new GymEntity())
+            {
+                var data = db.Classroom.Find(classroomNo);
+                return data;
+            }
+        }
+
         public override void Update(Classroom item)
         {
             

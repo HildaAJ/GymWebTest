@@ -56,7 +56,7 @@ namespace Gym.Controllers
                     model.CourseInfo = new List<string>();
 
                     model.Store = store.Name;
-                    model.AccessLimit = 100.ToString();
+                    model.AccessLimit = store.AccessLimit.ToString();
                     model.AccessNow = store.MemberInCnt.ToString();
                     
                     //取得該館的所有教室

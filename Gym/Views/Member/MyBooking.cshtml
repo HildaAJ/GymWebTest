@@ -1,0 +1,112 @@
+﻿@model Gym.Models.ViewModels.BookingGroupViewModel
+
+@{
+    ViewBag.Title = "MyBooking";
+}
+
+<h2>MyBooking</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.PastBooking[0].CourseNo)</th>
+        <th>@Html.DisplayNameFor(model => model.PastBooking[0].CourseName)</th>
+        <th>@Html.DisplayNameFor(model => model.PastBooking[0].Date)</th>
+        <th>@Html.DisplayNameFor(model => model.PastBooking[0].Time)</th>
+        <th>@Html.DisplayNameFor(model => model.PastBooking[0].Store)</th>
+        <th>@Html.DisplayNameFor(model => model.PastBooking[0].Classroom)</th>
+        <th>@Html.DisplayNameFor(model => model.PastBooking[0].Teacher)</th>
+    </tr>
+
+    @foreach (var item in Model.PastBooking)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Store)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Classroom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher)
+            </td>
+
+            @*<td>
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+        </tr>
+    }
+
+    @foreach (var obj in Model.FutureBooking)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => obj.CourseNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => obj.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => obj.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => obj.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => obj.Store)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => obj.Classroom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => obj.Teacher)
+            </td>
+
+            <td>
+                @Html.ActionLink("取消預約", "DelBooking", new { id = obj.CourseNo })
+            </td>
+        </tr>
+
+
+    }
+
+</table>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <button type="submit" class="btn btn-primary" onclick="chkSale()">預約課程</button>
+        <button type="button" class="btn btn-warning" onclick="chkMyCourse()">我的課程</button>
+    </div>
+</div>
+
+<script>
+
+    function chkSale() {
+        location.href = "/Member/CourseSeries";
+    }
+
+    function chkMyCourse() {
+        location.href = "/Member/MyCourse";
+    }
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

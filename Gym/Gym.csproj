@@ -289,6 +289,10 @@
     <Compile Include="Migrations\201909240725364_v9.Designer.cs">
       <DependentUpon>201909240725364_v9.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909251002261_AddStoreAccessLimit.cs" />
+    <Compile Include="Migrations\201909251002261_AddStoreAccessLimit.Designer.cs">
+      <DependentUpon>201909251002261_AddStoreAccessLimit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BookingCourse.cs" />
     <Compile Include="Models\Classroom.cs" />
@@ -303,6 +307,7 @@
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberAccess.cs" />
     <Compile Include="Models\MemberCourse.cs" />
+    <Compile Include="Models\Operation\BookingCourseOperation.cs" />
     <Compile Include="Models\Operation\ClassroomOperation.cs" />
     <Compile Include="Models\Operation\CourseOperation.cs" />
     <Compile Include="Models\Operation\CourseSeriesDetailOperation.cs" />
@@ -317,18 +322,21 @@
     <Compile Include="Models\Operation\RoleOperation.cs" />
     <Compile Include="Models\Operation\StoreOperation.cs" />
     <Compile Include="Models\Auth\LoginUser.cs" />
+    <Compile Include="Models\Operation\TeacherOperation.cs" />
     <Compile Include="Models\PurchaseRecord.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Store.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\ViewModels\AccountViewModel.cs" />
     <Compile Include="Models\ViewModels\CourseSeriesViewModel.cs" />
+    <Compile Include="Models\ViewModels\FutureBookingViewModel.cs" />
     <Compile Include="Models\ViewModels\GroupViewModel.cs" />
     <Compile Include="Models\ViewModels\CheckboxListItem.cs" />
     <Compile Include="Models\ViewModels\IndexViewModel.cs" />
     <Compile Include="Models\ViewModels\MemberInfoViewModel.cs" />
     <Compile Include="Models\ViewModels\MyCourseViewModel.cs" />
     <Compile Include="Models\ViewModels\MyPurchaseSeriesViewModel.cs" />
+    <Compile Include="Models\ViewModels\PastBookingViewModel.cs" />
     <Compile Include="Models\ViewModels\SeriesDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\StoreInfoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -386,6 +394,7 @@
     <Content Include="Views\Member\SeriesDetail.cshtml" />
     <Content Include="Views\Member\MyPurchaseSeries.cshtml" />
     <Content Include="Views\Member\MyCourse.cshtml" />
+    <Content Include="Views\Member\MyBooking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -496,6 +505,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909240725364_v9.resx">
       <DependentUpon>201909240725364_v9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909251002261_AddStoreAccessLimit.resx">
+      <DependentUpon>201909251002261_AddStoreAccessLimit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -32,6 +32,20 @@ namespace Gym.Models.Operation
            
         }
 
+        /// <summary>
+        /// 根據場館id找到名稱
+        /// </summary>
+        /// <param name="storeNo"></param>
+        /// <returns></returns>
+        public string GetName(string storeNo)
+        {
+            using (GymEntity db = new GymEntity())
+            {
+                var name = db.Store.Where(a => a.StoreNo.Equals(storeNo)).Select(a => a.Name).ToList();
+                return name[0];
+            }
+        }
+
         public override void Update(Store obj)
         {
            

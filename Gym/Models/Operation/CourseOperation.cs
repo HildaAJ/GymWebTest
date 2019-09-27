@@ -71,6 +71,69 @@ namespace Gym.Models.Operation
             }
         }
 
+        /// <summary>
+        /// 預約課程的課程資料
+        /// </summary>
+        /// <param name="MemberNo">會員編號</param>
+        /// <returns></returns>
+        public IEnumerable<Course> GetBooking(int MemberNo)
+        {
+            using (GymEntity db = new GymEntity())
+            {
+                //會員所有的預約課程
+                var allData = db.BookingCourse.Where(a => a.Member_No.Equals(MemberNo)).Select(a => a);
+
+                //找出尚未結束的預約課程 
+                var data = from a in allData
+                           from b in db.Course
+                           where a.Course_No.Equals(b.CourseNo) && b.ClassDate >= DateTime.Now
+                           orderby b.ClassDate, b.StartTime
+                           select b;
+                var lstData = data.ToList();
+                return lstData;
+            }
+        }
+
+        /// <summary>
+        /// 過去預約課程的課程資料
+        /// </summary>
+        /// <param name="MemberNo">會員編號</param>
+        /// <returns></returns>
+        public IEnumerable<Course> GetPastBooking(int MemberNo)
+        {
+            using (GymEntity db = new GymEntity())
+            {
+                //會員所有的預約課程
+                var allData = db.BookingCourse.Where(a => a.Member_No.Equals(MemberNo)).Select(a => a);
+
+                var now = DateTime.Now.Ticks;
+
+                //找出近一個月已結束的預約課程
+                var pastdata = from a in allData.AsEnumerable()
+                               from b in db.Course
+                               where a.Course_No.Equals(b.CourseNo) && b.ClassDate < DateTime.Now 
+                               let pastDate=b.ClassDate.Ticks
+                               let days=new TimeSpan(now- pastDate).Days
+                               where days <= 31
+                               orderby b.ClassDate, b.StartTime
+                               select b;
+
+                //回傳前3筆資料
+                int cnt = 0;
+                //var lstData = new List<Course>();
+                foreach (var item in pastdata)
+                {
+                    if (cnt < 3)
+                    {
+                        cnt = cnt + 1;
+                        //lstData.Add(item);
+                        yield return item;
+                    } 
+                }
+
+                
+            }
+        }
 
         public override void Update(Course item)
         {

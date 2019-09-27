@@ -28,6 +28,11 @@ namespace Gym.Models.Operation
             }
         }
 
+        /// <summary>
+        /// 根據課程類型編號取得該資料
+        /// </summary>
+        /// <param name="courseTypeNo"></param>
+        /// <returns></returns>
         public CourseType Get(string courseTypeNo)
         {
             using (GymEntity db = new GymEntity())

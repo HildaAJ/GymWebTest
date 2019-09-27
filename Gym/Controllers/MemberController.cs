@@ -60,7 +60,7 @@ namespace Gym.Controllers
                     storeVModel.Tel = item.Tel;
                     storeVModel.Service = item.ServiceInfo;
                     storeVModel.Parking = item.ParkingInfo;
-                    storeVModel.MemberInCount = item.MemberInCnt;
+                    storeVModel.MemberInCount = item.AccessLimit;
 
                     stores.Add(storeVModel);
                 }
@@ -606,5 +606,90 @@ namespace Gym.Controllers
 
         }
 
+        /// <summary>
+        /// 顯示我的預約課程紀錄
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MyBooking()
+        {
+            try
+            {
+                //驗證授權：一般會員 
+                var pass = roleAuth.UserAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "User";
+                }
+                else
+                {
+                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+
+                //取得會員Id
+                var UserEmail = User.Identity.Name;
+                MemberOperation member = new MemberOperation();
+                var id = member.Get(UserEmail).MemberNo;
+
+                CourseOperation co = new CourseOperation();
+                var nowdata = co.GetBooking(id); //尚未結束之預約課程
+                var pastdata = co.GetPastBooking(id); //已結束之預約課程
+
+                CourseTypeOperation cto = new CourseTypeOperation();
+                ClassroomOperation classroom = new ClassroomOperation();
+                StoreOperation so = new StoreOperation();
+                TeacherOperation to = new TeacherOperation();
+
+                BookingGroupViewModel booking = new BookingGroupViewModel();
+                booking.FutureBooking = new List<FutureBookingViewModel>();
+                booking.PastBooking = new List<PastBookingViewModel>();
+
+                foreach (var item in nowdata)
+                {
+                    
+                    FutureBookingViewModel fbv = new FutureBookingViewModel()
+                    {
+                        CourseNo=item.CourseNo, //課程代號
+                        CourseName = cto.Get(item.CourseType_No).Name, //課程名稱
+                        Date = item.ClassDate.ToShortDateString(), //日期
+                        Classroom = classroom.Get(item.Classroom_No).Name, //教室
+                        Store = so.GetName(classroom.Get(item.Classroom_No).Store_No), //場館
+                        Time = item.StartTime.ToShortTimeString() + " ~ " + item.EndTime.ToShortTimeString(), //上課時間
+                        Teacher = to.GetName(item.Teacher_No) //教練名字
+                    };
+                    booking.FutureBooking.Add(fbv);
+                }
+
+                foreach (var item in pastdata)
+                {
+                    PastBookingViewModel pbv = new PastBookingViewModel()
+                    {
+                        CourseNo = item.CourseNo, //課程代號
+                        CourseName = cto.Get(item.CourseType_No).Name, //課程名稱
+                        Date = item.ClassDate.ToShortDateString(), //日期
+                        Classroom = classroom.Get(item.Classroom_No).Name, //教室
+                        Store = so.GetName(classroom.Get(item.Classroom_No).Store_No), //場館
+                        Time = item.StartTime.ToShortTimeString() + " ~ " + item.EndTime.ToShortTimeString(), //上課時間
+                        Teacher = to.GetName(item.Teacher_No) //教練名字
+
+                    };
+                    booking.PastBooking.Add(pbv);
+                }
+
+                return View(booking);
+
+            }
+
+            catch (Exception ex)
+            {
+                ViewBag.Msg = ex.ToString();
+                return RedirectToAction("Login", "Home");
+            }
+
+
+        }
+           
+        }
+
     }
-}
