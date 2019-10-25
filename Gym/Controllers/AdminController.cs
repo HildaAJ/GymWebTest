@@ -34,7 +34,7 @@ namespace Gym.Controllers
             catch (Exception ex)
             {
                 TempData["Msg"] = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
             }
             return View();
         }
@@ -93,7 +93,7 @@ namespace Gym.Controllers
             {
 
                 TempData["Msg"] = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
             }
             
         }
@@ -148,7 +148,7 @@ namespace Gym.Controllers
             catch (Exception ex)
             {
                 TempData["Msg"] = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
             }
         }
 
@@ -183,7 +183,7 @@ namespace Gym.Controllers
             catch (Exception ex)
             {
                 TempData["Msg"] = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
                 
             }
         }
@@ -210,14 +210,12 @@ namespace Gym.Controllers
                     return RedirectToAction("Login", "Home");
                 }
 
-
-
                 return View();
             }
             catch (Exception ex)
             {
                 TempData["Msg"] = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
             }
         }
 
@@ -225,7 +223,35 @@ namespace Gym.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult TeacherAdd(TeacherViewModel vm)
         {
-            return View();
+            try
+            {
+                //驗證授權：管理員
+                var pass = roleAuth.AdminAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "Admin";
+                }
+                else
+                {
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+
+                //vm.CreateTime = DateTime.Now.ToString();
+
+                TeacherOperation op = new TeacherOperation();
+                var result=op.Add(vm);
+                TempData["result"] = result;
+                return RedirectToAction(nameof(Teacher));
+
+            }
+            catch (Exception ex)
+            {
+
+                TempData["Msg"] = ex.ToString();
+                return RedirectToAction("Logout", "Home");
+            } 
         }
 
     }

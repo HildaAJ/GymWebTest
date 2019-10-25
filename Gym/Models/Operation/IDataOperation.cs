@@ -10,7 +10,7 @@ namespace Gym.Models
         where T:class
         where U:class
     {
-         void Add(U obj);
+         string Add(U obj);
          IEnumerable<T> Get();
        
     }

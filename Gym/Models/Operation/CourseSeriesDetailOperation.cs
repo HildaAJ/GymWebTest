@@ -12,9 +12,10 @@ namespace Gym.Models.Operation
     /// </summary>
     public class CourseSeriesDetailOperation :IDataOperation<CourseSeriesDetail, CourseSeriesDetailViewModel>
     {
-        public void Add(CourseSeriesDetailViewModel item)
+        public string Add(CourseSeriesDetailViewModel item)
         {
-            throw new NotImplementedException();
+            var msg = "";
+            return msg;
         }
 
         public void Delete(CourseSeriesDetailViewModel item)

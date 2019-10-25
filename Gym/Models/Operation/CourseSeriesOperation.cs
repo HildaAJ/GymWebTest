@@ -9,9 +9,10 @@ namespace Gym.Models.Operation
     //消費方案
     public class CourseSeriesOperation : IDataOperation<CourseSeries, CourseSeriesViewModel>
     {
-        public void Add(CourseSeriesViewModel item)
+        public string Add(CourseSeriesViewModel item)
         {
-            
+            var msg = "";
+            return msg;
         }
 
         public void Delete(CourseSeriesViewModel item)

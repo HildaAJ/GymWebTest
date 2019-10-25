@@ -94,7 +94,7 @@ namespace Gym.Controllers
                 else
                 {
                     TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("Logout", "Home");
                 }
 
                 //取得我的帳戶會員資料
@@ -115,7 +115,7 @@ namespace Gym.Controllers
             {
 
                 TempData["Msg"] = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
             }
         }
 
@@ -139,7 +139,7 @@ namespace Gym.Controllers
                 else
                 {
                     TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("Logout", "Home");
                 }
                 //取得我的帳戶會員資料
                 var Account = GetAccount();
@@ -156,7 +156,7 @@ namespace Gym.Controllers
             catch (Exception ex)
             {
                 TempData["Msg"] = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
 
             }
         }
@@ -183,7 +183,7 @@ namespace Gym.Controllers
                 else
                 {
                     TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("Logout", "Home");
                 }
                 MemberInfoViewModel afterEdit = new MemberInfoViewModel()
                 {
@@ -205,7 +205,7 @@ namespace Gym.Controllers
             catch (Exception ex)
             {
                 TempData["Msg"] = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
             }
 
         }
@@ -264,7 +264,7 @@ namespace Gym.Controllers
                 else
                 {
                     TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("Logout", "Home");
                 }
 
                 //取得消費方案資料
@@ -301,7 +301,7 @@ namespace Gym.Controllers
             catch (Exception ex)
             {
                 TempData["Msg"] = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
             }
             
         }
@@ -326,7 +326,7 @@ namespace Gym.Controllers
                 else
                 {
                     TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("Logout", "Home");
                 }
 
                 if (id == null)
@@ -355,7 +355,7 @@ namespace Gym.Controllers
             catch (Exception ex)
             {
                 TempData["Msg"] = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
             }
             
         }
@@ -381,7 +381,7 @@ namespace Gym.Controllers
                 else
                 {
                     TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("Logout", "Home");
                 }
                 
                 var UserEmail = User.Identity.Name;
@@ -435,7 +435,7 @@ namespace Gym.Controllers
             {
 
                 TempData["Msg"] = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
             }
             
         }
@@ -458,7 +458,7 @@ namespace Gym.Controllers
                 else
                 {
                     TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("Logout", "Home");
                 }
 
                 //取得會員Id 導到MyPurchaseSeries
@@ -471,7 +471,7 @@ namespace Gym.Controllers
             catch (Exception ex)
             {
                 TempData["Msg"] = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
             }
             
         }
@@ -495,7 +495,7 @@ namespace Gym.Controllers
                 else
                 {
                     TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("Logout", "Home");
                 }
 
                 //取得會員購買方案資料
@@ -542,7 +542,7 @@ namespace Gym.Controllers
             catch (Exception ex)
             {
                 TempData["Msg"] = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
             }
 
         }
@@ -565,7 +565,7 @@ namespace Gym.Controllers
                 else
                 {
                     TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("Logout", "Home");
                 }
 
                 //取得會員Id
@@ -603,7 +603,7 @@ namespace Gym.Controllers
             catch (Exception ex)
             {
                 ViewBag.Msg = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
             }
 
         }
@@ -626,7 +626,7 @@ namespace Gym.Controllers
                 else
                 {
                     TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("Logout", "Home");
                 }
 
                 //取得會員Id
@@ -686,7 +686,7 @@ namespace Gym.Controllers
             catch (Exception ex)
             {
                 TempData["Msg"] = ex.ToString();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Logout", "Home");
             }
 
 

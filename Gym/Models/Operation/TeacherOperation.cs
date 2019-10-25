@@ -9,10 +9,65 @@ namespace Gym.Models.Operation
 {
     public class TeacherOperation : IDataOperation<Teacher,TeacherViewModel>
     {
-
-        public void Add(TeacherViewModel item)
+        /// <summary>
+        /// 新增教練
+        /// </summary>
+        /// <param name="item">新增之教練資料</param>
+        public string Add(TeacherViewModel item)
         {
-            
+            using (GymEntity db = new GymEntity())
+            {
+                var msg = "";
+
+                var cnt = db.Teacher.Where(c => c.TeacherNo.Equals(item.TeacherNo) || c.Email.Equals(item.EMail)).Select(c=>c);
+                if (cnt.Count() > 0)
+                {
+                    msg = "新增的教練資料已存在!";
+                    return msg;
+                }
+                else
+                {
+                    Teacher teacher = new Teacher();
+                    teacher.TeacherNo = item.TeacherNo;
+                    teacher.Name = item.Name;
+                    teacher.Email = item.EMail;
+                    teacher.Birthday = DateTime.ParseExact(item.BirDate, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.AllowWhiteSpaces);
+                    teacher.CreateTime = DateTime.Now;
+                    if (item.Status.Equals("True")) //POST回傳值為字串 要完全一樣的字
+                    {
+                        teacher.Status = true;
+                    }
+                    else { teacher.Status = false; }
+
+                    db.Teacher.Add(teacher);
+
+                    bool saveFailed;
+                    do
+                    {
+                        saveFailed = false;
+                        try
+                        {
+                            db.SaveChanges();
+
+                        }
+                        catch (DbUpdateConcurrencyException ex)
+                        {
+                            saveFailed = true;
+                            ex.Entries.Single().Reload();
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                    } while (saveFailed);
+
+                    msg = "新增成功";
+                    return msg;
+                }
+
+            }
+
+           
         }
 
 

@@ -8,9 +8,10 @@ namespace Gym.Models.Operation
 {
     public class ClassroomOperation : IDataOperation<Classroom, ClassroomViewModel>
     {
-        public void Add(ClassroomViewModel item)
+        public string Add(ClassroomViewModel item)
         {
-           
+            var msg = "";
+            return msg;
         }
  
         /// <summary>

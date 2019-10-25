@@ -9,9 +9,10 @@ namespace Gym.Models.Operation
     public class StoreOperation :IDataOperation<Store, StoreViewModel>
     {
        
-        public void Add(StoreViewModel obj)
+        public string Add(StoreViewModel obj)
         {
-           
+            var msg = "";
+            return msg;
         }
 
         public void Delete(StoreViewModel obj)

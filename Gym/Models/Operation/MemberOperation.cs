@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Gym.Models
 {
-    public class MemberOperation : IDataOperation<Member, MemberInfoViewModel>
+    public class MemberOperation 
     {
       
         public Member user { get; private set; }

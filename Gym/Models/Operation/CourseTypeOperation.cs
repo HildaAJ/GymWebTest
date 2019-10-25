@@ -8,9 +8,10 @@ namespace Gym.Models.Operation
 {
     public class CourseTypeOperation : IDataOperation<CourseType, CourseTypeViewModel>
     {
-        public void Add(CourseTypeViewModel item)
+        public string Add(CourseTypeViewModel item)
         {
-            
+            var msg = "";
+            return msg;
         }
 
         public void Delete(CourseTypeViewModel item)
