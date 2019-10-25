@@ -5,19 +5,19 @@ using System.Web;
 
 namespace Gym.Models.Operation
 {
-    public class RoleOperation : DataOperation<Role>, IDataOperation<Role>
+    public class RoleOperation /*: DataOperation<Role>, IDataOperation<Role>*/
     {
-        public override void Add(Role item)
+        public void Add(Role item)
         {
             
         }
 
-        public override void Delete(Role item)
+        public void Delete(Role item)
         {
             
         }
 
-        public override IEnumerable<Role> Get()
+        public IEnumerable<Role> Get()
         {
             using(GymEntity db =new GymEntity())
             {
@@ -27,7 +27,7 @@ namespace Gym.Models.Operation
             }
         }
 
-        public override void Update(Role item)
+        public void Update(Role item)
         {
             
         }

@@ -2,26 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Gym.Models.ViewModels.Admin;
 
 namespace Gym.Models.Operation
 {
-    public class ClassroomOperation : DataOperation<Classroom>, IDataOperation<Classroom>
+    public class ClassroomOperation : IDataOperation<Classroom, ClassroomViewModel>
     {
-        public override void Add(Classroom item)
+        public void Add(ClassroomViewModel item)
         {
            
         }
-
-        public override void Delete(Classroom item)
-        {
-            
-        }
-
+ 
         /// <summary>
         /// 無差別取得所有教室資料
         /// </summary>
         /// <returns></returns>
-        public override IEnumerable<Classroom> Get()
+        public IEnumerable<Classroom> Get()
         {
             using (GymEntity db = new GymEntity())
             {
@@ -87,7 +83,7 @@ namespace Gym.Models.Operation
             }
         }
 
-        public override void Update(Classroom item)
+        public void Update(ClassroomViewModel item)
         {
             
         }

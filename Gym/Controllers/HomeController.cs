@@ -37,7 +37,7 @@ namespace Gym.Controllers
                 {
                     ViewBag.RoleName = "Admin";
                     ViewBag.UserName = roleAuth.UserName();
-                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員或以訪客身分瀏覽，謝謝！";
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員或以訪客身分瀏覽，謝謝！";
                     return RedirectToAction("Login", "Home");
                 }
 
@@ -104,7 +104,7 @@ namespace Gym.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Msg = ex.ToString();
+                TempData["Msg"] = ex.ToString();
                 return View();
             }                     
         }
@@ -221,8 +221,17 @@ namespace Gym.Controllers
  
                     FormsAuthManager authManager = new FormsAuthManager();
                     authManager.SignIn(user);
-  
-                    return RedirectToAction("Index", "Home");
+                    switch (user.Identity)
+                    {
+                        case Identity.User:
+                            return RedirectToAction("Index", "Home");
+                            
+                        case Identity.Admin:
+                            return RedirectToAction("Index", "Admin");
+
+                        default:
+                            return RedirectToAction("Index", "Home");
+                    }
                 }
                 else
                 {
@@ -232,7 +241,7 @@ namespace Gym.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Msg = ex.ToString();
+                TempData["Msg"] = ex.ToString();
                 return View();
             }
             

@@ -1,19 +1,20 @@
-﻿using System;
+﻿using Gym.Models.ViewModels.Admin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace Gym.Models.Operation
 { 
-    public class StoreOperation : DataOperation<Store>,IDataOperation<Store>
+    public class StoreOperation :IDataOperation<Store, StoreViewModel>
     {
        
-        public override void Add(Store obj)
+        public void Add(StoreViewModel obj)
         {
            
         }
 
-        public override void Delete(Store obj)
+        public void Delete(StoreViewModel obj)
         {
             
         }
@@ -21,7 +22,7 @@ namespace Gym.Models.Operation
         /// 取得所有場館資料
         /// </summary>
         /// <returns></returns>
-        public override IEnumerable<Store> Get()
+        public IEnumerable<Store> Get()
         {
             using (GymEntity db =new GymEntity())
             {
@@ -46,7 +47,7 @@ namespace Gym.Models.Operation
             }
         }
 
-        public override void Update(Store obj)
+        public void Update(StoreViewModel obj)
         {
            
         }

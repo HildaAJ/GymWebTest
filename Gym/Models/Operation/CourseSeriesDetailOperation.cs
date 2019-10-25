@@ -2,25 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Gym.Models.ViewModels;
+using Gym.Models.ViewModels.Admin;
 
 namespace Gym.Models.Operation
 {
     /// <summary>
     /// 課程方案內容
     /// </summary>
-    public class CourseSeriesDetailOperation : DataOperation<CourseSeriesDetail>, IDataOperation<CourseSeriesDetail>
+    public class CourseSeriesDetailOperation :IDataOperation<CourseSeriesDetail, CourseSeriesDetailViewModel>
     {
-        public override void Add(CourseSeriesDetail item)
+        public void Add(CourseSeriesDetailViewModel item)
         {
             throw new NotImplementedException();
         }
 
-        public override void Delete(CourseSeriesDetail item)
+        public void Delete(CourseSeriesDetailViewModel item)
         {
             throw new NotImplementedException();
         }
 
-        public override IEnumerable<CourseSeriesDetail> Get()
+        public IEnumerable<CourseSeriesDetail> Get()
         {
             throw new NotImplementedException();
         }
@@ -35,7 +37,7 @@ namespace Gym.Models.Operation
             }
         }
 
-        public override void Update(CourseSeriesDetail item)
+        public void Update(CourseSeriesDetailViewModel item)
         {
             throw new NotImplementedException();
         }

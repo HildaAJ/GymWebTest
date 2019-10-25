@@ -18,7 +18,6 @@ namespace Gym.Models.Operation
              issueDate: DateTime.UtcNow,//現在UTC時間
              expiration: DateTime.UtcNow.AddMinutes(30),//Cookie有效時間=現在時間往後+30分鐘
              isPersistent: false,// 是否將 Cookie 設定成 Session Cookie，如果是則會在瀏覽器關閉後移除(記住我)
-                                 //userData: Role+","+ memberDataOperation.user.Name,
              userData: JsonConvert.SerializeObject(user), //將要記錄的使用者資訊轉換為 JSON 字串
              cookiePath: FormsAuthentication.FormsCookiePath);
 

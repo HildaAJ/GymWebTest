@@ -5,12 +5,14 @@ using System.Web;
 
 namespace Gym.Models.Operation
 {
-    public abstract class DataOperation<T> 
+    public abstract class DataOperation<T,U>
+        where T : class
+        where U : class
     {
-        public abstract void Add(T item);
+        public abstract void Add(U item);
         public abstract IEnumerable<T> Get();       
-        public abstract void Update(T item);
-        public abstract void Delete(T item);
+        public abstract void Update(U item);
+        public abstract void Delete(U item);
 
     }
 }

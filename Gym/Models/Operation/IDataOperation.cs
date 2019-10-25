@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Gym.Models
 {
-    public interface IDataOperation<T> where T:class
+    public interface IDataOperation<T,U> 
+        where T:class
+        where U:class
     {
-         void Add(T obj);
+         void Add(U obj);
          IEnumerable<T> Get();
-         void Update(T obj);
-         void Delete(T obj);
        
     }
 }

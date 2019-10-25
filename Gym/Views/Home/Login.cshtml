@@ -43,7 +43,8 @@
                         </div>
                     </div>
                     <hr />
-                    <p id="msg" class="text-danger" style="font-weight:bold; font-size:15px">@ViewBag.Msg</p>
+                    @*<p id="msg" class="text-danger" style="font-weight:bold; font-size:15px">@ViewBag.Msg</p>*@
+                    <p id="msg" class="text-danger" style="font-weight:bold; font-size:15px">@TempData["Msg"]</p>
                     
                 }
             </section>

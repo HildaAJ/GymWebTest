@@ -11,31 +11,13 @@ using System.Text;
 
 namespace Gym.Models
 {
-    public class MemberOperation : DataOperation<Member>, IDataOperation<Member>
+    public class MemberOperation : IDataOperation<Member, MemberInfoViewModel>
     {
       
         public Member user { get; private set; }
 
-        public override void Add(Member obj)
-        {
-            //using (GymEntity db = new GymEntity()) {
-            //    db.Member.Add(obj);
-            //    db.SaveChanges();
-            //}
-           
-        }
 
-        public override void Delete(Member obj)
-        {
-            using(GymEntity db = new GymEntity())
-            {
-                db.Member.Remove(obj);
-                db.SaveChanges();
-            }
-            
-        }
-
-        public override IEnumerable<Member> Get()
+        public IEnumerable<Member> Get()
         {
             using (GymEntity db = new GymEntity())
             {
@@ -64,11 +46,6 @@ namespace Gym.Models
                 var member = db.Member.Where(a => a.Email == email).Select(a => a.MemberNo).ToList();
                 return member[0];
             }
-        }
-
-        public override void Update(Member obj)
-        {
-            
         }
 
         public void Update(MemberInfoViewModel afterEdit)
@@ -244,7 +221,13 @@ namespace Gym.Models
             }
         }
 
+        public void Add(MemberInfoViewModel item)
+        {
+            
         }
+
+       
+    }
 
     public static class MemberExtension
     {

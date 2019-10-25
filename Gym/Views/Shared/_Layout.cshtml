@@ -23,13 +23,24 @@
             <div class="navbar-collapse collapse">
                 @{
                     var Role = ViewBag.RoleName;
-                    if (HttpContext.Current.User.Identity.IsAuthenticated && Role == "User")
-                            {
-                        <ul class="nav navbar-nav">
+                    if (HttpContext.Current.User.Identity.IsAuthenticated)
+                    {
+                        if (Role == "User")
+                        {
+                            <ul class="nav navbar-nav">
 
-                            <li>@Html.ActionLink("會員登出", "Logout", "Home")</li>
-                        </ul>
+                                <li>@Html.ActionLink("會員登出", "Logout", "Home")</li>
+                            </ul>
+                        }
+                        else if (Role == "Admin")
+                        {
+                            <ul class="nav navbar-nav">
+
+                                <li>@Html.ActionLink("管理員登出", "Logout", "Home")</li>
+                            </ul>
+                        }
                     }
+
                     else
                     {
                         <ul class="nav navbar-nav">
@@ -51,37 +62,54 @@
 
     <div class="container body-content">
         <section>
-         @{ if (HttpContext.Current.User.Identity.IsAuthenticated && Role == "User")
-            {
+            @{ if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    if (Role == "User")
+                    {
+                        <div class="col-sm-2 sidenav">
+                            <p>@Html.ActionLink("首頁", "Index", "Home")</p>
+                            <p>@Html.ActionLink("我的帳戶", "Account", "Member")</p>
+                            <p>@Html.ActionLink("消費方案", "CourseSeries", "Member")</p>
+                            <p>@Html.ActionLink("我的購買紀錄", "Index_MyPurchaseSeries", "Member")</p>
+                            <p>@Html.ActionLink("我的課程", "MyCourse", "Member")</p>
+                            <p>@Html.ActionLink("預約紀錄", "MyBooking", "Member")</p>
+                            <p>@Html.ActionLink("各館資訊", "StoreInfo", "Member")</p>
+                        </div>
+                        <div class="col-sm-10">
+                            @RenderBody()
+                        </div>
+                    }
+                    else if (Role=="Admin")
+                    {
+                        <div class="col-sm-2 sidenav">
+                            <p>@Html.ActionLink("首頁", "Index", "Admin")</p>
+                            <p>@Html.ActionLink("課程", "Course", "Admin")</p>
+                            <p>@Html.ActionLink("課程方案", "CourseSeries", "Admin")</p>
+                            <p>@Html.ActionLink("教練", "Teacher", "Admin")</p>
+                            <p>@Html.ActionLink("館別", "Store", "Admin")</p>
+                            <p>@Html.ActionLink("教室", "Classroom", "Admin")</p>
+                            <p>@Html.ActionLink("課程類型", "CourseType", "Admin")</p>
+                            <p>@Html.ActionLink("會員資料管理", "Member", "Admin")</p>
+                        </div>
+                        <div class="col-sm-10">
+                            @RenderBody()
+                        </div>
+                    }
 
-            <div class="col-sm-2 sidenav">
-                <p>@Html.ActionLink("首頁", "Index", "Home")</p>
-                <p>@Html.ActionLink("我的帳戶", "Account", "Member")</p>
-                <p>@Html.ActionLink("我的購買紀錄", "Index_MyPurchaseSeries", "Member")</p>
-                <p>@Html.ActionLink("消費方案", "CourseSeries", "Member")</p>
-                <p>@Html.ActionLink("我的課程", "MyCourse", "Member")</p>
-                <p>@Html.ActionLink("預約紀錄", "MyBooking", "Member")</p>
-                <p><a href="#">課程表</a></p>
-                <p>@Html.ActionLink("各館資訊", "StoreInfo", "Member")</p>
-            </div>
-            <div class="col-sm-10">
-                 @RenderBody()
-            </div>
-             }
+                }
 
-             else
-             {
-                 ViewBag.UserName = "訪客";
+                else
+                {
+                    ViewBag.UserName = "訪客";
                     <div class="col-sm-2 sidenav">
                         <p>@Html.ActionLink("首頁", "Index", "Home")</p>
-                        <p><a href="#">課程表</a></p>
                         <p>@Html.ActionLink("各館資訊", "StoreInfo", "Member")</p>
                     </div>
                     <div class="col-sm-10">
                         @RenderBody()
                     </div>
 
-            }
+                }
             }
 
         </section>

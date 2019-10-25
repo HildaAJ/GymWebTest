@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Gym.Models.ViewModels.Admin;
 
 namespace Gym.Models.Operation
 {
     //消費方案
-    public class CourseSeriesOperation : DataOperation<CourseSeries>, IDataOperation<CourseSeries>
+    public class CourseSeriesOperation : IDataOperation<CourseSeries, CourseSeriesViewModel>
     {
-        public override void Add(CourseSeries item)
+        public void Add(CourseSeriesViewModel item)
         {
             
         }
 
-        public override void Delete(CourseSeries item)
+        public void Delete(CourseSeriesViewModel item)
         {
             
         }
@@ -22,7 +23,7 @@ namespace Gym.Models.Operation
         /// 取得所有方案資料
         /// </summary>
         /// <returns></returns>
-        public override IEnumerable<CourseSeries> Get()
+        public IEnumerable<CourseSeries> Get()
         {
             using (GymEntity db = new GymEntity())
             {
@@ -48,7 +49,7 @@ namespace Gym.Models.Operation
             }
         }
 
-        public override void Update(CourseSeries item)
+        public void Update(CourseSeriesViewModel item)
         {
             
         }

@@ -9,12 +9,8 @@ namespace Gym.Models.Operation
     /// <summary>
     /// 會員課程
     /// </summary>
-    public class MemberCourseOperation : DataOperation<MemberCourse>, IDataOperation<MemberCourse>
+    public class MemberCourseOperation  
     {
-        public override void Add(MemberCourse item)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Add(List<MemberCourse> LstCourse)
         {
@@ -54,11 +50,6 @@ namespace Gym.Models.Operation
 
 
 
-        public override void Delete(MemberCourse item)
-        {
-            throw new NotImplementedException();
-        }
-
         //根據會員編號取得課程資料
         public IEnumerable<MemberCourse> Get(int memberNo)
         {
@@ -69,7 +60,7 @@ namespace Gym.Models.Operation
             }
         }
         //取得所有會員課程資料
-        public override IEnumerable<MemberCourse> Get()
+        public IEnumerable<MemberCourse> Get()
         {
             using (GymEntity db = new GymEntity())
             {
@@ -88,9 +79,9 @@ namespace Gym.Models.Operation
             }
         }
 
-        public override void Update(MemberCourse item)
+        public void Update(MemberCourse item)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

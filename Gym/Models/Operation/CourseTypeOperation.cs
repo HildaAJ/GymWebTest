@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Gym.Models.ViewModels.Admin;
 
 namespace Gym.Models.Operation
 {
-    public class CourseTypeOperation : DataOperation<CourseType>, IDataOperation<CourseType>
+    public class CourseTypeOperation : IDataOperation<CourseType, CourseTypeViewModel>
     {
-        public override void Add(CourseType item)
+        public void Add(CourseTypeViewModel item)
         {
             
         }
 
-        public override void Delete(CourseType item)
+        public void Delete(CourseTypeViewModel item)
         {
             
         }
 
-        public override IEnumerable<CourseType> Get()
+        public IEnumerable<CourseType> Get()
         {
             using (GymEntity db = new GymEntity())
             {
@@ -42,7 +43,7 @@ namespace Gym.Models.Operation
             }
         }
 
-        public override void Update(CourseType item)
+        public void Update(CourseTypeViewModel item)
         {
             
         }

@@ -43,7 +43,7 @@ namespace Gym.Controllers
                 {
                     ViewBag.RoleName = "Admin";
                     ViewBag.UserName = roleAuth.UserName();
-                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員或以訪客身分瀏覽，謝謝！";
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員或以訪客身分瀏覽，謝謝！";
                     return RedirectToAction("Login", "Home");
                 }
 
@@ -69,7 +69,7 @@ namespace Gym.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Msg = ex.ToString();
+                TempData["Msg"] = ex.ToString();
                 return View();
 
             }
@@ -93,7 +93,7 @@ namespace Gym.Controllers
                 }
                 else
                 {
-                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
                     return RedirectToAction("Login", "Home");
                 }
 
@@ -114,7 +114,7 @@ namespace Gym.Controllers
             catch (Exception ex)
             {
 
-                ViewBag.Msg = ex.ToString();
+                TempData["Msg"] = ex.ToString();
                 return RedirectToAction("Login", "Home");
             }
         }
@@ -138,7 +138,7 @@ namespace Gym.Controllers
                 }
                 else
                 {
-                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
                     return RedirectToAction("Login", "Home");
                 }
                 //取得我的帳戶會員資料
@@ -155,7 +155,7 @@ namespace Gym.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Msg = ex.ToString();
+                TempData["Msg"] = ex.ToString();
                 return RedirectToAction("Login", "Home");
 
             }
@@ -167,6 +167,7 @@ namespace Gym.Controllers
         /// <param name="Info"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AccountInfo(MemberInfoViewModel Info)
         {
             try
@@ -181,7 +182,7 @@ namespace Gym.Controllers
                 }
                 else
                 {
-                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
                     return RedirectToAction("Login", "Home");
                 }
                 MemberInfoViewModel afterEdit = new MemberInfoViewModel()
@@ -203,7 +204,7 @@ namespace Gym.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Msg = ex.ToString();
+                TempData["Msg"] = ex.ToString();
                 return RedirectToAction("Login", "Home");
             }
 
@@ -262,7 +263,7 @@ namespace Gym.Controllers
                 }
                 else
                 {
-                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
                     return RedirectToAction("Login", "Home");
                 }
 
@@ -299,7 +300,7 @@ namespace Gym.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Msg = ex.ToString();
+                TempData["Msg"] = ex.ToString();
                 return RedirectToAction("Login", "Home");
             }
             
@@ -314,9 +315,9 @@ namespace Gym.Controllers
         {
             try
             {
-                //驗證授權：一般會員
-               //RoleAuthManager roleAuth = new RoleAuthManager();
-                var pass = roleAuth.UserAuth();
+                    //驗證授權：一般會員
+                    //RoleAuthManager roleAuth = new RoleAuthManager();
+                    var pass = roleAuth.UserAuth();
                 if (pass == true)
                 {
                     ViewBag.UserName = roleAuth.UserName();
@@ -324,7 +325,7 @@ namespace Gym.Controllers
                 }
                 else
                 {
-                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
                     return RedirectToAction("Login", "Home");
                 }
 
@@ -353,7 +354,7 @@ namespace Gym.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Msg = ex.ToString();
+                TempData["Msg"] = ex.ToString();
                 return RedirectToAction("Login", "Home");
             }
             
@@ -365,6 +366,7 @@ namespace Gym.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SeriesDetail(SeriesDetailViewModel model)
         {
             try
@@ -378,7 +380,7 @@ namespace Gym.Controllers
                 }
                 else
                 {
-                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
                     return RedirectToAction("Login", "Home");
                 }
                 
@@ -432,7 +434,7 @@ namespace Gym.Controllers
             catch (Exception ex)
             {
 
-                ViewBag.Msg = ex.ToString();
+                TempData["Msg"] = ex.ToString();
                 return RedirectToAction("Login", "Home");
             }
             
@@ -455,7 +457,7 @@ namespace Gym.Controllers
                 }
                 else
                 {
-                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
                     return RedirectToAction("Login", "Home");
                 }
 
@@ -468,7 +470,7 @@ namespace Gym.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Msg = ex.ToString();
+                TempData["Msg"] = ex.ToString();
                 return RedirectToAction("Login", "Home");
             }
             
@@ -492,7 +494,7 @@ namespace Gym.Controllers
                 }
                 else
                 {
-                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
                     return RedirectToAction("Login", "Home");
                 }
 
@@ -539,7 +541,7 @@ namespace Gym.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Msg = ex.ToString();
+                TempData["Msg"] = ex.ToString();
                 return RedirectToAction("Login", "Home");
             }
 
@@ -562,7 +564,7 @@ namespace Gym.Controllers
                 }
                 else
                 {
-                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
                     return RedirectToAction("Login", "Home");
                 }
 
@@ -623,7 +625,7 @@ namespace Gym.Controllers
                 }
                 else
                 {
-                    ViewBag.Msg = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
                     return RedirectToAction("Login", "Home");
                 }
 
@@ -683,7 +685,7 @@ namespace Gym.Controllers
 
             catch (Exception ex)
             {
-                ViewBag.Msg = ex.ToString();
+                TempData["Msg"] = ex.ToString();
                 return RedirectToAction("Login", "Home");
             }
 

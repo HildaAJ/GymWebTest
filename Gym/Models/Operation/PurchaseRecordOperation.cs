@@ -9,9 +9,9 @@ namespace Gym.Models.Operation
     /// <summary>
     /// 方案購買紀錄
     /// </summary>
-    public class PurchaseRecordOperation : DataOperation<PurchaseRecord>, IDataOperation<PurchaseRecord>
+    public class PurchaseRecordOperation /*: DataOperation<PurchaseRecord>, IDataOperation<PurchaseRecord>*/
     {
-        public override void Add(PurchaseRecord item)
+        public void Add(PurchaseRecord item)
         {
             using (GymEntity db = new GymEntity())
             {
@@ -38,10 +38,6 @@ namespace Gym.Models.Operation
             }
         }
 
-        public override void Delete(PurchaseRecord item)
-        {
-            throw new NotImplementedException();
-        }
 
         //根據會員編號取得方案購買紀錄
         public IEnumerable<PurchaseRecord> Get(int id)
@@ -53,16 +49,5 @@ namespace Gym.Models.Operation
             }
         }
 
-        public override IEnumerable<PurchaseRecord> Get()
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-        public override void Update(PurchaseRecord item)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

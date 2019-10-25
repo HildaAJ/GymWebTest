@@ -155,6 +155,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Filter\CommonAuthorizeAttribute.cs" />
@@ -294,26 +295,24 @@
       <DependentUpon>201909251002261_AddStoreAccessLimit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\BookingCourse.cs" />
-    <Compile Include="Models\Classroom.cs" />
-    <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\CourseSeries.cs" />
-    <Compile Include="Models\CourseSeriesDetail.cs" />
-    <Compile Include="Models\CourseType.cs" />
+    <Compile Include="Models\DbContext\BookingCourse.cs" />
+    <Compile Include="Models\DbContext\Classroom.cs" />
+    <Compile Include="Models\DbContext\Course.cs" />
+    <Compile Include="Models\DbContext\CourseSeries.cs" />
+    <Compile Include="Models\DbContext\CourseSeriesDetail.cs" />
+    <Compile Include="Models\DbContext\CourseType.cs" />
     <Compile Include="Models\C__MigrationHistory.cs" />
     <Compile Include="Filter\UserAuthorizeAttribute.cs" />
     <Compile Include="Models\Auth\FormsAuthManager.cs" />
-    <Compile Include="Models\GymEntity.cs" />
-    <Compile Include="Models\Member.cs" />
-    <Compile Include="Models\MemberAccess.cs" />
-    <Compile Include="Models\MemberCourse.cs" />
-    <Compile Include="Models\Operation\BookingCourseOperation.cs" />
+    <Compile Include="Models\DbContext\GymEntity.cs" />
+    <Compile Include="Models\DbContext\Member.cs" />
+    <Compile Include="Models\DbContext\MemberAccess.cs" />
+    <Compile Include="Models\DbContext\MemberCourse.cs" />
     <Compile Include="Models\Operation\ClassroomOperation.cs" />
     <Compile Include="Models\Operation\CourseOperation.cs" />
     <Compile Include="Models\Operation\CourseSeriesDetailOperation.cs" />
     <Compile Include="Models\Operation\CourseSeriesOperation.cs" />
     <Compile Include="Models\Operation\CourseTypeOperation.cs" />
-    <Compile Include="Models\Operation\DataOperation.cs" />
     <Compile Include="Models\Operation\IDataOperation.cs" />
     <Compile Include="Models\Operation\MemberCourseOperation.cs" />
     <Compile Include="Models\Operation\MemberOperation.cs" />
@@ -323,22 +322,29 @@
     <Compile Include="Models\Operation\StoreOperation.cs" />
     <Compile Include="Models\Auth\LoginUser.cs" />
     <Compile Include="Models\Operation\TeacherOperation.cs" />
-    <Compile Include="Models\PurchaseRecord.cs" />
-    <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\Store.cs" />
-    <Compile Include="Models\Teacher.cs" />
-    <Compile Include="Models\ViewModels\AccountViewModel.cs" />
-    <Compile Include="Models\ViewModels\CourseSeriesViewModel.cs" />
-    <Compile Include="Models\ViewModels\FutureBookingViewModel.cs" />
-    <Compile Include="Models\ViewModels\GroupViewModel.cs" />
-    <Compile Include="Models\ViewModels\CheckboxListItem.cs" />
-    <Compile Include="Models\ViewModels\IndexViewModel.cs" />
-    <Compile Include="Models\ViewModels\MemberInfoViewModel.cs" />
-    <Compile Include="Models\ViewModels\MyCourseViewModel.cs" />
-    <Compile Include="Models\ViewModels\MyPurchaseSeriesViewModel.cs" />
-    <Compile Include="Models\ViewModels\PastBookingViewModel.cs" />
-    <Compile Include="Models\ViewModels\SeriesDetailViewModel.cs" />
-    <Compile Include="Models\ViewModels\StoreInfoViewModel.cs" />
+    <Compile Include="Models\DbContext\PurchaseRecord.cs" />
+    <Compile Include="Models\DbContext\Role.cs" />
+    <Compile Include="Models\DbContext\Store.cs" />
+    <Compile Include="Models\DbContext\Teacher.cs" />
+    <Compile Include="Models\ViewModels\Admin\ClassroomViewModel.cs" />
+    <Compile Include="Models\ViewModels\Admin\CourseSeriesViewModel.cs" />
+    <Compile Include="Models\ViewModels\Admin\CourseTypeViewModel.cs" />
+    <Compile Include="Models\ViewModels\Admin\CourseViewModel.cs" />
+    <Compile Include="Models\ViewModels\Admin\StoreViewModel.cs" />
+    <Compile Include="Models\ViewModels\Admin\TeacherViewModel.cs" />
+    <Compile Include="Models\ViewModels\Admin\CourseSeriesDetailViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\AccountViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\CourseSeriesViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\FutureBookingViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\GroupViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\CheckboxListItem.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\IndexViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\MemberInfoViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\MyCourseViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\MyPurchaseSeriesViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\PastBookingViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\SeriesDetailViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\StoreInfoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -395,6 +401,10 @@
     <Content Include="Views\Member\MyPurchaseSeries.cshtml" />
     <Content Include="Views\Member\MyCourse.cshtml" />
     <Content Include="Views\Member\MyBooking.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Teacher.cshtml" />
+    <Content Include="Views\Admin\TeacherEdit.cshtml" />
+    <Content Include="Views\Admin\TeacherAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
