@@ -12,14 +12,27 @@
         <input type="button" class="button" value="課程" onclick="Course()">
         <input type="button" class="button" value="課程方案" onclick="CourseSeries()">
         <input type="button" class="button" value="會員資料管理" onclick="Member()">*@
-        <input type="button" class="button" value="教練" onclick="CourseType()">
-        <input type="button" class="button" value="館別" onclick="Course()">
-        <input type="button" class="button" value="教室" onclick="CourseSeries()">
-        <input type="button" class="button" value="課程類型" onclick="Member()">
+        <input type="button" class="button" value="教練" onclick="Teacher()">
+        <input type="button" class="button" value="館別" onclick="Store()">
+        <input type="button" class="button" value="教室" onclick="Classroom()">
+        <input type="button" class="button" value="課程類型" onclick="ClassType()">
 
 }
 
 <script>
+    function Teacher() {
+        location.href = "/Admin/Teacher";
+    }
+    function Store() {
+        location.href = "/Admin/Store";
+    }
+    function Classroom() {
+        location.href = "/Admin/Classroom";
+    }
+    function ClassType() {
+        location.href = "/Admin/ClassType";
+    }
+
     function Course() {
         location.href = "/Admin/Course";
     }

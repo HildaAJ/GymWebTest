@@ -408,6 +408,7 @@
     <Content Include="Views\Admin\Store.cshtml" />
     <Content Include="Views\Admin\StoreEdit.cshtml" />
     <Content Include="Views\Admin\StoreAdd.cshtml" />
+    <Content Include="Views\Admin\Classroom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

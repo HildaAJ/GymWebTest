@@ -84,6 +84,21 @@ namespace Gym.Models.Operation
             }
         }
 
+        /// <summary>
+        /// 根據館別id與教室編號取得教室資料
+        /// </summary>
+        /// <param name="no">館別編號</param>
+        /// <param name="key">教室編號</param>
+        /// <returns></returns>
+        public Classroom GetInfo(string no,string key)
+        {
+            using (GymEntity db = new GymEntity())
+            {
+                var data = db.Classroom.Where(c=>c.ClassroomNo.Equals(key) && c.Store_No.Equals(no)).ToList();
+                return data[0];
+            }
+        }
+
         public void Update(ClassroomViewModel item)
         {
             

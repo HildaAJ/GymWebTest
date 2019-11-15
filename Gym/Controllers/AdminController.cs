@@ -438,10 +438,111 @@ namespace Gym.Controllers
                 }
 
                 StoreOperation op = new StoreOperation();
-                var result= op.Add(model);
+                var result = op.Add(model);
                 TempData["result"] = result;
                 return RedirectToAction(nameof(Store));
+
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Msg"] = ex.ToString();
+                return RedirectToAction("Logout", "Home");
+            }
+        }
+
+        /// <summary>
+        /// 顯示所有教室資訊 照館別排列
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Classroom()
+        {
+            try
+            {
+                //驗證授權：管理員
+                var pass = roleAuth.AdminAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "Admin";
+                }
+                else
+                {
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+
+                StoreOperation storeOperation = new StoreOperation();
+                ClassroomOperation classroomOperation = new ClassroomOperation();
+                //取得所有館別ID
+                var allStore = storeOperation.Get().Select(c=>c.StoreNo);
+
+                //取得所有教室
+                var allClassroom = classroomOperation.Get();
+
+                List<ClassroomViewModel> LstModel = new List<ClassroomViewModel>();
                 
+                //根據現有館別歸納出各場館下的教室
+                foreach (var StoreNo in allStore)
+                {
+                    ClassroomViewModel model = new ClassroomViewModel();
+                    model.ClassInfo = new List<Dictionary<string, string>>();
+
+                    //取得同館別的教室
+                    var LstClsRoom = allClassroom.Where(c => c.Store_No.Equals(StoreNo)).Select(c => c);
+
+                    model.StoreNo = StoreNo;
+                    model.StoreName = storeOperation.GetName(StoreNo);
+                    //取得同館別所有教室的Id及名稱
+                    foreach (var item in LstClsRoom)
+                    {
+                        var DicClsInfo = new Dictionary<string, string>();
+                        DicClsInfo.Add(item.ClassroomNo, item.Name);
+
+                        model.ClassInfo.Add(DicClsInfo);
+                    }
+
+                    LstModel.Add(model);
+                }
+
+                    return View(LstModel);
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Msg"] = ex.ToString();
+                return RedirectToAction("Logout", "Home");
+            }
+        }
+
+        /// <summary>
+        /// 顯示編輯的教室資訊
+        /// </summary>
+        /// <param name="storeNo">館別id</param>
+        /// <param name="key">教室id</param>
+        /// <returns></returns>
+        public ActionResult ClsRoomEdit(string storeNo,string key)
+        {
+            try
+            {
+                //驗證授權：管理員
+                var pass = roleAuth.AdminAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "Admin";
+                }
+                else
+                {
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+
+                ClassroomOperation op = new ClassroomOperation();
+                var classroom=op.GetInfo(storeNo, key);
+
+                return RedirectToAction(nameof(Classroom));
+
 
             }
             catch (Exception ex)
