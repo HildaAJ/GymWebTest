@@ -82,7 +82,7 @@ namespace Gym.Controllers
                         EMail = item.Email,
                         BirDate = item.Birthday.ToString("yyyy-MM-dd").Substring(0, 10),
                         TeacherNo = item.TeacherNo,
-                        Status=status
+                        Status = status
                     };
                     models.Add(vm);
                 }
@@ -95,11 +95,8 @@ namespace Gym.Controllers
                 TempData["Msg"] = ex.ToString();
                 return RedirectToAction("Logout", "Home");
             }
-            
+
         }
-
-        
-
 
         /// <summary>
         /// 顯示編輯教練的資料
@@ -184,7 +181,7 @@ namespace Gym.Controllers
             {
                 TempData["Msg"] = ex.ToString();
                 return RedirectToAction("Logout", "Home");
-                
+
             }
         }
 
@@ -241,7 +238,7 @@ namespace Gym.Controllers
                 //vm.CreateTime = DateTime.Now.ToString();
 
                 TeacherOperation op = new TeacherOperation();
-                var result=op.Add(vm);
+                var result = op.Add(vm);
                 TempData["result"] = result;
                 return RedirectToAction(nameof(Teacher));
 
@@ -251,8 +248,207 @@ namespace Gym.Controllers
 
                 TempData["Msg"] = ex.ToString();
                 return RedirectToAction("Logout", "Home");
-            } 
+            }
         }
 
+        /// <summary>
+        /// 取得所有館別資料
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Store()
+        {
+            try
+            {
+                //驗證授權：管理員
+                var pass = roleAuth.AdminAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "Admin";
+                }
+                else
+                {
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+
+                StoreOperation op = new StoreOperation();
+                var allStore = op.Get();
+
+                List<StoreViewModel> lstModel = new List<StoreViewModel>();
+                foreach (var item in allStore)
+                {
+                    StoreViewModel model = new StoreViewModel();
+                    model.StoreNo = item.StoreNo;
+                    model.Name = item.Name;
+                    model.Address = item.Address;
+                    model.Tel = item.Tel;
+                    model.ServiceInfo = item.ServiceInfo;
+                    model.ParkingInfo = item.ParkingInfo;
+                    model.MemberInCnt = item.MemberInCnt.ToString();
+                    model.AccessLimit = item.AccessLimit.ToString();
+
+                    lstModel.Add(model);
+                }
+
+                return View(lstModel);
+            }
+
+            catch (Exception ex)
+            {
+                TempData["Msg"] = ex.ToString();
+                return RedirectToAction("Logout", "Home");
+            }
+        }
+
+        /// <summary>
+        /// 編輯選取的館別資料
+        /// </summary>
+        /// <param name="id">館別id</param>
+        /// <returns></returns>
+        public ActionResult StoreEdit(string id)
+        {
+
+            try
+            {
+                //驗證授權：管理員
+                var pass = roleAuth.AdminAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "Admin";
+                }
+                else
+                {
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+
+
+                StoreOperation op = new StoreOperation();
+                var store = op.GetInfo(id);
+
+                StoreViewModel model = new StoreViewModel()
+                {
+                    StoreNo = store.StoreNo,
+                    Name = store.Name,
+                    Address = store.Address,
+                    Tel = store.Tel,
+                    ServiceInfo = store.ServiceInfo,
+                    ParkingInfo = store.ParkingInfo,
+                    MemberInCnt = store.MemberInCnt.ToString(),
+                    AccessLimit = store.AccessLimit.ToString()
+
+                };
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                TempData["Msg"] = ex.ToString();
+                return RedirectToAction("Logout", "Home");
+
+            }
+
+        }
+
+        /// <summary>
+        /// 存檔編輯的館別資料
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult StoreEdit(StoreViewModel model)
+        {
+            try
+            {
+                //驗證授權：管理員
+                var pass = roleAuth.AdminAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "Admin";
+                }
+                else
+                {
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+
+                StoreOperation op = new StoreOperation();
+                op.Update(model);
+
+                return RedirectToAction(nameof(Store));
+            }
+            catch (Exception ex)
+            {
+                TempData["Msg"] = ex.ToString();
+                return RedirectToAction("Logout", "Home");
+            }
+        }
+
+        /// <summary>
+        /// 新增館別
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult StoreAdd()
+        {
+            try
+            {
+                //驗證授權：管理員
+                var pass = roleAuth.AdminAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "Admin";
+                }
+                else
+                {
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                TempData["Msg"] = ex.ToString();
+                return RedirectToAction("Logout", "Home");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult StoreAdd(StoreViewModel model)
+        {
+            try
+            {
+                //驗證授權：管理員
+                var pass = roleAuth.AdminAuth();
+                if (pass == true)
+                {
+                    ViewBag.UserName = roleAuth.UserName();
+                    ViewBag.RoleName = "Admin";
+                }
+                else
+                {
+                    TempData["Msg"] = "無權限瀏覽該網頁，請登入會員瀏覽，謝謝！";
+                    return RedirectToAction("Login", "Home");
+                }
+
+                StoreOperation op = new StoreOperation();
+                var result= op.Add(model);
+                TempData["result"] = result;
+                return RedirectToAction(nameof(Store));
+                
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Msg"] = ex.ToString();
+                return RedirectToAction("Logout", "Home");
+            }
+        }
     }
 }

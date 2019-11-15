@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Gym.Models.ViewModels.Admin.StoreViewModel>
+
+@{
+    ViewBag.Title = "Store";
+}
+
+<h2>館別資料</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StoreNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParkingInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberInCnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccessLimit)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StoreNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceInfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParkingInfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberInCnt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessLimit)
+            </td>
+            <td>
+                @Html.ActionLink("編輯資料", "StoreEdit", new { id = item.StoreNo }) 
+            </td>
+        </tr>
+    }
+
+</table>
+
+<input type="submit" value="新增館別" class="btn btn-primary" onclick="location.href = '/Admin/StoreAdd'" />
+
+@if (TempData["result"] != null)
+{
+    <script type="text/javascript">
+        alert('@TempData["result"]');
+    </script>
+
+}
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

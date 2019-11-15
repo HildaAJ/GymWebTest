@@ -148,7 +148,7 @@ namespace Gym.Models.Operation
                     }
                     catch (Exception)
                     {
-
+                        saveFailed = true;
                     }
                 } while (saveFailed);
 

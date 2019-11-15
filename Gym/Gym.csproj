@@ -405,6 +405,9 @@
     <Content Include="Views\Admin\Teacher.cshtml" />
     <Content Include="Views\Admin\TeacherEdit.cshtml" />
     <Content Include="Views\Admin\TeacherAdd.cshtml" />
+    <Content Include="Views\Admin\Store.cshtml" />
+    <Content Include="Views\Admin\StoreEdit.cshtml" />
+    <Content Include="Views\Admin\StoreAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
