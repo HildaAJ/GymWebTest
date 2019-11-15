@@ -1,15 +1,22 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+                /**/
+
+                ViewBag.Title = "Index";
 }
 
 <h2>常用功能</h2>
 @using (Html.BeginForm())
 {
-    <input type="button" class="button" value="課程類型" onclick="CourseType()">
-    <input type="button" class="button" value="課程" onclick="Course()">
-    <input type="button" class="button" value="課程方案" onclick="CourseSeries()">
-    <input type="button" class="button" value="會員資料管理" onclick="Member()"> 
+    @*<input type="button" class="button" value="課程類型" onclick="CourseType()">
+        <input type="button" class="button" value="課程" onclick="Course()">
+        <input type="button" class="button" value="課程方案" onclick="CourseSeries()">
+        <input type="button" class="button" value="會員資料管理" onclick="Member()">*@
+        <input type="button" class="button" value="教練" onclick="CourseType()">
+        <input type="button" class="button" value="館別" onclick="Course()">
+        <input type="button" class="button" value="教室" onclick="CourseSeries()">
+        <input type="button" class="button" value="課程類型" onclick="Member()">
+
 }
 
 <script>
