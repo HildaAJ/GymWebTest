@@ -1,0 +1,52 @@
+﻿
+@{
+                /**/
+
+                ViewBag.Title = "Index";
+}
+
+<h2>常用功能</h2>
+@using (Html.BeginForm())
+{
+    @*<input type="button" class="button" value="課程類型" onclick="CourseType()">
+        <input type="button" class="button" value="課程" onclick="Course()">
+        <input type="button" class="button" value="課程方案" onclick="CourseSeries()">
+        <input type="button" class="button" value="會員資料管理" onclick="Member()">*@
+        <input type="button" class="button" value="教練" onclick="Teacher()">
+        <input type="button" class="button" value="館別" onclick="Store()">
+        <input type="button" class="button" value="教室" onclick="Classroom()">
+        @*<input type="button" class="button" value="課程類型" onclick="ClassType()">*@
+
+}
+
+<script>
+    function Teacher() {
+        location.href = "/Admin/Teacher";
+    }
+    function Store() {
+        location.href = "/Admin/Store";
+    }
+    function Classroom() {
+        location.href = "/Admin/Classroom";
+    }
+    function ClassType() {
+        location.href = "/Admin/ClassType";
+    }
+
+    function Course() {
+        location.href = "/Admin/Course";
+    }
+    function CourseType() {
+        location.href = "/Admin/CourseType";
+    }
+    function CourseSeries() {
+        location.href = "/Admin/CourseSeries";
+    }
+    function Member() {
+        location.href = "/Admin/Member";
+    }
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

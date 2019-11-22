@@ -5,6 +5,11 @@
 }
 
 <h2>註冊</h2>
+@*<script>
+    $(document).ready(function () {
+        $("#alert").hide();
+}
+</script>*@
 
 <body>
     @using (Html.BeginForm("Create", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -12,94 +17,96 @@
         @Html.AntiForgeryToken()
 
         @Html.ValidationSummary()
-    <div class="form-horizontal">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Register.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Register.Name, new { htmlAttributes = new { @class = "form-cotrol", required = "required" } })
-                @Html.ValidationMessageFor(model => model.Register.Name, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Register.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Register.Name, new { htmlAttributes = new { @class = "form-cotrol", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Register.Name, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Register.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                男
-                @Html.RadioButtonFor(model => model.Register.Sex, "Male", new { @checked = true })
-                女
-                @Html.RadioButtonFor(model => model.Register.Sex, "Female")
+            <div class="form-group">
+                @Html.LabelFor(model => model.Register.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    男
+                    @Html.RadioButtonFor(model => model.Register.Sex, "Male", new { @checked = true })
+                    女
+                    @Html.RadioButtonFor(model => model.Register.Sex, "Female")
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Register.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Register.Email, new { htmlAttributes = new { @class = "form-cotrol", type = "email", required = "required" } })
-                @Html.ValidationMessageFor(model => model.Register.Email, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Register.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Register.Email, new { htmlAttributes = new { @class = "form-cotrol", type = "email", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Register.Email, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            
-            @Html.LabelFor(model => model.Register.Birthday, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Register.Birthday, new { htmlAttributes = new { @class = "form-cotrol", placeholder = "yyyy-mm-dd", required = "required" } })
-                @Html.ValidationMessageFor(model => model.Register.Birthday, "", new { @class = "text-danger" })
+            <div class="form-group">
 
+                @Html.LabelFor(model => model.Register.Birthday, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Register.Birthday, new { htmlAttributes = new { @class = "form-cotrol", placeholder = "yyyy-mm-dd", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Register.Birthday, "", new { @class = "text-danger" })
+
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Register.Tel, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Register.Tel, new { htmlAttributes = new { @class = "form-cotrol", type = "tel", required = "required" } })
-                @Html.ValidationMessageFor(model => model.Register.Tel, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Register.Tel, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Register.Tel, new { htmlAttributes = new { @class = "form-cotrol", type = "tel", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Register.Tel, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Register.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.PasswordFor(model => model.Register.Password, new { htmlAttributes = new { @class = "form-cotrol", required = "required" } })
-                @Html.ValidationMessageFor(model => model.Register.Password, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Register.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.Register.Password, new { htmlAttributes = new { @class = "form-cotrol", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Register.Password, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Register.ConfirePassword, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Register.ConfirePassword, new { htmlAttributes = new { @class = "form-cotrol", required = "required" } })
-                @Html.ValidationMessageFor(model => model.Register.ConfirePassword, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Register.ConfirePassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Register.ConfirePassword, new { htmlAttributes = new { @class = "form-cotrol", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Register.ConfirePassword, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Register.PassWay, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                iCash
-                @Html.RadioButtonFor(model => model.Register.PassWay, "iCash", new { @checked = true })
-                會員卡
-                @Html.RadioButtonFor(model => model.Register.PassWay, "會員卡")
+            <div class="form-group">
+                @Html.LabelFor(model => model.Register.PassWay, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    iCash
+                    @Html.RadioButtonFor(model => model.Register.PassWay, "iCash", new { @checked = true })
+                    會員卡
+                    @Html.RadioButtonFor(model => model.Register.PassWay, "會員卡")
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <span class = "control-label col-md-2" style="font-weight:bold">請選擇運動場館</span>
-            <div class="col-md-10">
-             @Html.EditorFor(model=>model.StoreCheckList.stores)
+            <div class="form-group">
+                <span class="control-label col-md-2" style="font-weight:bold">請選擇運動場館</span>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StoreCheckList.stores)
+                </div>
             </div>
-        </div>
 
-    </div>
+        </div>
 
         <p><input type="submit" value="註冊" class="btn btn-success" /></p>
         <hr />
         <p id="msg" class="text-danger" style="font-weight:bold; font-size:15px">@ViewBag.RegisterMsg</p>
 
+            @*<div class="alert alert-danger" id="alertMsg">
+                <strong>錯誤訊息!</strong>@ViewBag.RegisterMsg
+            </div>*@
     }
-
 </body>
-<!--前端驗證-->
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    <!--前端驗證-->
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

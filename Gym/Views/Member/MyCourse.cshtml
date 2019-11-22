@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Gym.Models.ViewModels.MyCourseViewModel>
+
+@{
+    ViewBag.Title = "我的課程";
+}
+
+<h2>我的課程</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.count)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.count)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+        </tr>
+    }
+
+</table>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <button type="submit" class="btn btn-primary" onclick="chkSale()">消費方案</button>
+        <button type="button" class="btn btn-warning" onclick="chkRecord()">查看購買紀錄</button>
+    </div>
+</div>
+
+<script>
+  
+    function chkSale() {
+        location.href = "/Member/CourseSeries";
+    }
+
+    function chkRecord() {
+        location.href = "/Member/Index_MyPurchaseSeries";
+    }
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

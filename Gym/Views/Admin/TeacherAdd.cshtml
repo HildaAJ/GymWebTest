@@ -1,0 +1,114 @@
+﻿@model Gym.Models.ViewModels.Admin.TeacherViewModel
+
+@{
+    ViewBag.Title = "TeacherAdd";
+}
+
+<h2>新增教練資料</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        @Html.HiddenFor(model => model.CreateTime)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TeacherNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TeacherNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TeacherNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EMail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EMail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EMail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BirDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BirDate, new { htmlAttributes = new { @class = "form-control", placeholder = "YYYY-MM-dd" } })
+                @Html.ValidationMessageFor(model => model.BirDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.CreateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CreateTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CreateTime, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                現役教練
+                @Html.RadioButtonFor(model => model.Status, true, new { @checked = true })
+                目前無教學服務
+                @Html.RadioButtonFor(model => model.Status, false)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="新增教練資料" class="btn btn-primary" onclick="return ConfirmMsg()" />
+                <input type="button" value="取消" class="btn btn-danger" onclick="return Cancel()" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+<script>
+    function ConfirmMsg() {
+        if (!confirm("確定要存檔嗎?"))
+            return false;
+        else {
+            //alert("存檔成功！");
+            location.href = "/Admin/Teacher";
+        }
+    }
+
+    function Cancel() {
+        location.href = "/Admin/Teacher";
+    }
+
+
+
+</script>
+
+
+
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

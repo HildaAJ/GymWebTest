@@ -155,7 +155,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Filter\CommonAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,27 +166,185 @@
     <Compile Include="Migrations\201907281000173_v1.Designer.cs">
       <DependentUpon>201907281000173_v1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908300822160_AddStoreMemberInCnt.cs" />
+    <Compile Include="Migrations\201908300822160_AddStoreMemberInCnt.Designer.cs">
+      <DependentUpon>201908300822160_AddStoreMemberInCnt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908301016370_Add_CourseItem_FK_ClassroomNo.cs" />
+    <Compile Include="Migrations\201908301016370_Add_CourseItem_FK_ClassroomNo.Designer.cs">
+      <DependentUpon>201908301016370_Add_CourseItem_FK_ClassroomNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908301026300_Add_CourseItem_FK_TeacherNo.cs" />
+    <Compile Include="Migrations\201908301026300_Add_CourseItem_FK_TeacherNo.Designer.cs">
+      <DependentUpon>201908301026300_Add_CourseItem_FK_TeacherNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908301043499_AlterCourseItem_ClassroomNo.cs" />
+    <Compile Include="Migrations\201908301043499_AlterCourseItem_ClassroomNo.Designer.cs">
+      <DependentUpon>201908301043499_AlterCourseItem_ClassroomNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908301107090_AlterCourseItem_ClassroomNo_2.cs" />
+    <Compile Include="Migrations\201908301107090_AlterCourseItem_ClassroomNo_2.Designer.cs">
+      <DependentUpon>201908301107090_AlterCourseItem_ClassroomNo_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908301118010_AlterCourseItem_TeacherNo.cs" />
+    <Compile Include="Migrations\201908301118010_AlterCourseItem_TeacherNo.Designer.cs">
+      <DependentUpon>201908301118010_AlterCourseItem_TeacherNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908301148192_UpdateDB.cs" />
+    <Compile Include="Migrations\201908301148192_UpdateDB.Designer.cs">
+      <DependentUpon>201908301148192_UpdateDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909020233597_DBinit.cs" />
+    <Compile Include="Migrations\201909020233597_DBinit.Designer.cs">
+      <DependentUpon>201909020233597_DBinit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909020617244_AlterCourseItem.cs" />
+    <Compile Include="Migrations\201909020617244_AlterCourseItem.Designer.cs">
+      <DependentUpon>201909020617244_AlterCourseItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909040710414_CourseItemNo.cs" />
+    <Compile Include="Migrations\201909040710414_CourseItemNo.Designer.cs">
+      <DependentUpon>201909040710414_CourseItemNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909180859073_RenameAndUpdateTable.cs" />
+    <Compile Include="Migrations\201909180859073_RenameAndUpdateTable.Designer.cs">
+      <DependentUpon>201909180859073_RenameAndUpdateTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909180944420_v2.cs" />
+    <Compile Include="Migrations\201909180944420_v2.Designer.cs">
+      <DependentUpon>201909180944420_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909181000195_alterCourseColumn.cs" />
+    <Compile Include="Migrations\201909181000195_alterCourseColumn.Designer.cs">
+      <DependentUpon>201909181000195_alterCourseColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909181033418_CourseColumn_v2.cs" />
+    <Compile Include="Migrations\201909181033418_CourseColumn_v2.Designer.cs">
+      <DependentUpon>201909181033418_CourseColumn_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909181037277_CourseColumn_v3.cs" />
+    <Compile Include="Migrations\201909181037277_CourseColumn_v3.Designer.cs">
+      <DependentUpon>201909181037277_CourseColumn_v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909181051048_v3.cs" />
+    <Compile Include="Migrations\201909181051048_v3.Designer.cs">
+      <DependentUpon>201909181051048_v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190336183_AlterMemberCourse.cs" />
+    <Compile Include="Migrations\201909190336183_AlterMemberCourse.Designer.cs">
+      <DependentUpon>201909190336183_AlterMemberCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190620509_v4.cs" />
+    <Compile Include="Migrations\201909190620509_v4.Designer.cs">
+      <DependentUpon>201909190620509_v4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190633581_DelMemberCourse.cs" />
+    <Compile Include="Migrations\201909190633581_DelMemberCourse.Designer.cs">
+      <DependentUpon>201909190633581_DelMemberCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190822459_DelMemberCourse_v2.cs" />
+    <Compile Include="Migrations\201909190822459_DelMemberCourse_v2.Designer.cs">
+      <DependentUpon>201909190822459_DelMemberCourse_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190824365_AddColumnMemberCourse.cs" />
+    <Compile Include="Migrations\201909190824365_AddColumnMemberCourse.Designer.cs">
+      <DependentUpon>201909190824365_AddColumnMemberCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190848409_v5.cs" />
+    <Compile Include="Migrations\201909190848409_v5.Designer.cs">
+      <DependentUpon>201909190848409_v5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190909045_AddFKBooking.cs" />
+    <Compile Include="Migrations\201909190909045_AddFKBooking.Designer.cs">
+      <DependentUpon>201909190909045_AddFKBooking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190915427_AddFKPurchaseRec.cs" />
+    <Compile Include="Migrations\201909190915427_AddFKPurchaseRec.Designer.cs">
+      <DependentUpon>201909190915427_AddFKPurchaseRec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190925071_v6.cs" />
+    <Compile Include="Migrations\201909190925071_v6.Designer.cs">
+      <DependentUpon>201909190925071_v6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909240608358_alterMemberCourse.cs" />
+    <Compile Include="Migrations\201909240608358_alterMemberCourse.Designer.cs">
+      <DependentUpon>201909240608358_alterMemberCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909240631300_v7.cs" />
+    <Compile Include="Migrations\201909240631300_v7.Designer.cs">
+      <DependentUpon>201909240631300_v7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909240704459_alterMemberCourseNo.cs" />
+    <Compile Include="Migrations\201909240704459_alterMemberCourseNo.Designer.cs">
+      <DependentUpon>201909240704459_alterMemberCourseNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909240709315_v8.cs" />
+    <Compile Include="Migrations\201909240709315_v8.Designer.cs">
+      <DependentUpon>201909240709315_v8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909240720525_MemberCourseNoPK.cs" />
+    <Compile Include="Migrations\201909240720525_MemberCourseNoPK.Designer.cs">
+      <DependentUpon>201909240720525_MemberCourseNoPK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909240725364_v9.cs" />
+    <Compile Include="Migrations\201909240725364_v9.Designer.cs">
+      <DependentUpon>201909240725364_v9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909251002261_AddStoreAccessLimit.cs" />
+    <Compile Include="Migrations\201909251002261_AddStoreAccessLimit.Designer.cs">
+      <DependentUpon>201909251002261_AddStoreAccessLimit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Classroom.cs" />
-    <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\CourseItem.cs" />
-    <Compile Include="Models\CourseSeries.cs" />
+    <Compile Include="Models\DbContext\BookingCourse.cs" />
+    <Compile Include="Models\DbContext\Classroom.cs" />
+    <Compile Include="Models\DbContext\Course.cs" />
+    <Compile Include="Models\DbContext\CourseSeries.cs" />
+    <Compile Include="Models\DbContext\CourseSeriesDetail.cs" />
+    <Compile Include="Models\DbContext\CourseType.cs" />
     <Compile Include="Models\C__MigrationHistory.cs" />
-    <Compile Include="Models\GymEntity.cs" />
-    <Compile Include="Models\Member.cs" />
-    <Compile Include="Models\MemberAccess.cs" />
-    <Compile Include="Models\MemberCourse.cs" />
-    <Compile Include="Models\Operation\DataOperation.cs" />
+    <Compile Include="Filter\UserAuthorizeAttribute.cs" />
+    <Compile Include="Models\Auth\FormsAuthManager.cs" />
+    <Compile Include="Models\DbContext\GymEntity.cs" />
+    <Compile Include="Models\DbContext\Member.cs" />
+    <Compile Include="Models\DbContext\MemberAccess.cs" />
+    <Compile Include="Models\DbContext\MemberCourse.cs" />
+    <Compile Include="Models\Operation\ClassroomOperation.cs" />
+    <Compile Include="Models\Operation\CourseOperation.cs" />
+    <Compile Include="Models\Operation\CourseSeriesDetailOperation.cs" />
+    <Compile Include="Models\Operation\CourseSeriesOperation.cs" />
+    <Compile Include="Models\Operation\CourseTypeOperation.cs" />
     <Compile Include="Models\Operation\IDataOperation.cs" />
-    <Compile Include="Models\Operation\MemberDataOperation.cs" />
-    <Compile Include="Models\Operation\RoleDataOperation.cs" />
-    <Compile Include="Models\Operation\StoreDataOperation.cs" />
-    <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\Store.cs" />
-    <Compile Include="Models\Teacher.cs" />
-    <Compile Include="Models\ViewModels\AccountViewModel.cs" />
-    <Compile Include="Models\ViewModels\GroupViewModel.cs" />
-    <Compile Include="Models\ViewModels\CheckboxListItem.cs" />
+    <Compile Include="Models\Operation\MemberCourseOperation.cs" />
+    <Compile Include="Models\Operation\MemberOperation.cs" />
+    <Compile Include="Models\Auth\RoleAuthManager.cs" />
+    <Compile Include="Models\Operation\PurchaseRecordOperation.cs" />
+    <Compile Include="Models\Operation\RoleOperation.cs" />
+    <Compile Include="Models\Operation\StoreOperation.cs" />
+    <Compile Include="Models\Auth\LoginUser.cs" />
+    <Compile Include="Models\Operation\TeacherOperation.cs" />
+    <Compile Include="Models\DbContext\PurchaseRecord.cs" />
+    <Compile Include="Models\DbContext\Role.cs" />
+    <Compile Include="Models\DbContext\Store.cs" />
+    <Compile Include="Models\DbContext\Teacher.cs" />
+    <Compile Include="Models\ViewModels\Admin\ClassroomViewModel.cs" />
+    <Compile Include="Models\ViewModels\Admin\CourseSeriesViewModel.cs" />
+    <Compile Include="Models\ViewModels\Admin\CourseTypeViewModel.cs" />
+    <Compile Include="Models\ViewModels\Admin\CourseViewModel.cs" />
+    <Compile Include="Models\ViewModels\Admin\StoreViewModel.cs" />
+    <Compile Include="Models\ViewModels\Admin\TeacherViewModel.cs" />
+    <Compile Include="Models\ViewModels\Admin\CourseSeriesDetailViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\AccountViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\CourseSeriesViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\FutureBookingViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\GroupViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\CheckboxListItem.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\IndexViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\MemberInfoViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\MyCourseViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\MyPurchaseSeriesViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\PastBookingViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\SeriesDetailViewModel.cs" />
+    <Compile Include="Models\ViewModels\Member and Visitor\StoreInfoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,9 +389,26 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\StoreCheckboxListItem.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Member\StoreInfo.cshtml" />
+    <Content Include="Views\Member\AccountInfo.cshtml" />
+    <Content Include="Views\Member\Account.cshtml" />
+    <Content Include="Views\Member\CourseSeries.cshtml" />
+    <Content Include="Views\Member\SeriesDetail.cshtml" />
+    <Content Include="Views\Member\MyPurchaseSeries.cshtml" />
+    <Content Include="Views\Member\MyCourse.cshtml" />
+    <Content Include="Views\Member\MyBooking.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Teacher.cshtml" />
+    <Content Include="Views\Admin\TeacherEdit.cshtml" />
+    <Content Include="Views\Admin\TeacherAdd.cshtml" />
+    <Content Include="Views\Admin\Store.cshtml" />
+    <Content Include="Views\Admin\StoreEdit.cshtml" />
+    <Content Include="Views\Admin\StoreAdd.cshtml" />
+    <Content Include="Views\Admin\Classroom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -252,7 +430,101 @@
     <EmbeddedResource Include="Migrations\201907281000173_v1.resx">
       <DependentUpon>201907281000173_v1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908300822160_AddStoreMemberInCnt.resx">
+      <DependentUpon>201908300822160_AddStoreMemberInCnt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908301016370_Add_CourseItem_FK_ClassroomNo.resx">
+      <DependentUpon>201908301016370_Add_CourseItem_FK_ClassroomNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908301026300_Add_CourseItem_FK_TeacherNo.resx">
+      <DependentUpon>201908301026300_Add_CourseItem_FK_TeacherNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908301043499_AlterCourseItem_ClassroomNo.resx">
+      <DependentUpon>201908301043499_AlterCourseItem_ClassroomNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908301107090_AlterCourseItem_ClassroomNo_2.resx">
+      <DependentUpon>201908301107090_AlterCourseItem_ClassroomNo_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908301118010_AlterCourseItem_TeacherNo.resx">
+      <DependentUpon>201908301118010_AlterCourseItem_TeacherNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908301148192_UpdateDB.resx">
+      <DependentUpon>201908301148192_UpdateDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909020233597_DBinit.resx">
+      <DependentUpon>201909020233597_DBinit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909020617244_AlterCourseItem.resx">
+      <DependentUpon>201909020617244_AlterCourseItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909040710414_CourseItemNo.resx">
+      <DependentUpon>201909040710414_CourseItemNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909180859073_RenameAndUpdateTable.resx">
+      <DependentUpon>201909180859073_RenameAndUpdateTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909180944420_v2.resx">
+      <DependentUpon>201909180944420_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909181000195_alterCourseColumn.resx">
+      <DependentUpon>201909181000195_alterCourseColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909181033418_CourseColumn_v2.resx">
+      <DependentUpon>201909181033418_CourseColumn_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909181037277_CourseColumn_v3.resx">
+      <DependentUpon>201909181037277_CourseColumn_v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909181051048_v3.resx">
+      <DependentUpon>201909181051048_v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190336183_AlterMemberCourse.resx">
+      <DependentUpon>201909190336183_AlterMemberCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190620509_v4.resx">
+      <DependentUpon>201909190620509_v4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190633581_DelMemberCourse.resx">
+      <DependentUpon>201909190633581_DelMemberCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190822459_DelMemberCourse_v2.resx">
+      <DependentUpon>201909190822459_DelMemberCourse_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190824365_AddColumnMemberCourse.resx">
+      <DependentUpon>201909190824365_AddColumnMemberCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190848409_v5.resx">
+      <DependentUpon>201909190848409_v5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190909045_AddFKBooking.resx">
+      <DependentUpon>201909190909045_AddFKBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190915427_AddFKPurchaseRec.resx">
+      <DependentUpon>201909190915427_AddFKPurchaseRec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190925071_v6.resx">
+      <DependentUpon>201909190925071_v6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909240631300_v7.resx">
+      <DependentUpon>201909240631300_v7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909240704459_alterMemberCourseNo.resx">
+      <DependentUpon>201909240704459_alterMemberCourseNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909240709315_v8.resx">
+      <DependentUpon>201909240709315_v8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909240720525_MemberCourseNoPK.resx">
+      <DependentUpon>201909240720525_MemberCourseNoPK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909240725364_v9.resx">
+      <DependentUpon>201909240725364_v9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909251002261_AddStoreAccessLimit.resx">
+      <DependentUpon>201909251002261_AddStoreAccessLimit.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

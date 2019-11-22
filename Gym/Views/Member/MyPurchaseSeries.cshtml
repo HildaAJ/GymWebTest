@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Gym.Models.ViewModels.MyPurchaseSeriesViewModel>
+
+@{
+    ViewBag.Title = "我的購買紀錄";
+}
+
+<h2>我的購買紀錄</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PayStatus)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseInfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Count)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayStatus)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                </td>*@
+        </tr>
+    }
+
+</table>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <button type="submit" class="btn btn-primary" onclick="chkSale()">看其他消費方案</button>
+        <button type="button" class="btn btn-warning" onclick="chkCourse()">查看課程</button>
+    </div>
+</div>
+
+<script>
+    function chkCourse() {
+        location.href = "/Member/MyCourse";
+    }
+
+    function chkSale() {
+        location.href = "/Member/CourseSeries";
+    }
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

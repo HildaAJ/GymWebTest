@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Gym.Models.ViewModels.Admin.ClassroomViewModel>
+
+@{
+    ViewBag.Title = "Classroom";
+}
+
+<h2>教室資料</h2>
+
+
+<table class="table">
+    @*<tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StoreNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StoreName)
+            </th>
+            <th></th>
+        </tr>*@
+
+    @foreach (var store in Model)
+    {
+        <tr>
+            <th>
+                @Html.DisplayFor(model => store.StoreName)
+            </th>
+        </tr>
+
+
+        foreach (var room in store.ClassInfo)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => room.Keys)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => room.Values)
+                </td>
+                <td>
+                    @*@Html.ActionLink("編輯教室", "ClsRoomEdit", new { store = store.StoreNo, key = room.Keys }) |*@
+                    @*@Html.ActionLink("刪除教室", "ClsRoomDelete", new { store = store.StoreNo, key = room.Keys })*@
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
+@*<input type="submit" value="新增教室" class="btn btn-primary" onclick="location.href = '/Admin/ClsroomAdd'" />*@
+
+<!--新增教室後 回到列出教室列表 顯示新增成功與否的popup-->
+@if (TempData["result"] != null)
+{
+    <script type="text/javascript">
+        alert('@TempData["result"]');
+    </script>
+
+}
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
