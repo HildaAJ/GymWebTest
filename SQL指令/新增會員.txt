@@ -1,0 +1,2 @@
+﻿insert into Member
+values('aj@gmail.com','2019/10/09','0911111111','jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=','Female','iCash','2','2019/10/09 11:15:00','2019/10/09 11:15:00','False','true','AJ')

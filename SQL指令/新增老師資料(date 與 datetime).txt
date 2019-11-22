@@ -1,0 +1,7 @@
+﻿insert into Teacher
+values('T01','Anna','anna@gmail.com','19881231','20190901 10:00:00 AM','1'),
+('T02','Bella','Bella@gmail.com','19870731','20190901 10:00:00 AM','1'),
+('T03','Chloe','chloe@gmail.com','19860831','20190901 10:00:00 AM','1'),
+('T04','Dada','dadada@gmail.com','19850531','20190901 10:00:00 AM','1'),
+('T05','Ellen','ellen@gmail.com','19840430','20190901 10:00:00 AM','1'),
+('T06','Hilda','hilda@gmail.com','19900227','20190901 10:00:00 AM','1');

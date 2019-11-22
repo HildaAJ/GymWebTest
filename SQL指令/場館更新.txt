@@ -1,0 +1,9 @@
+﻿update dbo.Store 
+set AccessLimit=100
+where StoreNo='A01'
+go
+
+update dbo.Store 
+set AccessLimit=200
+where StoreNo='A02'
+go

@@ -1,0 +1,133 @@
+﻿update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 09:00:00',EndTime='20191118 10:00:00'
+where CourseNo=33
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 10:00:00',EndTime='20191118 11:00:00'
+where CourseNo=34
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 13:00:00',EndTime='20191118 14:00:00'
+where CourseNo=35
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 14:00:00',EndTime='20191118 15:00:00'
+where CourseNo=36
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 15:00:00',EndTime='20191118 16:00:00'
+where CourseNo=37
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 16:00:00',EndTime='20191118 17:00:00'
+where CourseNo=38
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 09:00:00',EndTime='20191118 10:00:00'
+where CourseNo=1
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 10:00:00',EndTime='20191118 11:00:00'
+where CourseNo=2
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 11:00:00',EndTime='20191118 12:00:00'
+where CourseNo=3
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 13:00:00',EndTime='20191118 14:00:00'
+where CourseNo=4
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 14:00:00',EndTime='20191118 15:00:00'
+where CourseNo=5
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 15:00:00',EndTime='20191118 16:00:00'
+where CourseNo=6
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 16:00:00',EndTime='20191118 17:00:00'
+where CourseNo=7
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 17:00:00',EndTime='20191118 18:00:00'
+where CourseNo=8
+go
+
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 18:00:00',EndTime='20191118 19:00:00'
+where CourseNo=9
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 09:00:00',EndTime='20191118 10:00:00'
+where CourseNo=10
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 10:00:00',EndTime='20191118 11:00:00'
+where CourseNo=11
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 11:00:00',EndTime='20191118 12:00:00'
+where CourseNo=12
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 13:00:00',EndTime='20191118 14:00:00'
+where CourseNo=13
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 14:00:00',EndTime='20191118 15:00:00'
+where CourseNo=14
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 15:00:00',EndTime='20191118 16:00:00'
+where CourseNo=15
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 16:00:00',EndTime='20191118 17:00:00'
+where CourseNo=16
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 17:00:00',EndTime='20191118 18:00:00'
+where CourseNo=17
+go
+
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 18:00:00',EndTime='20191118 19:00:00'
+where CourseNo=18
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 18:00:00',EndTime='20191118 19:00:00'
+where CourseNo=19
+go
+
+update dbo.Course 
+set ClassDate='20191118',StartTime='20191118 14:00:00',EndTime='20191118 15:00:00'
+where CourseNo=20
+go
+
+           
