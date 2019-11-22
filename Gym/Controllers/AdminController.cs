@@ -538,6 +538,7 @@ namespace Gym.Controllers
                     return RedirectToAction("Login", "Home");
                 }
 
+                //根據館別id與教室編號取得教室資料
                 ClassroomOperation op = new ClassroomOperation();
                 var classroom=op.GetInfo(storeNo, key);
 
